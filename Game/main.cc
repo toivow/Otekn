@@ -10,6 +10,4 @@ int main(int argc, char *argv[])
 
     creategame game;
     game.show_board();
-
-    return a.exec();
 }
