@@ -7,7 +7,8 @@ CONFIG += c++14
 
 SOURCES += \
     main.cc \
-    creategame.cpp
+    creategame.cpp \
+    dialog.cpp
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
@@ -34,4 +35,8 @@ else:unix: PRE_TARGETDEPS += \
     $$OUT_PWD/../Course/CourseLib/libCourseLib.a
 
 HEADERS += \
-    creategame.hh
+    creategame.hh \
+    dialog.hh
+
+FORMS += \
+    dialog.ui

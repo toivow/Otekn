@@ -8,8 +8,8 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     Q_INIT_RESOURCE(offlinedata);
 
-    creategame lauta;
-    lauta.show_board();
+    creategame game;
+    game.show_board();
 
     return a.exec();
 }
