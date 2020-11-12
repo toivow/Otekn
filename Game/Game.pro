@@ -6,7 +6,10 @@ QT += core gui widgets network multimedia
 CONFIG += c++14
 
 SOURCES += \
-    main.cc
+    main.cc \
+    dialog.cpp \
+    creategame.cpp \
+    mainwindow.cpp
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
@@ -31,3 +34,12 @@ else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += \
     $$OUT_PWD/../Course/CourseLib/debug/CourseLib.lib
 else:unix: PRE_TARGETDEPS += \
     $$OUT_PWD/../Course/CourseLib/libCourseLib.a
+
+HEADERS += \
+    dialog.hh \
+    creategame.hh \
+    mainwindow.hh
+
+FORMS += \
+    dialog.ui \
+    mainwindow.ui
