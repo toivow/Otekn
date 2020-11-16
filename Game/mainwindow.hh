@@ -5,6 +5,9 @@
 #include <QMainWindow>
 #include "dialog.hh"
 
+#include "../CourseLib/interfaces/iactor.hh"
+#include "../CourseLib/graphics/simpleactoritem.hh"
+
 namespace Ui {
 class MainWindow;
 }
@@ -33,6 +36,15 @@ private:
 
     Ui::MainWindow *ui;
 
+    QGraphicsScene *map;
+
+    QTimer *timer;
+    QVector<QGraphicsItem*> actors_;
+    CourseSide::SimpleActorItem* last_;
+
+    int width_ = 500; //pxls
+    int height_ = 500;
+    int tick_ = 500; //ms
 };
 
 #endif // MAINWINDOW_HH
