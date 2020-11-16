@@ -27,14 +27,60 @@
    <widget class="QPushButton" name="startButton">
     <property name="geometry">
      <rect>
-      <x>710</x>
+      <x>699</x>
       <y>20</y>
-      <width>80</width>
-      <height>26</height>
+      <width>91</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
      <string>Start</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="busSpawnButton">
+    <property name="geometry">
+     <rect>
+      <x>699</x>
+      <y>100</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Spawn Bus</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="exitButton">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>160</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Exit</string>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="timeLeft">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>210</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="pointsAmnt">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>280</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
     </property>
    </widget>
   </widget>

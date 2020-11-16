@@ -7,6 +7,7 @@
 
 #include "../CourseLib/interfaces/iactor.hh"
 #include "../CourseLib/graphics/simpleactoritem.hh"
+#include "../CourseLib/actors/nysse.hh"
 
 namespace Ui {
 class MainWindow;
@@ -25,6 +26,10 @@ public:
 public slots:
 
     void init_window(QImage background_);
+
+private slots:
+
+    void bus_spawn();
 
 private:
 

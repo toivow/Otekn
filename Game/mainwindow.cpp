@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 
 
-const int PADDING = 10;
+const int PADDING = 20;
 
 MainWindow::MainWindow(QWidget *parent) :
     CourseSide::SimpleMainWindow(parent),
@@ -13,11 +13,16 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(&d_, SIGNAL(map_choice(QImage)), SLOT(init_window(QImage)));
     connect(&d_, SIGNAL(rejected()), this, SLOT(close()));
 
+    connect(ui->busSpawnButton, SIGNAL(clicked()), this, SLOT(bus_spawn()));
 
     ui->gameView->setFixedSize(width_, height_);
     ui->centralwidget->setFixedSize(width_ + ui->startButton->width() + PADDING, height_ + PADDING);
 
     ui->startButton->move(width_ + PADDING , PADDING);
+    ui->busSpawnButton->move(width_ + PADDING, 3*PADDING);
+    ui->exitButton->move(width_ + PADDING, 5*PADDING);
+    ui->pointsAmnt->move(width_ + PADDING, 7*PADDING);
+    ui->timeLeft->move(width_ + PADDING, 9*PADDING);
 
     map = new QGraphicsScene(this);
     ui->gameView->setScene(map);
@@ -58,4 +63,11 @@ void MainWindow::init_dialog()
 void MainWindow::init_window(QImage background_)
 {
     map->setBackgroundBrush(background_);
+}
+
+void MainWindow::bus_spawn()
+{
+    qDebug("Pitäisi spawnata");
+    CourseSide::SimpleActorItem* test = new CourseSide::SimpleActorItem(10, 10) ;
+
 }
