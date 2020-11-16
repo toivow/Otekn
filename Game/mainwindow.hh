@@ -8,6 +8,8 @@
 #include "../CourseLib/interfaces/iactor.hh"
 #include "../CourseLib/graphics/simpleactoritem.hh"
 #include "../CourseLib/actors/nysse.hh"
+#include "../CourseLib/core/logic.hh"
+
 
 namespace Ui {
 class MainWindow;
@@ -30,6 +32,8 @@ public slots:
 private slots:
 
     void bus_spawn();
+
+    virtual void add_actor(int locX, int locY, int type=0);
 
 private:
 

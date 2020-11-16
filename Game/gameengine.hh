@@ -7,16 +7,20 @@
 #include "dialog.hh"
 #include "mainwindow.hh"
 #include "../CourseLib/graphics/simplemainwindow.hh"
+#include "../CourseLib/core/logic.hh"
+#include "city.hh"
 
 
+class gameengine;
 
-
-class creategame
+class gameengine : public QObject
 {
+    Q_OBJECT
 
 public:
-    creategame();
-    ~creategame();
+
+    explicit gameengine(QObject* parent=nullptr);
+    virtual ~gameengine();
     void show_board();
 
 public slots:
@@ -25,17 +29,17 @@ public slots:
 
 private:
 
-   QImage small_img_;
-   QImage big_img_;
-   QImage hervanta_img_;
-
    QImage map_name_;
-
-   MainWindow window_;
 
    bool startorexit_;
 
    QImage background_;
+
+   CourseSide::SimpleMainWindow window_;
+
+   std::shared_ptr<Interface::ICity> city_;
+
+   CourseSide::Logic l_;
 
 };
 
