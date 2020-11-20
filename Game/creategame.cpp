@@ -5,7 +5,5 @@
 
 std::shared_ptr<Interface::ICity> createGame()
 {
-    std::shared_ptr<Interface::ICity> city_;
-
-    return city_;
+    return std::make_shared<StudentSide::city>();
 }

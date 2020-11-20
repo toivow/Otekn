@@ -9,6 +9,7 @@
 #include "../CourseLib/graphics/simplemainwindow.hh"
 #include "../CourseLib/core/logic.hh"
 #include "city.hh"
+#include "../CourseLib/creategame.hh"
 
 
 class gameengine;

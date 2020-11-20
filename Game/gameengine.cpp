@@ -25,6 +25,8 @@ gameengine::gameengine(QObject* parent) :
         qDebug("This shit ain supposed to happen dawg");
     }
 
+    qDebug("En tiiä miksei tää löydä tätä funktioo")
+    city_ = creategame();
     l_.takeCity(city_);
     l_.fileConfig();
 
