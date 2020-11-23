@@ -8,7 +8,6 @@ CONFIG += c++14
 SOURCES += \
     main.cc \
     dialog.cpp \
-    mainwindow.cpp \
     gameengine.cpp \
     city.cpp \
     creategame.cpp
@@ -39,11 +38,9 @@ else:unix: PRE_TARGETDEPS += \
 
 HEADERS += \
     dialog.hh \
-    mainwindow.hh \
     gameengine.hh \
     city.hh \
     creategame.hh
 
 FORMS += \
-    dialog.ui \
-    mainwindow.ui
+    dialog.ui

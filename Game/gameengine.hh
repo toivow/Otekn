@@ -6,7 +6,6 @@
 #include <QObject>
 #include <QTimer>
 #include "dialog.hh"
-#include "mainwindow.hh"
 #include "../CourseLib/graphics/simplemainwindow.hh"
 #include "../CourseLib/core/logic.hh"
 #include "city.hh"

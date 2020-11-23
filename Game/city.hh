@@ -5,6 +5,7 @@
 #include "../Course/CourseLib/graphics/simplemainwindow.hh"
 #include <algorithm>
 #include <QTime>
+#include <unordered_map>
 
 namespace StudentSide
 {
@@ -46,8 +47,8 @@ private:
 
     QImage background_;
 
-    std::list< std::shared_ptr<IActor>> passengers_;
-    std::list< std::shared_ptr<IActor>> buses_;
+    std::list <std::shared_ptr<IActor>> passengers_;
+    std::list < std::shared_ptr<IActor>> buses_;
 
     std::list< std::shared_ptr<IStop>> stops_;
 

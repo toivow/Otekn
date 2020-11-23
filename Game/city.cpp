@@ -1,13 +1,12 @@
 #include "city.hh"
 #include <QImage>
-
+#include <iostream>
 
 namespace StudentSide
 {
 
-city::city() :
-    window_(new CourseSide::SimpleMainWindow)
-{ 
+city::city()
+{
 }
 
 city::~city()
@@ -26,7 +25,12 @@ void city::setClock(QTime clock)
 
 void city::addStop(std::shared_ptr<IStop> stop)
 {
+    int X = stop->getLocation().giveX();
+    int Y = stop->getLocation().giveY();
+
+    window_.addActor(X, Y, 122);
     stops_.push_back(stop);
+    qDebug("Spawnattiin stop");
 }
 
 void city::startGame()
@@ -38,23 +42,26 @@ void city::startGame()
 
 void city::addActor(std::shared_ptr<IActor> newactor)
 {
+    int Y = 500-newactor->giveLocation().giveY();
+    int X = newactor->giveLocation().giveX();
+
+
     if (typeid(newactor) == typeid(buses_.front()) )
     {
-        window_.addActor(newactor->giveLocation().giveX(), newactor->giveLocation().giveY(), 0);
+        qDebug("Spawnattiin bussi");
+        window_.addActor(X, Y, 1);
         buses_.push_back(newactor);
     }
     else if (typeid(newactor) == typeid(passengers_.front()))
     {
-        qDebug("Added passenger");
-        window_.addActor(newactor->giveLocation().giveX(), newactor->giveLocation().giveY(), 255);
+        window_.addActor(X, Y, 255);
         passengers_.push_back(newactor);
+        qDebug("Spawnattiin passenger");
     }
     else
     {
         qDebug("Lisättävä actor ei ole bussi eikä passenger");
     }
-
-
 }
 
 void city::removeActor(std::shared_ptr<IActor> actor)
@@ -99,6 +106,8 @@ void city::actorMoved(std::shared_ptr<IActor> actor)
 {
     // Mitä vittua tänne pitää muka tehdä
     // vitun pellet
+
+
 }
 
 std::vector<std::shared_ptr<IActor> > city::getNearbyActors(Location loc) const

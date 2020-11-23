@@ -8,6 +8,7 @@ gameengine::gameengine(QObject* parent) :
     bigbackground_.load(":/offlinedata/offlinedata/kartta_iso_1095x592.png");
 
 
+    /*
     Dialog d;
     startorexit_ = d.exec();
 
@@ -26,7 +27,7 @@ gameengine::gameengine(QObject* parent) :
     {
         qDebug("This shit ain supposed to happen dawg");
     }
-
+    */
 
 
     StudentSide::creategame temp;
@@ -34,10 +35,9 @@ gameengine::gameengine(QObject* parent) :
     city_->setBackground(basicbackground_, bigbackground_);
 
 
-    l_.takeCity(city_);
     l_.fileConfig();
-
     l_.setTime(14, 00);
+    l_.takeCity(city_);
     l_.finalizeGameStart();
 
 }
