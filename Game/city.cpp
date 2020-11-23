@@ -69,12 +69,12 @@ void city::removeActor(std::shared_ptr<IActor> actor)
     buses_.remove(actor);
     passengers_.remove(actor);
 
-    actorRemoved(actor);
+    actorDestroyed(actor);
 }
 
-void city::actorRemoved(std::shared_ptr<IActor> actor)
+void city::actorDestroyed(std::shared_ptr<IActor> actor)
 {
-    actor->isRemoved();
+    actor->isDestroyed();
 }
 
 bool city::findActor(std::shared_ptr<IActor> actor) const
