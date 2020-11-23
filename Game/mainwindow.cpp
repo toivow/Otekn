@@ -68,6 +68,15 @@ void MainWindow::init_window(QImage background_)
 void MainWindow::bus_spawn()
 {
     qDebug("Pitäisi spawnata");
-    CourseSide::SimpleActorItem* test = new CourseSide::SimpleActorItem(10, 10) ;
+    // CourseSide::SimpleActorItem* test = new CourseSide::SimpleActorItem(10, 10) ;
+    this->add_actor(10, 10, 256);
+}
 
+void MainWindow::add_actor(int locX, int locY, int type)
+{
+    CourseSide::SimpleActorItem* nActor = new CourseSide::SimpleActorItem(locX, locY, type);
+    actors_.push_back(nActor);
+    map->addItem(nActor);
+    last_ = nActor;
+    qDebug("Added element");
 }
