@@ -31,13 +31,13 @@ public:
 
     void actorRemoved(std::shared_ptr<IActor> actor);
 
-    bool findActor(std::shared_ptr<IActor> actor);
+    bool findActor(std::shared_ptr<IActor> actor) const;
 
     void actorMoved(std::shared_ptr<IActor> actor);
 
-    std::vector<std::shared_ptr<IActor>> getNearbyActors(Location loc);
+    std::vector<std::shared_ptr<IActor>> getNearbyActors(Location loc) const;
 
-    bool isGameOver();
+    bool isGameOver() const;
 
 private:
 

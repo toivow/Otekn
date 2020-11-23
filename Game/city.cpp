@@ -30,15 +30,15 @@ void city::removeActor(std::shared_ptr<IActor> actor){}
 
 void city::actorRemoved(std::shared_ptr<IActor> actor){}
 
-bool city::findActor(std::shared_ptr<IActor> actor){
+bool city::findActor(std::shared_ptr<IActor> actor) const{
     return 1;
 }
 
 void city::actorMoved(std::shared_ptr<IActor> actor){}
 
-std::vector<std::shared_ptr<IActor>> city::getNearbyActors(Location loc){}
+std::vector<std::shared_ptr<IActor>> city::getNearbyActors(Location loc) const{}
 
-bool city::isGameOver()
+bool city::isGameOver() const
 {
     return 0;
 }

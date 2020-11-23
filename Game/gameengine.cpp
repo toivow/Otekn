@@ -11,8 +11,8 @@ gameengine::gameengine(QObject* parent) :
 
     if (startorexit_)
     {
-        window_.setPicture(background_);
-        window_.show();
+        //window_.setPicture(background_);
+        //window_.show();
         qDebug("Started program.");
 
     } else if (!startorexit_)
@@ -25,14 +25,18 @@ gameengine::gameengine(QObject* parent) :
         qDebug("This shit ain supposed to happen dawg");
     }
 
-    qDebug("En tiiä miksei tää löydä tätä funktioo")
-    city_ = creategame();
+    qDebug("En tiiä miksei tää löydä tätä funktioo");
+
+    temp = StudentSide::creategame();
+
+    city_ = temp.createGame();
     l_.takeCity(city_);
     l_.fileConfig();
 
     l_.setTime(14, 00);
     l_.finalizeGameStart();
 
+    window_.show();
 
 }
 
