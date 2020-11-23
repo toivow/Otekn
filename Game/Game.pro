@@ -41,7 +41,8 @@ HEADERS += \
     dialog.hh \
     mainwindow.hh \
     gameengine.hh \
-    city.hh
+    city.hh \
+    creategame.hh
 
 FORMS += \
     dialog.ui \
