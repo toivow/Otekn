@@ -1,14 +1,16 @@
-#ifndef CREATEGAME_HH
-#define CREATEGAME_HH
+#ifndef GAMEENGINE_HH
+#define GAMEENGINE_HH
 
 #include <QDialog>
 #include <QImage>
 #include <QObject>
+#include <QTimer>
 #include "dialog.hh"
 #include "mainwindow.hh"
 #include "../CourseLib/graphics/simplemainwindow.hh"
 #include "../CourseLib/core/logic.hh"
 #include "city.hh"
+#include "creategame.hh"
 
 
 class gameengine;
@@ -39,8 +41,12 @@ private:
 
    std::shared_ptr<Interface::ICity> city_;
 
+   QTimer *timer;
+
+   StudentSide::creategame temp;
+
    CourseSide::Logic l_;
 
 };
 
-#endif // CREATEGAME_HH
+#endif // GAMEENGINE_HH

@@ -15,29 +15,29 @@ public:
     city();
 
 
-    virtual ~city() = default;
+    ~city();
 
-    virtual void setBackground(QImage& basicbackground, QImage& bigbackground) = 0;
+    void setBackground(QImage& basicbackground, QImage& bigbackground);
 
-    virtual void setClock(QTime clock) = 0;
+    void setClock(QTime clock);
 
-    virtual void addStop(std::shared_ptr<IStop> stop) = 0;
+    void addStop(std::shared_ptr<IStop> stop);
 
-    virtual void startGame() = 0;
+    void startGame();
 
-    virtual void addActor(std::shared_ptr<IActor> newactor) = 0;
+    void addActor(std::shared_ptr<IActor> newactor);
 
-    virtual void removeActor(std::shared_ptr<IActor> actor) = 0;
+    void removeActor(std::shared_ptr<IActor> actor);
 
-    virtual void actorRemoved(std::shared_ptr<IActor> actor) = 0;
+    void actorRemoved(std::shared_ptr<IActor> actor);
 
-    virtual bool findActor(std::shared_ptr<IActor> actor) const = 0;
+    bool findActor(std::shared_ptr<IActor> actor) const;
 
-    virtual void actorMoved(std::shared_ptr<IActor> actor) = 0;
+    void actorMoved(std::shared_ptr<IActor> actor);
 
-    virtual std::vector<std::shared_ptr<IActor>> getNearbyActors(Location loc) const = 0;
+    std::vector<std::shared_ptr<IActor>> getNearbyActors(Location loc) const;
 
-    virtual bool isGameOver() const = 0;
+    bool isGameOver() const;
 
 private:
 
