@@ -46,7 +46,9 @@ private:
 
     QImage background_;
 
-    std::list< std::shared_ptr<IActor>> actors_;
+    std::list< std::shared_ptr<IActor>> passengers_;
+    std::list< std::shared_ptr<IActor>> buses_;
+
     std::list< std::shared_ptr<IStop>> stops_;
 
     bool debugstate_;
