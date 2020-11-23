@@ -27,7 +27,6 @@ public:
 
 public slots:
 
-    void load_map(QImage);
 
 private:
 
@@ -35,9 +34,8 @@ private:
 
    bool startorexit_;
 
-   QImage background_;
-
-   CourseSide::SimpleMainWindow window_;
+   QImage basicbackground_;
+   QImage bigbackground_;
 
    std::shared_ptr<Interface::ICity> city_;
 

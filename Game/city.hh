@@ -2,6 +2,9 @@
 #define CITY_HH
 
 #include "../CourseLib/interfaces/icity.hh"
+#include "../Course/CourseLib/graphics/simplemainwindow.hh"
+#include <algorithm>
+#include <QTime>
 
 namespace StudentSide
 {
@@ -42,6 +45,16 @@ public:
 private:
 
     QImage background_;
+
+    std::list< std::shared_ptr<IActor>> actors_;
+    std::list< std::shared_ptr<IStop>> stops_;
+
+    bool debugstate_;
+    bool gamestarted_;
+
+    CourseSide::SimpleMainWindow window_;
+
+    QTime aika_;
 
 
 };

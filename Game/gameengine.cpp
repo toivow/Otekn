@@ -4,9 +4,11 @@
 gameengine::gameengine(QObject* parent) :
     QObject(parent)
 {
+    basicbackground_.load(":/offlinedata/offlinedata/kartta_pieni_500x500.png");
+    bigbackground_.load(":/offlinedata/offlinedata/kartta_iso_1095x592.png");
+
 
     Dialog d;
-    connect(&d, SIGNAL(map_choice(QImage)), this, SLOT(load_map(QImage)));
     startorexit_ = d.exec();
 
     if (startorexit_)
@@ -25,18 +27,18 @@ gameengine::gameengine(QObject* parent) :
         qDebug("This shit ain supposed to happen dawg");
     }
 
-    qDebug("En tiiä miksei tää löydä tätä funktioo");
 
-    temp = StudentSide::creategame();
 
+    StudentSide::creategame temp;
     city_ = temp.createGame();
+    city_->setBackground(basicbackground_, bigbackground_);
+
+
     l_.takeCity(city_);
     l_.fileConfig();
 
     l_.setTime(14, 00);
     l_.finalizeGameStart();
-
-    window_.show();
 
 }
 
@@ -46,12 +48,4 @@ gameengine::~gameengine()
 
 void gameengine::show_board()
 {
-
 }
-
-void gameengine::load_map(QImage map_name_)
-{
-    background_ = map_name_;
-    window_.setPicture(background_);
-}
-
