@@ -21,6 +21,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->gameView->setFixedSize(SIZE, SIZE);
     ui->exitButton->move(SIZE+PADDING, 3*PADDING);
     ui->startButton->move(SIZE+PADDING, PADDING);
+    ui->pointsAmnt->move(SIZE+PADDING, 5*PADDING);
+    ui->busAmount->move(SIZE+PADDING, 7*PADDING);
+    ui->passAmnt->move(SIZE+PADDING, 9*PADDING);
 
     scene_ = new QGraphicsScene(this);
     ui->gameView->setScene(scene_);
@@ -99,6 +102,21 @@ void MainWindow::addStop(int X, int Y, int type,
 
     stops_[stop] = nStop;
     scene_->addItem(nStop);
+}
+
+void MainWindow::update_bus_amount(int amount)
+{
+    ui->busAmount->display(amount);
+}
+
+void MainWindow::update_pass_amount(int amount)
+{
+    ui->passAmnt->display(amount);
+}
+
+void MainWindow::update_points(int point_amnt)
+{
+    ui->pointsAmnt->display(point_amnt);
 }
 
 }

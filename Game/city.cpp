@@ -52,11 +52,13 @@ void city::addActor(std::shared_ptr<IActor> newactor)
     {
         window_.addActor(X, Y, 1, newactor);
         buses_.push_back(newbus);
+        window_.update_bus_amount(stats_.current_busses(buses_));
     }
     else if (newbus == nullptr)
     {
         window_.addActor(X, Y, 255, newactor);
         passengers_.push_back(newpass);
+        window_.update_pass_amount(stats_.current_passengers(passengers_));
     }
     else
     {

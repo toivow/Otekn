@@ -4,6 +4,7 @@
 #include "../CourseLib/interfaces/icity.hh"
 #include "mainwindow.hh"
 #include "../CourseLib/graphics/simplemainwindow.hh"
+#include "statistics.h"
 #include <algorithm>
 #include <QTime>
 #include <unordered_map>
@@ -11,7 +12,6 @@
 namespace StudentSide
 {
 using namespace Interface;
-
 
 
 class city : public Interface::ICity
@@ -58,6 +58,8 @@ private:
     StudentSide::MainWindow window_;
 
     QTime aika_;
+
+    StudentSide::statistics stats_;
 
 
 };
