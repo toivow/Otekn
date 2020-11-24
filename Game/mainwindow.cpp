@@ -2,39 +2,35 @@
 #include "ui_mainwindow.h"
 
 
-const int PADDING = 20;
+const int PADDING = 30;
+const int SIZE = 500;
+
+
+namespace StudentSide {
+
+
 
 MainWindow::MainWindow(QWidget *parent) :
-    CourseSide::SimpleMainWindow(parent),
+    QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
-    connect(&d_, SIGNAL(map_choice(QImage)), SLOT(init_window(QImage)));
-    connect(&d_, SIGNAL(rejected()), this, SLOT(close()));
+    // We need a graphics scene in which to draw objects
 
-    connect(ui->busSpawnButton, SIGNAL(clicked()), this, SLOT(bus_spawn()));
 
-    ui->gameView->setFixedSize(width_, height_);
-    ui->centralwidget->setFixedSize(width_ + ui->startButton->width() + PADDING, height_ + PADDING);
+    ui->gameView->setFixedSize(SIZE, SIZE);
+    ui->exitButton->move(SIZE+PADDING, 3*PADDING);
+    ui->startButton->move(SIZE+PADDING, PADDING);
 
-    ui->startButton->move(width_ + PADDING , PADDING);
-    ui->busSpawnButton->move(width_ + PADDING, 3*PADDING);
-    ui->exitButton->move(width_ + PADDING, 5*PADDING);
-    ui->pointsAmnt->move(width_ + PADDING, 7*PADDING);
-    ui->timeLeft->move(width_ + PADDING, 9*PADDING);
+    scene_ = new QGraphicsScene(this);
+    ui->gameView->setScene(scene_);
+    scene_->setSceneRect(0, 0, SIZE-4, SIZE-4);
 
-    map = new QGraphicsScene(this);
-    ui->gameView->setScene(map);
-    map->setSceneRect(0,0,width_,height_);
 
-    resize(minimumSizeHint());
-    //ui->gameView->fitInView(0,0, MAPWIDTH, MAPHEIGHT, Qt::KeepAspectRatio);
 
-    timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, map, &QGraphicsScene::advance);
-    timer->start(tick_);
 }
+
 
 MainWindow::~MainWindow()
 {
@@ -60,23 +56,53 @@ void MainWindow::init_dialog()
     }
 }
 
-void MainWindow::init_window(QImage background_)
+void MainWindow::move_objects(std::shared_ptr<Interface::IActor> actor)
 {
-    map->setBackgroundBrush(background_);
+    /*
+    for (auto object : actors_)
+    {
+        std::shared_ptr<Interface::IActor> iactor_object = object.first;
+        QGraphicsItem* graphics_object = object.second;
+
+        int tempX = iactor_object->giveLocation().giveX();
+        int tempY = iactor_object->giveLocation().giveY();
+
+        graphics_object->setPos(tempX, tempY);
+    }
+    */
+    QGraphicsItem* graphics_object = actors_[actor];
+    int tempX = actor->giveLocation().giveX();
+    int tempY = actor->giveLocation().giveY();
+
+    graphics_object->setPos(tempX, tempY);
+
+
+
 }
 
-void MainWindow::bus_spawn()
+void MainWindow::setPicture(QImage background)
 {
-    qDebug("Pitäisi spawnata");
-    // CourseSide::SimpleActorItem* test = new CourseSide::SimpleActorItem(10, 10) ;
-    this->add_actor(10, 10, 256);
+    scene_->setBackgroundBrush(background);
 }
 
-void MainWindow::add_actor(int locX, int locY, int type)
+void MainWindow::addActor(int X, int Y, int type,
+                          std::shared_ptr<Interface::IActor> actor)
 {
-    CourseSide::SimpleActorItem* nActor = new CourseSide::SimpleActorItem(locX, locY, type);
-    actors_.push_back(nActor);
-    map->addItem(nActor);
-    last_ = nActor;
-    qDebug("Added element");
+    CourseSide::SimpleActorItem* nActor =
+            new CourseSide::SimpleActorItem(X, Y, type);
+
+    actors_[actor] = nActor;
+    scene_->addItem(nActor);
+}
+
+void MainWindow::addStop(int X, int Y, int type,
+                          std::shared_ptr<Interface::IStop> stop)
+{
+    CourseSide::SimpleActorItem* nStop =
+            new CourseSide::SimpleActorItem(X, Y, type);
+
+    stops_[stop] = nStop;
+    scene_->addItem(nStop);
+}
+
 }

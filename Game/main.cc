@@ -3,7 +3,6 @@
 #include <QObject>
 
 #include "dialog.hh"
-#include "mainwindow.hh"
 #include "gameengine.hh"
 
 int main(int argc, char *argv[])
@@ -14,5 +13,4 @@ int main(int argc, char *argv[])
     gameengine p;
 
     return a.exec();
-
 }
