@@ -10,7 +10,8 @@ SOURCES += \
     dialog.cpp \
     gameengine.cpp \
     city.cpp \
-    creategame.cpp
+    creategame.cpp \
+    mainwindow.cpp
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
@@ -40,7 +41,9 @@ HEADERS += \
     dialog.hh \
     gameengine.hh \
     city.hh \
-    creategame.hh
+    creategame.hh \
+    mainwindow.hh
 
 FORMS += \
-    dialog.ui
+    dialog.ui \
+    mainwindow.ui

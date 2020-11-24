@@ -2,7 +2,8 @@
 #define CITY_HH
 
 #include "../CourseLib/interfaces/icity.hh"
-#include "../Course/CourseLib/graphics/simplemainwindow.hh"
+#include "mainwindow.hh"
+#include "../CourseLib/graphics/simplemainwindow.hh"
 #include <algorithm>
 #include <QTime>
 #include <unordered_map>
@@ -17,7 +18,6 @@ class city : public Interface::ICity
 {
 public:
     city();
-
 
     ~city();
 
@@ -55,7 +55,7 @@ private:
     bool debugstate_;
     bool gamestarted_;
 
-    CourseSide::SimpleMainWindow window_;
+    StudentSide::MainWindow window_;
 
     QTime aika_;
 

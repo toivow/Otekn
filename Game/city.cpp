@@ -26,11 +26,11 @@ void city::setClock(QTime clock)
 void city::addStop(std::shared_ptr<IStop> stop)
 {
     int X = stop->getLocation().giveX();
-    int Y = stop->getLocation().giveY();
+    int Y = 500 - stop->getLocation().giveY();
 
-    window_.addActor(X, Y, 122);
+    window_.addStop(X, Y, 122, stop);
     stops_.push_back(stop);
-    qDebug("Spawnattiin stop");
+    //qDebug("Spawnattiin stop");
 }
 
 void city::startGame()
@@ -42,19 +42,19 @@ void city::startGame()
 
 void city::addActor(std::shared_ptr<IActor> newactor)
 {
-    int Y = 500-newactor->giveLocation().giveY();
+    int Y = 500 - newactor->giveLocation().giveY();
     int X = newactor->giveLocation().giveX();
 
 
     if (typeid(newactor) == typeid(buses_.front()) )
     {
-        qDebug("Spawnattiin bussi");
-        window_.addActor(X, Y, 1);
+        //qDebug("Spawnattiin bussi");
+        window_.addActor(X, Y, 1, newactor);
         buses_.push_back(newactor);
     }
-    else if (typeid(newactor) == typeid(passengers_.front()))
+    else if (typeid(newactor) == typeid(passengers_.front()) )
     {
-        window_.addActor(X, Y, 255);
+        window_.addActor(X, Y, 255, newactor);
         passengers_.push_back(newactor);
         qDebug("Spawnattiin passenger");
     }
@@ -104,10 +104,7 @@ bool city::findActor(std::shared_ptr<IActor> actor) const
 
 void city::actorMoved(std::shared_ptr<IActor> actor)
 {
-    // Mitä vittua tänne pitää muka tehdä
-    // vitun pellet
-
-
+    window_.move_objects(actor);
 }
 
 std::vector<std::shared_ptr<IActor> > city::getNearbyActors(Location loc) const
