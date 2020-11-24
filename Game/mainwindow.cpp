@@ -72,8 +72,6 @@ void MainWindow::move_objects(std::shared_ptr<Interface::IActor> actor)
 
     graphics_object->setPos(tempX, tempY);
 
-
-
 }
 
 void MainWindow::setPicture(QImage background)
@@ -89,6 +87,13 @@ void MainWindow::addActor(int X, int Y, int type,
 
     actors_[actor] = nActor;
     scene_->addItem(nActor);
+}
+
+void MainWindow::addBus(int X, int Y, std::shared_ptr<CourseSide::Nysse> bus)
+{
+    RectActorItem* nBus = new RectActorItem(X, Y);
+    actors_[bus] = nBus;
+    scene_->addItem(nBus);
 }
 
 void MainWindow::addStop(int X, int Y, int type,

@@ -4,6 +4,7 @@
 #include "../CourseLib/graphics/simplemainwindow.hh"
 #include <QMainWindow>
 #include "dialog.hh"
+#include "rectactoritem.hh"
 #include <unordered_map>
 #include "../CourseLib/interfaces/iactor.hh"
 #include "../CourseLib/graphics/simpleactoritem.hh"
@@ -34,6 +35,8 @@ public:
     void setPicture(QImage background);
 
     void addActor(int X, int Y, int type, std::shared_ptr<Interface::IActor> actor);
+
+    void addBus(int X, int Y, std::shared_ptr<CourseSide::Nysse> bus);
 
     void addStop(int X, int Y, int type, std::shared_ptr<Interface::IStop> stop);
 

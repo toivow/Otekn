@@ -50,7 +50,7 @@ void city::addActor(std::shared_ptr<IActor> newactor)
 
     if (newpass == nullptr)
     {
-        window_.addActor(X, Y, 1, newactor);
+        window_.addBus(X, Y, newbus);
         buses_.push_back(newbus);
     }
     else if (newbus == nullptr)
