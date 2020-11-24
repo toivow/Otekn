@@ -33,7 +33,7 @@ public:
 
     void removeActor(std::shared_ptr<IActor> actor);
 
-    void actorDestroyed(std::shared_ptr<IActor> actor);
+    void actorRemoved(std::shared_ptr<IActor> actor);
 
     bool findActor(std::shared_ptr<IActor> actor) const;
 
