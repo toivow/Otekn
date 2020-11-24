@@ -45,18 +45,18 @@ void city::addActor(std::shared_ptr<IActor> newactor)
     int Y = 500 - newactor->giveLocation().giveY();
     int X = newactor->giveLocation().giveX();
 
+    std::shared_ptr<CourseSide::Nysse> newbus = std::dynamic_pointer_cast <CourseSide::Nysse>(newactor);
+    std::shared_ptr<CourseSide::Passenger> newpass = std::dynamic_pointer_cast<CourseSide::Passenger> (newactor);
 
-    if (typeid(newactor) == typeid(buses_.front()) )
+    if (newpass == nullptr)
     {
-        //qDebug("Spawnattiin bussi");
         window_.addActor(X, Y, 1, newactor);
-        buses_.push_back(newactor);
+        buses_.push_back(newbus);
     }
-    else if (typeid(newactor) == typeid(passengers_.front()) )
+    else if (newbus == nullptr)
     {
         window_.addActor(X, Y, 255, newactor);
-        passengers_.push_back(newactor);
-        qDebug("Spawnattiin passenger");
+        passengers_.push_back(newpass);
     }
     else
     {
@@ -66,8 +66,13 @@ void city::addActor(std::shared_ptr<IActor> newactor)
 
 void city::removeActor(std::shared_ptr<IActor> actor)
 {
-    buses_.remove(actor);
-    passengers_.remove(actor);
+
+    std::shared_ptr<CourseSide::Nysse> removebus = std::dynamic_pointer_cast <CourseSide::Nysse>(actor);
+    std::shared_ptr<CourseSide::Passenger> removepass = std::dynamic_pointer_cast<CourseSide::Passenger> (actor);
+
+
+    buses_.remove(removebus);
+    passengers_.remove(removepass);
 
     actorDestroyed(actor);
 }
