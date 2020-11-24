@@ -4,7 +4,7 @@
 #include "../CourseLib/graphics/simplemainwindow.hh"
 #include <QMainWindow>
 #include "dialog.hh"
-
+#include <unordered_map>
 #include "../CourseLib/interfaces/iactor.hh"
 #include "../CourseLib/graphics/simpleactoritem.hh"
 #include "../CourseLib/actors/nysse.hh"
@@ -15,45 +15,46 @@ namespace Ui {
 class MainWindow;
 }
 
-class MainWindow : public CourseSide::SimpleMainWindow
+namespace StudentSide {
+
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+
+    MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
 
     void init_dialog();
 
-public slots:
+    void move_objects(std::shared_ptr<Interface::IActor> actor);
 
-    void init_window(QImage background_);
+    void setPicture(QImage background);
 
-private slots:
+    void addActor(int X, int Y, int type, std::shared_ptr<Interface::IActor> actor);
 
-    void bus_spawn();
-
-    virtual void add_actor(int locX, int locY, int type=0);
+    void addStop(int X, int Y, int type, std::shared_ptr<Interface::IStop> stop);
 
 private:
 
     Dialog d_;
 
-    QImage background_;
-
     bool startorexit_;
 
     Ui::MainWindow *ui;
 
-    QGraphicsScene *map;
+    std::unordered_map <std::shared_ptr<Interface::IActor>
+    , QGraphicsItem*> actors_;
 
-    QTimer *timer;
-    QVector<QGraphicsItem*> actors_;
-    CourseSide::SimpleActorItem* last_;
+    std::unordered_map <std::shared_ptr<Interface::IStop>
+    , QGraphicsItem*> stops_;
 
-    int width_ = 500; //pxls
-    int height_ = 500;
-    int tick_ = 500; //ms
+
+    QGraphicsScene *scene_;
+
 };
+}
 
 #endif // MAINWINDOW_HH

@@ -2,6 +2,11 @@
 #define CITY_HH
 
 #include "../CourseLib/interfaces/icity.hh"
+#include "mainwindow.hh"
+#include "../CourseLib/graphics/simplemainwindow.hh"
+#include <algorithm>
+#include <QTime>
+#include <unordered_map>
 
 namespace StudentSide
 {
@@ -13,7 +18,6 @@ class city : public Interface::ICity
 {
 public:
     city();
-
 
     ~city();
 
@@ -29,7 +33,7 @@ public:
 
     void removeActor(std::shared_ptr<IActor> actor);
 
-    void actorRemoved(std::shared_ptr<IActor> actor);
+    void actorDestroyed(std::shared_ptr<IActor> actor);
 
     bool findActor(std::shared_ptr<IActor> actor) const;
 
@@ -42,6 +46,18 @@ public:
 private:
 
     QImage background_;
+
+    std::list <std::shared_ptr<IActor>> passengers_;
+    std::list < std::shared_ptr<IActor>> buses_;
+
+    std::list< std::shared_ptr<IStop>> stops_;
+
+    bool debugstate_;
+    bool gamestarted_;
+
+    StudentSide::MainWindow window_;
+
+    QTime aika_;
 
 
 };
