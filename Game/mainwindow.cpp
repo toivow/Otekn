@@ -9,7 +9,6 @@ const int SIZE = 500;
 namespace StudentSide {
 
 
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -26,9 +25,6 @@ MainWindow::MainWindow(QWidget *parent) :
     scene_ = new QGraphicsScene(this);
     ui->gameView->setScene(scene_);
     scene_->setSceneRect(0, 0, SIZE-4, SIZE-4);
-
-
-
 }
 
 
