@@ -1,13 +1,11 @@
 #ifndef RECTACTORITEM_HH
 #define RECTACTORITEM_HH
 
-#include <QGraphicsItem>
-#include <QGraphicsScene>
-#include <QPainter>
 #include "../CourseLib/graphics/simpleactoritem.hh"
 
-namespace StudentSide {
 
+
+namespace StudentSide {
 
 const int WIDTH = 35;
 const int HEIGHT = 15;

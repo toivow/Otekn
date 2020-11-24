@@ -12,7 +12,8 @@ SOURCES += \
     city.cpp \
     creategame.cpp \
     mainwindow.cpp \
-    rectactoritem.cpp
+    rectactoritem.cpp \
+    destroyer.cpp
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
@@ -44,7 +45,8 @@ HEADERS += \
     city.hh \
     creategame.hh \
     mainwindow.hh \
-    rectactoritem.hh
+    rectactoritem.hh \
+    destroyer.hh
 
 FORMS += \
     dialog.ui \

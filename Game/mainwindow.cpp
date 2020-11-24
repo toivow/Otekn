@@ -106,4 +106,24 @@ void MainWindow::addStop(int X, int Y, int type,
     scene_->addItem(nStop);
 }
 
+void MainWindow::spawn_destroyer(int X, int Y)
+{
+    qDebug("Spawned destroyer");
+    player_ = new destroyer(X, Y);
+    scene_->addItem(player_);
 }
+
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    //
+    if (event->key() == Qt::Key_A) {}
+
+    if (event->key() == Qt::Key_S) {}
+
+    if (event->key() == Qt::Key_W) {}
+
+    if (event->key() == Qt::Key_D) {}
+}
+}
+
+

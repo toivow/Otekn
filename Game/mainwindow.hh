@@ -10,6 +10,8 @@
 #include "../CourseLib/graphics/simpleactoritem.hh"
 #include "../CourseLib/actors/nysse.hh"
 #include "../CourseLib/core/logic.hh"
+#include "destroyer.hh"
+#include <QKeyEvent>
 
 
 namespace Ui {
@@ -40,6 +42,11 @@ public:
 
     void addStop(int X, int Y, int type, std::shared_ptr<Interface::IStop> stop);
 
+    void spawn_destroyer(int X = 0, int Y = 250);
+
+    void keyPressEvent(QKeyEvent* event) override;
+
+
 private:
 
     Dialog d_;
@@ -53,6 +60,9 @@ private:
 
     std::unordered_map <std::shared_ptr<Interface::IStop>
     , QGraphicsItem*> stops_;
+
+    destroyer* player_;
+
 
 
     QGraphicsScene *scene_;

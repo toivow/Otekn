@@ -37,6 +37,7 @@ void city::startGame()
 {
     qDebug("Aloitetaan peli");
     aika_.start();
+    window_.spawn_destroyer();
     window_.show();
 }
 
