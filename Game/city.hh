@@ -4,7 +4,6 @@
 #include "../CourseLib/interfaces/icity.hh"
 #include "mainwindow.hh"
 #include "../CourseLib/graphics/simplemainwindow.hh"
-#include <algorithm>
 #include <QTime>
 #include <unordered_map>
 

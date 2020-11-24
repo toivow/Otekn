@@ -11,7 +11,8 @@ SOURCES += \
     gameengine.cpp \
     city.cpp \
     creategame.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    rectactoritem.cpp
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
@@ -42,8 +43,15 @@ HEADERS += \
     gameengine.hh \
     city.hh \
     creategame.hh \
-    mainwindow.hh
+    mainwindow.hh \
+    rectactoritem.hh
 
 FORMS += \
     dialog.ui \
     mainwindow.ui
+
+DISTFILES += \
+    Kuvat/Nysse_pixelart.png
+
+RESOURCES += \
+    kuvadata.qrc
