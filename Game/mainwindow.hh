@@ -29,7 +29,6 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-
     void init_dialog();
 
     void move_objects(std::shared_ptr<Interface::IActor> actor);
@@ -45,6 +44,8 @@ public:
     void spawn_destroyer(int X = 0, int Y = 250);
 
     void keyPressEvent(QKeyEvent* event) override;
+
+    void move_destroyer(destroyer* player, char direction);
 
 
 private:

@@ -116,13 +116,29 @@ void MainWindow::spawn_destroyer(int X, int Y)
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     //
-    if (event->key() == Qt::Key_A) {}
+    if (event->key() == Qt::Key_A) {
+        move_destroyer(player_, 'A');
+        player_->setPos(+2, +0);
 
-    if (event->key() == Qt::Key_S) {}
+    }
 
-    if (event->key() == Qt::Key_W) {}
+    if (event->key() == Qt::Key_S) {
+        move_destroyer(player_, 'S');
+    }
 
-    if (event->key() == Qt::Key_D) {}
+    if (event->key() == Qt::Key_W) {
+        move_destroyer(player_, 'W');
+    }
+
+    if (event->key() == Qt::Key_D) {
+        move_destroyer(player_, 'D');
+    }
+}
+
+void MainWindow::move_destroyer(destroyer* player, char direction)
+{
+
+
 }
 }
 
