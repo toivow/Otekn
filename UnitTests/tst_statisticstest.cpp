@@ -1,4 +1,5 @@
 #include <QtTest>
+#include "../Game/Engine/statistics.h"
 
 // add necessary includes here
 
@@ -12,6 +13,8 @@ public:
 
 private slots:
     void test_case1();
+    void current_busses(int x);
+    void update_points();
 
 };
 
@@ -28,6 +31,10 @@ StatisticsTest::~StatisticsTest()
 void StatisticsTest::test_case1()
 {
 
+
+}
+void StatisticsTest::update_points();
+{
 }
 
 QTEST_APPLESS_MAIN(StatisticsTest)
