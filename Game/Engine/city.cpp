@@ -37,7 +37,7 @@ void city::startGame()
 {
     qDebug("Aloitetaan peli");
     aika_.start();
-    window_.spawn_destroyer();
+    window_.spawn_destroyer(250, 250);
     window_.show();
 }
 
@@ -56,7 +56,7 @@ void city::addActor(std::shared_ptr<IActor> newactor)
     }
     else if (newbus == nullptr)
     {
-        window_.addActor(X, Y, 255, newactor);
+        window_.addActor(X, Y, 255, newpass);
         passengers_.push_back(newpass);
     }
     else
@@ -87,19 +87,19 @@ bool city::findActor(std::shared_ptr<IActor> actor) const
 {
     if (std::find(buses_.begin(), buses_.end(), actor) != buses_.end())
     {
-        qDebug("Löytyi actori busseista");
+        //qDebug("Löytyi actori busseista");
         return true;
     }
     else if (std::find(passengers_.begin(), passengers_.end(), actor) != passengers_.end())
     {
-        qDebug("Löytyi actori passengereistä");
+        //qDebug("Löytyi actori passengereistä");
         return true;
     }
 
     else if ( (std::find(passengers_.begin(), passengers_.end(), actor) == passengers_.end())
              || (std::find(buses_.begin(), buses_.end(), actor) == buses_.end()) )
     {
-        qDebug("Ei löytynyt actoria");
+        //qDebug("Ei löytynyt actoria");
     }
     else
     {

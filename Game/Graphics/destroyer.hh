@@ -12,7 +12,7 @@ namespace StudentSide {
 class destroyer : public CourseSide::SimpleActorItem
 {
 public:
-    destroyer(int x = 250, int y = 250);
+    destroyer(int x, int y);
     ~destroyer();
 
     QRectF boundingRect() const;
