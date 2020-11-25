@@ -15,19 +15,17 @@ public:
     ~destroyer_logic();
 
 
-    Interface::Location giveLocation() ;
+    Interface::Location giveLocation() const;
 
     void move(Interface::Location loc);
 
+    bool isRemoved() const{}
 
-    virtual bool isRemoved() = 0;
-
-    virtual void remove() = 0;
+    void remove(){}
 
 private:
 
-    int x_;
-    int y_;
+    Interface::Location location_;
 
 };
 }

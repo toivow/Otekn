@@ -6,13 +6,14 @@
 #include "dialog.hh"
 #include "../Graphics/rectactoritem.hh"
 #include "../Graphics/destroyer.hh"
-
+#include "../Actors/destroyer_logic.hh"
 #include "../CourseLib/interfaces/iactor.hh"
 #include "../CourseLib/graphics/simpleactoritem.hh"
 #include "../CourseLib/actors/nysse.hh"
 #include "../CourseLib/core/logic.hh"
 #include <unordered_map>
 #include <QKeyEvent>
+
 
 
 namespace Ui {
@@ -65,7 +66,7 @@ private:
     std::unordered_map <std::shared_ptr<Interface::IStop>
     , QGraphicsItem*> stops_;
 
-    destroyer* player_;
+    std::pair <destroyer_logic* ,destroyer*> player_;
 
     int tick_ = 500;
 

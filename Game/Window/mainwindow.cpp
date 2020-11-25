@@ -58,18 +58,6 @@ void MainWindow::init_dialog()
 
 void MainWindow::move_objects(std::shared_ptr<Interface::IActor> actor)
 {
-    /*
-    for (auto object : actors_)
-    {
-        std::shared_ptr<Interface::IActor> iactor_object = object.first;
-        QGraphicsItem* graphics_object = object.second;
-
-        int tempX = iactor_object->giveLocation().giveX();
-        int tempY = iactor_object->giveLocation().giveY();
-
-        graphics_object->setPos(tempX, tempY);
-    }
-    */
     QGraphicsItem* graphics_object = actors_[actor];
     int tempX = actor->giveLocation().giveX() - 5;
     int tempY = 500 - actor->giveLocation().giveY() - 5;
@@ -113,30 +101,42 @@ void MainWindow::addStop(int X, int Y, int type,
 void MainWindow::spawn_destroyer(int X, int Y)
 {
     qDebug("Spawned destroyer");
-    player_ = new destroyer(X, Y);
-    scene_->addItem(player_);
+    destroyer* grafiikka = new destroyer(X, Y);
+    destroyer_logic* logiikka = new destroyer_logic(X, Y);
+    player_ = std::make_pair(logiikka, grafiikka);
+    scene_->addItem(player_.second);
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
+    int tempY = player_.first->giveLocation().giveY();
+    int tempX =  player_.first->giveLocation().giveX();
     //
     if (event->key() == Qt::Key_A) {
-        move_destroyer(player_, 'A');
-        player_->move(10, 0);
-
+        tempX += -20;
     }
 
     if (event->key() == Qt::Key_S) {
-        move_destroyer(player_, 'S');
+        tempY += 20;
     }
 
     if (event->key() == Qt::Key_W) {
-        move_destroyer(player_, 'W');
+        tempY += -20;
     }
 
     if (event->key() == Qt::Key_D) {
-        move_destroyer(player_, 'D');
+        tempX += 20;
     }
+
+    Interface::Location* newloc = new Interface::Location;
+    newloc->setXY(tempX, tempY);
+
+    player_.first->move(*newloc);
+
+    player_.second->setPos(tempX, tempY);
+
+    delete newloc;
+
 }
 
 void MainWindow::move_destroyer(destroyer* player, char direction)
