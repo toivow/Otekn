@@ -15,16 +15,16 @@ public:
     destroyer(int x = 250, int y = 250);
     ~destroyer();
 
-    QRectF boundingRect() const;
+    void boundingPoints();
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
+    void move(int x, int y);
 
 private:
 
-    int x_;
     int y_;
-
+    int x_;
 
     float top_y;
     float top_x;

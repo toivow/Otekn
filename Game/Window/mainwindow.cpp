@@ -25,6 +25,10 @@ MainWindow::MainWindow(QWidget *parent) :
     scene_ = new QGraphicsScene(this);
     ui->gameView->setScene(scene_);
     scene_->setSceneRect(0, 0, SIZE-4, SIZE-4);
+
+    timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, scene_, &QGraphicsScene::advance);
+    timer->start(tick_);
 }
 
 
@@ -67,8 +71,8 @@ void MainWindow::move_objects(std::shared_ptr<Interface::IActor> actor)
     }
     */
     QGraphicsItem* graphics_object = actors_[actor];
-    int tempX = actor->giveLocation().giveX();
-    int tempY = actor->giveLocation().giveY();
+    int tempX = actor->giveLocation().giveX() - 5;
+    int tempY = 500 - actor->giveLocation().giveY() - 5;
 
     graphics_object->setPos(tempX, tempY);
 
@@ -118,7 +122,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     //
     if (event->key() == Qt::Key_A) {
         move_destroyer(player_, 'A');
-        player_->setPos(+2, +0);
+        player_->move(10, 0);
 
     }
 

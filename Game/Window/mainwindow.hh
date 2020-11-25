@@ -53,6 +53,8 @@ private:
 
     Dialog d_;
 
+    QTimer *timer;
+
     bool startorexit_;
 
     Ui::MainWindow *ui;
@@ -65,7 +67,7 @@ private:
 
     destroyer* player_;
 
-
+    int tick_ = 500;
 
     QGraphicsScene *scene_;
 

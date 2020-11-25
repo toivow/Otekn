@@ -33,4 +33,10 @@ void RectActorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *opt
     painter->drawRect(bounds);
 }
 
+void RectActorItem::setCoord(int x, int y)
+{
+    setX( x );
+    setY( y );
+}
+
 }

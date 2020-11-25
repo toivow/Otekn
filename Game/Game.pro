@@ -13,7 +13,8 @@ SOURCES += \
     Graphics/rectactoritem.cpp \
     Window/dialog.cpp \
     Window/mainwindow.cpp \
-    main.cc
+    main.cc \
+    Actors/destroyer_logic.cpp
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
@@ -46,7 +47,8 @@ HEADERS += \
     Graphics/destroyer.hh \
     Graphics/rectactoritem.hh \
     Window/dialog.hh \
-    Window/mainwindow.hh
+    Window/mainwindow.hh \
+    Actors/destroyer_logic.hh
 
 
 FORMS += \
