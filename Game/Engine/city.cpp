@@ -59,7 +59,7 @@ void city::addActor(std::shared_ptr<IActor> newactor)
     {
         window_.addActor(X, Y, 255, newactor);
         passengers_.push_back(newpass);
-        window_.update_pass_amount(stats_.current_passengers(passengers_));
+        //window_.update_pass_amount(stats_.current_passengers(passengers_));
     }
     else
     {

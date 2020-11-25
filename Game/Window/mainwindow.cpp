@@ -109,6 +109,22 @@ void MainWindow::addStop(int X, int Y, int type,
     scene_->addItem(nStop);
 }
 
+void MainWindow::update_bus_amount(int amount)
+{
+    ui->busAmount->display(amount);
+}
+
+void MainWindow::update_pass_amount(int amount)
+{
+    ui->passAmnt->display(amount);
+}
+
+void MainWindow::update_points(int point_amnt)
+{
+    ui->pointsAmnt->display(point_amnt);
+}
+
+
 void MainWindow::spawn_destroyer(int X, int Y)
 {
     qDebug("Spawned destroyer");

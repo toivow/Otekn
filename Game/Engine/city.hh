@@ -6,6 +6,7 @@
 #include "../CourseLib/graphics/simplemainwindow.hh"
 #include <QTime>
 #include <unordered_map>
+#include "statistics.h"
 
 namespace StudentSide
 {

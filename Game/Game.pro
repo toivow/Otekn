@@ -9,6 +9,7 @@ SOURCES += \
     Engine/city.cpp \
     Engine/creategame.cpp \
     Engine/gameengine.cpp \
+    Engine/statistics.cpp \
     Graphics/destroyer.cpp \
     Graphics/rectactoritem.cpp \
     Window/dialog.cpp \
@@ -43,6 +44,7 @@ HEADERS += \
     Engine/city.hh \
     Engine/creategame.hh \
     Engine/gameengine.hh \
+    Engine/statistics.h \
     Graphics/destroyer.hh \
     Graphics/rectactoritem.hh \
     Window/dialog.hh \
