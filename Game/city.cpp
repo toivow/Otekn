@@ -42,8 +42,8 @@ void city::startGame()
 
 void city::addActor(std::shared_ptr<IActor> newactor)
 {
-    int Y = 500 - newactor->giveLocation().giveY();
-    int X = newactor->giveLocation().giveX();
+    int Y = 500 - newactor->giveLocation().giveY()-5;
+    int X = newactor->giveLocation().giveX()-5;
 
     std::shared_ptr<CourseSide::Nysse> newbus = std::dynamic_pointer_cast <CourseSide::Nysse>(newactor);
     std::shared_ptr<CourseSide::Passenger> newpass = std::dynamic_pointer_cast<CourseSide::Passenger> (newactor);

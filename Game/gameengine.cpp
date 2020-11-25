@@ -13,7 +13,7 @@ gameengine::gameengine(QObject* parent) :
 
 
     l_.fileConfig();
-    l_.setTime(14, 00);
+    l_.setTime(20, 00);
     l_.takeCity(city_);
     l_.finalizeGameStart();
 
