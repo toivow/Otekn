@@ -26,7 +26,7 @@ void city::setClock(QTime clock)
 void city::addStop(std::shared_ptr<IStop> stop)
 {
     int X = stop->getLocation().giveX();
-    int Y = 500 - stop->getLocation().giveY();
+    int Y = stop->getLocation().giveY();
 
     window_.addStop(X, Y, 122, stop);
     stops_.push_back(stop);
@@ -43,8 +43,8 @@ void city::startGame()
 
 void city::addActor(std::shared_ptr<IActor> newactor)
 {
-    int Y = 500 - newactor->giveLocation().giveY();
-    int X = newactor->giveLocation().giveX();
+    int Y = newactor->giveLocation().giveY()-5;
+    int X = newactor->giveLocation().giveX()-5;
 
     std::shared_ptr<CourseSide::Nysse> newbus = std::dynamic_pointer_cast <CourseSide::Nysse>(newactor);
     std::shared_ptr<CourseSide::Passenger> newpass = std::dynamic_pointer_cast<CourseSide::Passenger> (newactor);
@@ -53,11 +53,13 @@ void city::addActor(std::shared_ptr<IActor> newactor)
     {
         window_.addBus(X, Y, newbus);
         buses_.push_back(newbus);
+        window_.update_bus_amount(stats_.current_busses(buses_));
     }
     else if (newbus == nullptr)
     {
         window_.addActor(X, Y, 255, newpass);
         passengers_.push_back(newpass);
+        //window_.update_pass_amount(stats_.current_passengers(passengers_));
     }
     else
     {

@@ -49,6 +49,12 @@ public:
 
     void addStop(int X, int Y, int type, std::shared_ptr<Interface::IStop> stop);
 
+    void update_bus_amount(int amount);
+
+    void update_pass_amount(int amount);
+
+    void update_points(int point_amnt);
+
     void spawn_destroyer(int X = 0, int Y = 250);
 
     void keyPressEvent(QKeyEvent* event) override;
