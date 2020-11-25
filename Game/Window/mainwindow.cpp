@@ -1,4 +1,4 @@
-#include "mainwindow.hh"
+#include "../Window/mainwindow.hh"
 #include "ui_mainwindow.h"
 
 
@@ -75,8 +75,6 @@ void MainWindow::move_objects(std::shared_ptr<Interface::IActor> actor)
 
     graphics_object->setPos(tempX, tempY);
 
-
-
 }
 
 void MainWindow::setPicture(QImage background)
@@ -94,6 +92,13 @@ void MainWindow::addActor(int X, int Y, int type,
     scene_->addItem(nActor);
 }
 
+void MainWindow::addBus(int X, int Y, std::shared_ptr<CourseSide::Nysse> bus)
+{
+    RectActorItem* nBus = new RectActorItem(X, Y);
+    actors_[bus] = nBus;
+    scene_->addItem(nBus);
+}
+
 void MainWindow::addStop(int X, int Y, int type,
                           std::shared_ptr<Interface::IStop> stop)
 {
@@ -104,19 +109,40 @@ void MainWindow::addStop(int X, int Y, int type,
     scene_->addItem(nStop);
 }
 
-void MainWindow::update_bus_amount(int amount)
+void MainWindow::spawn_destroyer(int X, int Y)
 {
-    ui->busAmount->display(amount);
+    qDebug("Spawned destroyer");
+    player_ = new destroyer(X, Y);
+    scene_->addItem(player_);
 }
 
-void MainWindow::update_pass_amount(int amount)
+void MainWindow::keyPressEvent(QKeyEvent *event)
 {
-    ui->passAmnt->display(amount);
+    //
+    if (event->key() == Qt::Key_A) {
+        move_destroyer(player_, 'A');
+        player_->setPos(+2, +0);
+
+    }
+
+    if (event->key() == Qt::Key_S) {
+        move_destroyer(player_, 'S');
+    }
+
+    if (event->key() == Qt::Key_W) {
+        move_destroyer(player_, 'W');
+    }
+
+    if (event->key() == Qt::Key_D) {
+        move_destroyer(player_, 'D');
+    }
 }
 
-void MainWindow::update_points(int point_amnt)
+void MainWindow::move_destroyer(destroyer* player, char direction)
 {
-    ui->pointsAmnt->display(point_amnt);
-}
+
 
 }
+}
+
+

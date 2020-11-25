@@ -1,4 +1,4 @@
-#include "city.hh"
+#include "../Engine/city.hh"
 #include <QImage>
 #include <iostream>
 
@@ -37,6 +37,7 @@ void city::startGame()
 {
     qDebug("Aloitetaan peli");
     aika_.start();
+    window_.spawn_destroyer();
     window_.show();
 }
 
@@ -50,7 +51,7 @@ void city::addActor(std::shared_ptr<IActor> newactor)
 
     if (newpass == nullptr)
     {
-        window_.addActor(X, Y, 1, newactor);
+        window_.addBus(X, Y, newbus);
         buses_.push_back(newbus);
         window_.update_bus_amount(stats_.current_busses(buses_));
     }

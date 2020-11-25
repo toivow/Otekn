@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/kuvat">
+        <file>Kuvat/Nysse_pixelart.png</file>
+    </qresource>
+</RCC>

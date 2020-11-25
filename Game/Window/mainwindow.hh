@@ -4,11 +4,15 @@
 #include "../CourseLib/graphics/simplemainwindow.hh"
 #include <QMainWindow>
 #include "dialog.hh"
-#include <unordered_map>
+#include "../Graphics/rectactoritem.hh"
+#include "../Graphics/destroyer.hh"
+
 #include "../CourseLib/interfaces/iactor.hh"
 #include "../CourseLib/graphics/simpleactoritem.hh"
 #include "../CourseLib/actors/nysse.hh"
 #include "../CourseLib/core/logic.hh"
+#include <unordered_map>
+#include <QKeyEvent>
 
 
 namespace Ui {
@@ -26,7 +30,6 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-
     void init_dialog();
 
     void move_objects(std::shared_ptr<Interface::IActor> actor);
@@ -35,13 +38,15 @@ public:
 
     void addActor(int X, int Y, int type, std::shared_ptr<Interface::IActor> actor);
 
+    void addBus(int X, int Y, std::shared_ptr<CourseSide::Nysse> bus);
+
     void addStop(int X, int Y, int type, std::shared_ptr<Interface::IStop> stop);
 
-    void update_bus_amount(int amount);
+    void spawn_destroyer(int X = 0, int Y = 250);
 
-    void update_pass_amount(int amount);
+    void keyPressEvent(QKeyEvent* event) override;
 
-    void update_points(int point_amnt);
+    void move_destroyer(destroyer* player, char direction);
 
 
 private:
@@ -57,6 +62,9 @@ private:
 
     std::unordered_map <std::shared_ptr<Interface::IStop>
     , QGraphicsItem*> stops_;
+
+    destroyer* player_;
+
 
 
     QGraphicsScene *scene_;
