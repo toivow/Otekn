@@ -5,6 +5,7 @@
 #include <QGraphicsView>
 #include <QPushButton>
 #include <QMainWindow>
+#include <QSpinBox>
 
 
 namespace Ui {
@@ -21,16 +22,11 @@ public:
 
 signals:
 
-    void map_choice(QImage map_pic_);
+    void game_time(int time);
 
 private slots:
-    void on_big_map_clicked();
 
-    void on_small_map_clicked();
-
-    void on_hervanta_map_clicked();
-
-    void start_prog();
+    void sending_game_time();
 
 
 private:
@@ -38,12 +34,10 @@ private:
 
     QGraphicsView* view_;
 
-    QImage map_pic_;
-
     QPushButton* start_button;
     QPushButton* exit_button;
 
-    std::string map_name_;
+    QSpinBox* peliaika;
 
 };
 

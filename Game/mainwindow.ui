@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>649</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -37,19 +37,6 @@
      <string>Start</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="busSpawnButton">
-    <property name="geometry">
-     <rect>
-      <x>699</x>
-      <y>100</y>
-      <width>91</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Spawn Bus</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="exitButton">
     <property name="geometry">
      <rect>
@@ -68,7 +55,7 @@
      <rect>
       <x>700</x>
       <y>210</y>
-      <width>81</width>
+      <width>91</width>
       <height>31</height>
      </rect>
     </property>
@@ -78,7 +65,27 @@
      <rect>
       <x>700</x>
       <y>280</y>
-      <width>81</width>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="busAmount">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>80</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLCDNumber" name="passAmnt">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>120</y>
+      <width>91</width>
       <height>31</height>
      </rect>
     </property>
@@ -90,12 +97,29 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>23</height>
+     <height>30</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>exitButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>745</x>
+     <y>198</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

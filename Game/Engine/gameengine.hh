@@ -5,11 +5,10 @@
 #include <QImage>
 #include <QObject>
 #include <QTimer>
-#include "dialog.hh"
-#include "mainwindow.hh"
+#include "../Window/dialog.hh"
 #include "../CourseLib/graphics/simplemainwindow.hh"
 #include "../CourseLib/core/logic.hh"
-#include "city.hh"
+#include "../Engine/city.hh"
 #include "creategame.hh"
 
 
@@ -27,7 +26,6 @@ public:
 
 public slots:
 
-    void load_map(QImage);
 
 private:
 
@@ -35,9 +33,8 @@ private:
 
    bool startorexit_;
 
-   QImage background_;
-
-   CourseSide::SimpleMainWindow window_;
+   QImage basicbackground_;
+   QImage bigbackground_;
 
    std::shared_ptr<Interface::ICity> city_;
 

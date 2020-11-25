@@ -6,12 +6,16 @@ QT += core gui widgets network multimedia
 CONFIG += c++14
 
 SOURCES += \
+    Engine/city.cpp \
+    Engine/creategame.cpp \
+    Engine/gameengine.cpp \
+    Engine/statistics.cpp \
+    Graphics/destroyer.cpp \
+    Graphics/rectactoritem.cpp \
+    Window/dialog.cpp \
+    Window/mainwindow.cpp \
     main.cc \
-    dialog.cpp \
-    mainwindow.cpp \
-    gameengine.cpp \
-    city.cpp \
-    creategame.cpp
+    Actors/destroyer_logic.cpp
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
@@ -38,11 +42,23 @@ else:unix: PRE_TARGETDEPS += \
     $$OUT_PWD/../Course/CourseLib/libCourseLib.a
 
 HEADERS += \
-    dialog.hh \
-    mainwindow.hh \
-    gameengine.hh \
-    city.hh
+    Engine/city.hh \
+    Engine/creategame.hh \
+    Engine/gameengine.hh \
+    Engine/statistics.h \
+    Graphics/destroyer.hh \
+    Graphics/rectactoritem.hh \
+    Window/dialog.hh \
+    Window/mainwindow.hh \
+    Actors/destroyer_logic.hh
+
 
 FORMS += \
     dialog.ui \
     mainwindow.ui
+
+DISTFILES += \
+    Kuvat/Nysse_pixelart.png
+
+RESOURCES += \
+    kuvadata.qrc

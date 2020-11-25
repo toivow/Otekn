@@ -2,18 +2,21 @@
 #define CITY_HH
 
 #include "../CourseLib/interfaces/icity.hh"
+#include "../Window/mainwindow.hh"
+#include "../CourseLib/graphics/simplemainwindow.hh"
+#include <QTime>
+#include <unordered_map>
+#include "statistics.h"
 
 namespace StudentSide
 {
 using namespace Interface;
 
 
-
 class city : public Interface::ICity
 {
 public:
     city();
-
 
     ~city();
 
@@ -42,6 +45,20 @@ public:
 private:
 
     QImage background_;
+
+    std::list <std::shared_ptr<CourseSide::Passenger>> passengers_;
+    std::list <std::shared_ptr<CourseSide::Nysse>> buses_;
+
+    std::list< std::shared_ptr<IStop>> stops_;
+
+    bool debugstate_;
+    bool gamestarted_;
+
+    StudentSide::MainWindow window_;
+
+    QTime aika_;
+
+    StudentSide::statistics stats_;
 
 
 };
