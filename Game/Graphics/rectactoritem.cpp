@@ -24,6 +24,7 @@ QRectF RectActorItem::boundingRect() const
 
 void RectActorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    prepareGeometryChange();
     QRectF bounds = boundingRect();
     QColor color(0, 0, 0);
 
@@ -31,6 +32,12 @@ void RectActorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *opt
     QBrush brush(nysse_);
     painter->setBrush(brush);
     painter->drawRect(bounds);
+}
+
+void RectActorItem::setCoord(int x, int y)
+{
+    setX( x );
+    setY( y );
 }
 
 }

@@ -21,6 +21,8 @@ public:
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
+    void setCoord(int x, int y);
+
 private:
 
     int x_;

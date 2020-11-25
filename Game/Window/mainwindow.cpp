@@ -1,6 +1,10 @@
 #include "../Window/mainwindow.hh"
 #include "ui_mainwindow.h"
+#include <unordered_map>
+#include <iostream>
+#include <string>
 
+#include <QDebug>
 
 const int PADDING = 30;
 const int SIZE = 500;
@@ -28,6 +32,10 @@ MainWindow::MainWindow(QWidget *parent) :
     scene_ = new QGraphicsScene(this);
     ui->gameView->setScene(scene_);
     scene_->setSceneRect(0, 0, SIZE-4, SIZE-4);
+
+    timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, scene_, &QGraphicsScene::advance);
+    timer->start(tick_);
 }
 
 
@@ -57,23 +65,28 @@ void MainWindow::init_dialog()
 
 void MainWindow::move_objects(std::shared_ptr<Interface::IActor> actor)
 {
-    /*
-    for (auto object : actors_)
-    {
-        std::shared_ptr<Interface::IActor> iactor_object = object.first;
-        QGraphicsItem* graphics_object = object.second;
+    QGraphicsItem* graphics_object = nullptr;
+    std::shared_ptr<CourseSide::Nysse> movebus = std::dynamic_pointer_cast <CourseSide::Nysse>(actor);
+    std::shared_ptr<CourseSide::Passenger> movepass= std::dynamic_pointer_cast<CourseSide::Passenger> (actor);
 
-        int tempX = iactor_object->giveLocation().giveX();
-        int tempY = iactor_object->giveLocation().giveY();
+    if (movepass == nullptr)
+    {
+        graphics_object = buses_[movebus];
+
+    }
+    else if (movebus == nullptr)
+    {
+        graphics_object = actors_[movepass];
+    }
+    if (graphics_object != nullptr) {
+        int tempX = actor->giveLocation().giveX() - 5;
+        int tempY = 500 - actor->giveLocation().giveY() - 5;
 
         graphics_object->setPos(tempX, tempY);
-    }
-    */
-    QGraphicsItem* graphics_object = actors_[actor];
-    int tempX = actor->giveLocation().giveX();
-    int tempY = actor->giveLocation().giveY();
 
-    graphics_object->setPos(tempX, tempY);
+    } else if (graphics_object == nullptr) {
+        qDebug("Yritti siirtää nullptria");
+    }
 
 }
 
@@ -83,19 +96,19 @@ void MainWindow::setPicture(QImage background)
 }
 
 void MainWindow::addActor(int X, int Y, int type,
-                          std::shared_ptr<Interface::IActor> actor)
+                          std::shared_ptr<CourseSide::Passenger> passenger)
 {
-    CourseSide::SimpleActorItem* nActor =
+    CourseSide::SimpleActorItem* nPass =
             new CourseSide::SimpleActorItem(X, Y, type);
 
-    actors_[actor] = nActor;
-    scene_->addItem(nActor);
+    actors_[passenger] = nPass;
+    scene_->addItem(nPass);
 }
 
 void MainWindow::addBus(int X, int Y, std::shared_ptr<CourseSide::Nysse> bus)
 {
     RectActorItem* nBus = new RectActorItem(X, Y);
-    actors_[bus] = nBus;
+    buses_[bus] = nBus;
     scene_->addItem(nBus);
 }
 
@@ -128,37 +141,90 @@ void MainWindow::update_points(int point_amnt)
 void MainWindow::spawn_destroyer(int X, int Y)
 {
     qDebug("Spawned destroyer");
-    player_ = new destroyer(X, Y);
-    scene_->addItem(player_);
+    destroyer* grafiikka = new destroyer(X, Y);
+    destroyer_logic* logiikka = new destroyer_logic(X, Y);
+    player_ = std::make_pair(logiikka, grafiikka);
+    scene_->addItem(player_.second);
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
+    int tempY = player_.first->giveLocation().giveY();
+    int tempX =  player_.first->giveLocation().giveX();
     //
     if (event->key() == Qt::Key_A) {
-        move_destroyer(player_, 'A');
-        player_->setPos(+2, +0);
-
+        tempX += -10;
     }
 
     if (event->key() == Qt::Key_S) {
-        move_destroyer(player_, 'S');
+        tempY += 10;
     }
 
     if (event->key() == Qt::Key_W) {
-        move_destroyer(player_, 'W');
+        tempY += -10;
     }
 
     if (event->key() == Qt::Key_D) {
-        move_destroyer(player_, 'D');
+        tempX += 10;
     }
+
+    Interface::Location* newloc = new Interface::Location;
+    newloc->setXY(tempX, tempY);
+
+    player_.first->move(*newloc);
+
+    player_.second->setPos(tempX, tempY);
+
+    check_deaths(*newloc);
+
+    delete newloc;
+
+
 }
 
-void MainWindow::move_destroyer(destroyer* player, char direction)
+void MainWindow::check_deaths(Interface::Location player_loc_)
 {
 
+    int killed_players = 0;
+
+    for (auto it = actors_.begin(); it != actors_.end(); )
+    {
+        auto passloc = (*(*it).first).giveLocation();
+
+        int passX = passloc.giveX() - 5;
+        int passY = 500 - passloc.giveY() - 5;
+
+        passloc.setXY(passX, passY);
+
+        if (player_loc_.isClose( passloc))
+        {
+            auto t = ((*it).first).unique();
+
+
+            (*(*it).first).remove();
+
+            scene_->removeItem((*it).second);
+            delete (*it).second;
+
+            it = actors_.erase(it);
+
+            killed_players++;
+
+        } else
+        {
+            it++;
+        }
+
+    }
+
+    if (killed_players > 0)
+    {
+        qDebug() << "Killed " << killed_players << " players!";
+    }
+    scene_->update();
 
 }
+
 }
 
 
