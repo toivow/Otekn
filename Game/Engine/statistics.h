@@ -1,15 +1,13 @@
 #ifndef STATISTICS_H
 #define STATISTICS_H
 
-#include "../CourseLib/interfaces/istatistics.hh"
-#include "../CourseLib/actors/passenger.hh"
-#include "../CourseLib/actors/nysse.hh"
+#include "../Course/CourseLib/interfaces/istatistics.hh"
+#include "../Course/CourseLib/actors/passenger.hh"
+#include "../Course/CourseLib/actors/nysse.hh"
 #include <iostream>
 #include <memory>
 
 namespace StudentSide {
-
-
 
 class statistics
 {
