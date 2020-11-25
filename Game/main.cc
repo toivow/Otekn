@@ -2,8 +2,8 @@
 #include <iostream>
 #include <QObject>
 
-#include "dialog.hh"
-#include "gameengine.hh"
+#include "Window/dialog.hh"
+#include "Engine/gameengine.hh"
 
 int main(int argc, char *argv[])
 {

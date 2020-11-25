@@ -4,13 +4,14 @@
 #include "../CourseLib/graphics/simplemainwindow.hh"
 #include <QMainWindow>
 #include "dialog.hh"
-#include "rectactoritem.hh"
-#include <unordered_map>
+#include "../Graphics/rectactoritem.hh"
+#include "../Graphics/destroyer.hh"
+
 #include "../CourseLib/interfaces/iactor.hh"
 #include "../CourseLib/graphics/simpleactoritem.hh"
 #include "../CourseLib/actors/nysse.hh"
 #include "../CourseLib/core/logic.hh"
-#include "destroyer.hh"
+#include <unordered_map>
 #include <QKeyEvent>
 
 

@@ -2,7 +2,7 @@
 #define CITY_HH
 
 #include "../CourseLib/interfaces/icity.hh"
-#include "mainwindow.hh"
+#include "../Window/mainwindow.hh"
 #include "../CourseLib/graphics/simplemainwindow.hh"
 #include <QTime>
 #include <unordered_map>

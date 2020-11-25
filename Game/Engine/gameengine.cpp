@@ -1,4 +1,4 @@
-#include "gameengine.hh"
+#include "../Engine/gameengine.hh"
 #include "../CourseLib/graphics/simplemainwindow.hh"
 
 gameengine::gameengine(QObject* parent) :
