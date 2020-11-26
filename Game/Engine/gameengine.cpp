@@ -13,15 +13,11 @@ gameengine::gameengine(QObject* parent) :
 
     l_->fileConfig();
 
-    Dialog * d = new Dialog();
+    Dialog* d = new Dialog();
 
-
-    connect(d, SIGNAL(game_length(int,QTime*)), this, SLOT(conf_logic(int,QTime*)));
+    connect(d, &Dialog::game_length, this, &gameengine::conf_logic);
 
     d->exec();
-
-    l_->takeCity(city_);
-    l_->finalizeGameStart();
 
 }
 
@@ -30,13 +26,18 @@ gameengine::~gameengine()
 }
 
 void gameengine::conf_logic(int gametime, QTime *clock)
+
 {
-    int minute = clock->minute();
-    int hour = clock->hour();
+    unsigned short minute = clock->minute();
+    unsigned short hour =  clock->hour();
+
+
+    l_->takeCity(city_);
+    l_->setTime(hour, minute);
+    l_->configChanged(*clock, false);
+
+    l_->finalizeGameStart();
 
     city_->set_game_duration(gametime);
-
-
-    l_->setTime(hour, minute);
 
 }

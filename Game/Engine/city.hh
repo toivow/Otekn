@@ -50,6 +50,9 @@ private:
 
     MainWindow* window_;
 
+    QTime* time_;
+    QTime* end_time_;
+
     QImage background_;
 
     std::list <std::shared_ptr<CourseSide::Passenger>> passengers_;
@@ -59,10 +62,6 @@ private:
 
     bool debugstate_;
     bool gamestarted_;
-
-
-    QTime aika_;
-
 
     int game_duration_;
 

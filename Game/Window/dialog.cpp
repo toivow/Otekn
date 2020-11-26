@@ -14,7 +14,7 @@ Dialog::Dialog(QWidget *parent) :
 
 
     connect(ui->exit_button, SIGNAL(clicked()), SLOT(reject()));
-    //connect(ui->start_button, SIGNAL(clicked()), SLOT(start_program()));
+
     connect(ui->start_button, SIGNAL(clicked()), SLOT(accept()));
 }
 
@@ -36,11 +36,14 @@ void Dialog::on_startingtime_userTimeChanged(const QTime &time)
 
 void Dialog::accept()
 {
+    peliaika = ui->peliaika->value();
+    *start_time = ui->startingtime->time();
+
     emit game_length(peliaika, start_time);
     QDialog::accept();
 }
 
 void Dialog::start_program()
 {
-    emit game_length(peliaika, start_time);
+    emit game_length(peliaika,start_time);
 }

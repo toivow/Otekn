@@ -36,7 +36,7 @@ class MainWindow : public QMainWindow
 
 public:
 
-    MainWindow(statistics* stats_, QWidget *parent = nullptr);
+    MainWindow(statistics* stats_, QTime* clock ,QWidget *parent = nullptr);
     ~MainWindow();
 
     void move_objects(std::shared_ptr<Interface::IActor> actor);
@@ -63,8 +63,18 @@ public:
 
     void check_deaths(Interface::Location player_loc_);
 
+    void set_time(QTime clock);
+
+private slots:
+
+    void show_time();
+
 
 private:
+
+    Ui::MainWindow *ui;
+    statistics* stats_;
+    QTime* time_;
 
     Dialog d_;
 
@@ -72,9 +82,7 @@ private:
 
     bool startorexit_;
 
-    Ui::MainWindow *ui;
 
-    statistics* stats_;
 
     std::unordered_map < std::shared_ptr<CourseSide::Passenger>
     , QGraphicsItem* > actors_;
@@ -86,7 +94,7 @@ private:
 
     std::pair <destroyer_logic* ,destroyer*> player_;
 
-    int tick_ = 5;
+    int tick_ = 10;
 
     QGraphicsScene *scene_;
 

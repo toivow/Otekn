@@ -36,6 +36,7 @@ private slots:
     void on_startingtime_userTimeChanged(const QTime &time);
 
 private:
+
     Ui::Dialog *ui;
 
     QGraphicsView* view_;

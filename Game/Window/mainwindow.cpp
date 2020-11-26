@@ -13,10 +13,11 @@ const int SIZE = 500;
 namespace StudentSide {
 
 
-MainWindow::MainWindow(statistics* stats, QWidget *parent) :
+MainWindow::MainWindow(statistics* stats, QTime* clock, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    stats_(stats)
+    stats_(stats),
+    time_(new QTime())
 {
     ui->setupUi(this);
 
@@ -32,13 +33,15 @@ MainWindow::MainWindow(statistics* stats, QWidget *parent) :
 
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, scene_, &QGraphicsScene::advance);
-    timer->start(tick_);
+    connect(timer, &QTimer::timeout, this, &MainWindow::show_time);
 }
 
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete time_;
+    delete stats_;
 }
 
 void MainWindow::move_objects(std::shared_ptr<Interface::IActor> actor)
@@ -56,9 +59,11 @@ void MainWindow::move_objects(std::shared_ptr<Interface::IActor> actor)
     {
         graphics_object = actors_[movepass];
     }
-    if (graphics_object == nullptr) {
-        qDebug("Yritti liikuttaa nullptr");
-    } else
+    if (graphics_object == nullptr)
+    {
+        // qDebug("Yritti liikuttaa nullptr");
+    }
+    else
     {
     int tempX = actor->giveLocation().giveX() - 5;
     int tempY = 500 - actor->giveLocation().giveY() - 5;
@@ -213,6 +218,23 @@ void MainWindow::check_deaths(Interface::Location player_loc_)
     }
     scene_->update();
 
+}
+
+void MainWindow::set_time(QTime clock)
+{
+    time_->setHMS(clock.hour(), clock.minute(), clock.second());
+    timer->start(tick_);
+}
+
+void MainWindow::show_time()
+{
+    int minutes = time_->minute();
+    int hours = time_->hour();
+    int seconds = time_->second();
+    std::string timestr = std::to_string(hours) + ':' + std::to_string(minutes)
+            + ':' + std::to_string(seconds);
+
+    ui->timeLbl->setText(QString::fromStdString(timestr));
 }
 
 }

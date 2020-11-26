@@ -7,7 +7,9 @@ namespace StudentSide
 
 city::city() :
     stats_(new statistics()),
-    window_(new MainWindow(stats_))
+    window_(new MainWindow(stats_, time_)),
+    time_(new QTime()),
+    end_time_(new QTime())
 {
 }
 
@@ -24,7 +26,9 @@ void city::setBackground(QImage &basicbackground, QImage &bigbackground)
 
 void city::setClock(QTime clock)
 {
-    aika_.setHMS(clock.hour(), clock.minute(), clock.second());
+    time_->setHMS(clock.hour(), clock.minute(), clock.second());
+    end_time_->setHMS(clock.hour(), clock.minute(), clock.second());
+    window_->set_time(clock);
 }
 
 void city::addStop(std::shared_ptr<IStop> stop)
@@ -40,11 +44,14 @@ void city::addStop(std::shared_ptr<IStop> stop)
 void city::startGame()
 {
     qDebug("Aloitetaan peli");
-    aika_.start();
+    time_->start();
+
     window_->spawn_destroyer(250, 250);
+
     window_->update_bus_amount();
     window_->update_pass_amount();
     window_->update_points();
+
     window_->show();
 }
 
@@ -80,9 +87,16 @@ void city::removeActor(std::shared_ptr<IActor> actor)
     std::shared_ptr<CourseSide::Nysse> removebus = std::dynamic_pointer_cast <CourseSide::Nysse>(actor);
     std::shared_ptr<CourseSide::Passenger> removepass = std::dynamic_pointer_cast<CourseSide::Passenger> (actor);
 
-
-    buses_.remove(removebus);
-    passengers_.remove(removepass);
+    if (removepass == nullptr)
+    {
+        buses_.remove(removebus);
+        stats_->add_bus(-1);
+    }
+    else if (removebus == nullptr)
+    {
+        passengers_.remove(removepass);
+        stats_->add_pass(-1);
+    }
 
     actorRemoved(actor);
 }
@@ -146,9 +160,9 @@ std::vector<std::shared_ptr<IActor> > city::getNearbyActors(Location loc) const
 
 bool city::isGameOver() const
 {
-    if (false)
+    if (time_ >= end_time_)
     {
-        qDebug("Minuutti kulunut, peli loppuu");
+        qDebug("Peliaika loppuu");
         return true;
     }
 
@@ -157,7 +171,9 @@ bool city::isGameOver() const
 
 void city::set_game_duration(int time)
 {
-    game_duration_ = time;
+    int addSecs = time*60;
+
+    *end_time_ = time_->addSecs(addSecs);
 }
 
 }
