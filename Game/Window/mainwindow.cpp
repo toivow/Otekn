@@ -196,15 +196,18 @@ void MainWindow::check_deaths(Interface::Location player_loc_)
 
         passloc.setXY(passX, passY);
 
-        if (player_loc_.isClose( passloc))
+        // Checks whether the passenger is close to our player, if the passenger
+        // is active (so a killed actor that hasn't yet been removed) and if
+        // the actor is in a bus, when they can't be killed.
+        if (player_loc_.isClose( passloc) && (! ((*(*it).first).isRemoved()))
+                && (!(*(*it).first).isInVehicle()))
         {
-            auto t = ((*it).first).unique();
-
 
             (*(*it).first).remove();
 
             scene_->removeItem((*it).second);
             delete (*it).second;
+            (*it).second = nullptr;
 
             it = actors_.erase(it);
 
