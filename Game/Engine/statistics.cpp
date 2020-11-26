@@ -5,13 +5,22 @@
 namespace StudentSide {
 
 
-statistics::statistics(){}
+statistics::statistics() :
+    passamount_(0),
+    busamount_(0),
+    points_(0)
+{
+}
 
 statistics::~statistics(){}
 
-int statistics::update_points(int amount)
+void statistics::update_points(int amount)
 {
-    points_ = points_ + amount;
+    points_ = amount + points_;
+}
+
+int statistics::return_points()
+{
     return points_;
 }
 
@@ -25,6 +34,26 @@ int statistics::current_passengers(std::list<std::shared_ptr<CourseSide::Passeng
 {
     int list_lenght = passengers.size();
     return list_lenght;
+}
+
+int statistics::bus_amount()
+{
+    return busamount_;
+}
+
+int statistics::pass_amount()
+{
+    return passamount_;
+}
+
+void statistics::add_pass(int amount)
+{
+    passamount_ += amount;
+}
+
+void statistics::add_bus(int amount)
+{
+   busamount_ += amount;
 }
 
 }

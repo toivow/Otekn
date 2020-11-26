@@ -13,9 +13,10 @@ const int SIZE = 500;
 namespace StudentSide {
 
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(statistics* stats, QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    stats_(stats)
 {
     ui->setupUi(this);
 
@@ -23,11 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     ui->gameView->setFixedSize(SIZE, SIZE);
-    ui->exitButton->move(SIZE+PADDING, 3*PADDING);
-    ui->startButton->move(SIZE+PADDING, PADDING);
-    ui->pointsAmnt->move(SIZE+PADDING, 5*PADDING);
-    ui->busAmount->move(SIZE+PADDING, 7*PADDING);
-    ui->passAmnt->move(SIZE+PADDING, 9*PADDING);
+
 
     scene_ = new QGraphicsScene(this);
     ui->gameView->setScene(scene_);
@@ -42,25 +39,6 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-void MainWindow::init_dialog()
-{
-    startorexit_ = d_.exec();
-
-    if (startorexit_)
-    {
-        qDebug("Accepted dialog successfully");
-
-    } else if (!startorexit_)
-    {
-        qDebug("Exited dialog successfully.");
-        this->close();
-
-    } else
-    {
-        qDebug("This shit ain supposed to happen dawg");
-    }
 }
 
 void MainWindow::move_objects(std::shared_ptr<Interface::IActor> actor)
@@ -78,11 +56,14 @@ void MainWindow::move_objects(std::shared_ptr<Interface::IActor> actor)
     {
         graphics_object = actors_[movepass];
     }
-    if (graphics_object != nullptr) {
-    }
+    if (graphics_object == nullptr) {
+        qDebug("Yritti liikuttaa nullptr");
+    } else
+    {
     int tempX = actor->giveLocation().giveX() - 5;
     int tempY = 500 - actor->giveLocation().giveY() - 5;
     graphics_object->setPos(tempX, tempY);
+    }
 
 
 
@@ -120,19 +101,21 @@ void MainWindow::addStop(int X, int Y, int type,
     scene_->addItem(nStop);
 }
 
-void MainWindow::update_bus_amount(int amount)
+void MainWindow::update_bus_amount()
 {
-    ui->busAmount->display(amount);
+    ui->busAmount->display(stats_->bus_amount());
 }
 
-void MainWindow::update_pass_amount(int amount)
+void MainWindow::update_pass_amount()
 {
-    ui->passAmnt->display(amount);
+    ui->passAmnt->display(stats_->pass_amount());
+
 }
 
-void MainWindow::update_points(int point_amnt)
+void MainWindow::update_points()
 {
-    ui->pointsAmnt->display(point_amnt);
+
+    ui->pointsAmnt->display(stats_->return_points());
 }
 
 
@@ -221,6 +204,12 @@ void MainWindow::check_deaths(Interface::Location player_loc_)
     if (killed_players > 0)
     {
         qDebug() << "Killed " << killed_players << " players!";
+
+        stats_->update_points(killed_players);
+
+        update_points();
+
+        update_pass_amount();
     }
     scene_->update();
 

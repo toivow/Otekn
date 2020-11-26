@@ -11,6 +11,8 @@
 #include "../CourseLib/actors/passenger.hh"
 #include "../CourseLib/core/location.hh"
 
+#include "../Engine/statistics.hh"
+
 #include "../CourseLib/graphics/simpleactoritem.hh"
 #include "../CourseLib/actors/nysse.hh"
 #include "../CourseLib/core/logic.hh"
@@ -34,10 +36,8 @@ class MainWindow : public QMainWindow
 
 public:
 
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(statistics* stats_, QWidget *parent = nullptr);
     ~MainWindow();
-
-    void init_dialog();
 
     void move_objects(std::shared_ptr<Interface::IActor> actor);
 
@@ -49,11 +49,11 @@ public:
 
     void addStop(int X, int Y, int type, std::shared_ptr<Interface::IStop> stop);
 
-    void update_bus_amount(int amount);
+    void update_bus_amount();
 
-    void update_pass_amount(int amount);
+    void update_pass_amount();
 
-    void update_points(int point_amnt);
+    void update_points();
 
     void spawn_destroyer(int X = 0, int Y = 250);
 
@@ -73,6 +73,8 @@ private:
     bool startorexit_;
 
     Ui::MainWindow *ui;
+
+    statistics* stats_;
 
     std::unordered_map < std::shared_ptr<CourseSide::Passenger>
     , QGraphicsItem* > actors_;

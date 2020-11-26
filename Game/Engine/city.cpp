@@ -5,17 +5,21 @@
 namespace StudentSide
 {
 
-city::city()
+city::city() :
+    stats_(new statistics()),
+    window_(new MainWindow(stats_))
 {
 }
 
 city::~city()
 {
+    delete window_;
+    delete stats_;
 }
 
 void city::setBackground(QImage &basicbackground, QImage &bigbackground)
 {
-    window_.setPicture(basicbackground);
+    window_->setPicture(basicbackground);
 }
 
 void city::setClock(QTime clock)
@@ -28,7 +32,7 @@ void city::addStop(std::shared_ptr<IStop> stop)
     int X = stop->getLocation().giveX() - 5;
     int Y = 500 - stop->getLocation().giveY() - 5;
 
-    window_.addStop(X, Y, 122, stop);
+    window_->addStop(X, Y, 122, stop);
     stops_.push_back(stop);
     //qDebug("Spawnattiin stop");
 }
@@ -37,8 +41,11 @@ void city::startGame()
 {
     qDebug("Aloitetaan peli");
     aika_.start();
-    window_.spawn_destroyer(250, 250);
-    window_.show();
+    window_->spawn_destroyer(250, 250);
+    window_->update_bus_amount();
+    window_->update_pass_amount();
+    window_->update_points();
+    window_->show();
 }
 
 void city::addActor(std::shared_ptr<IActor> newactor)
@@ -51,15 +58,15 @@ void city::addActor(std::shared_ptr<IActor> newactor)
 
     if (newpass == nullptr)
     {
-        window_.addBus(X, Y, newbus);
+        window_->addBus(X, Y, newbus);
         buses_.push_back(newbus);
-        window_.update_bus_amount(stats_.current_busses(buses_));
+        stats_->add_bus(1);
     }
     else if (newbus == nullptr)
     {
-        window_.addActor(X, Y, 255, newpass);
+        window_->addActor(X, Y, 255, newpass);
         passengers_.push_back(newpass);
-        //window_.update_pass_amount(stats_.current_passengers(passengers_));
+        stats_->add_pass(1);
     }
     else
     {
@@ -112,7 +119,7 @@ bool city::findActor(std::shared_ptr<IActor> actor) const
 
 void city::actorMoved(std::shared_ptr<IActor> actor)
 {
-    window_.move_objects(actor);
+    window_->move_objects(actor);
 }
 
 std::vector<std::shared_ptr<IActor> > city::getNearbyActors(Location loc) const

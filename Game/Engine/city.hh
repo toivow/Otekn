@@ -3,7 +3,6 @@
 
 #include "../CourseLib/interfaces/icity.hh"
 #include "../Window/mainwindow.hh"
-#include "../CourseLib/graphics/simplemainwindow.hh"
 #include <QTime>
 #include <unordered_map>
 #include "statistics.hh"
@@ -47,6 +46,10 @@ public:
 
 private:
 
+    statistics* stats_;
+
+    MainWindow* window_;
+
     QImage background_;
 
     std::list <std::shared_ptr<CourseSide::Passenger>> passengers_;
@@ -57,11 +60,9 @@ private:
     bool debugstate_;
     bool gamestarted_;
 
-    StudentSide::MainWindow window_;
 
     QTime aika_;
 
-    StudentSide::statistics stats_;
 
     int game_duration_;
 
