@@ -19,10 +19,6 @@ public:
 
     int return_points();
 
-    int current_busses(std::list <std::shared_ptr<CourseSide::Nysse>> nysset);
-
-    int current_passengers(std::list <std::shared_ptr<CourseSide::Passenger>> passengers);
-
     int bus_amount();
 
     int pass_amount();
