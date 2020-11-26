@@ -19,7 +19,28 @@ Interface::Location destroyer_logic::giveLocation() const
 
 void destroyer_logic::move(Interface::Location loc)
 {
-    location_ = loc;
-}
+    int X = loc.giveX();
+    int Y = loc.giveY();
+    if (X >= 502 )
+    {
+        location_.setXY(-2,Y);
+    }
+    else if (X<=-2)
+    {
+         location_.setXY(502,Y);
 
+    }
+    else if ( Y>= 502)
+    {
+        location_.setXY(X,-2);
+    }
+    else if (Y <= -2 )
+    {
+        location_.setXY(X, 502);
+    }
+    else
+    {
+    location_ = loc;
+    }
+}
 }

@@ -24,17 +24,6 @@ int statistics::return_points()
     return points_;
 }
 
-int statistics::current_busses(std::list<std::shared_ptr<CourseSide::Nysse>> nysset)
-{
-    int list_lenght = nysset.size();
-    return list_lenght;
-}
-
-int statistics::current_passengers(std::list<std::shared_ptr<CourseSide::Passenger>> passengers)
-{
-    int list_lenght = passengers.size();
-    return list_lenght;
-}
 
 int statistics::bus_amount()
 {
