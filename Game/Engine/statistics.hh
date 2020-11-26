@@ -14,11 +14,25 @@ class statistics
 public:
     statistics();
    ~statistics();
-    int update_points(int amount);
+
+    void update_points(int amount);
+
+    int return_points();
+
     int current_busses(std::list <std::shared_ptr<CourseSide::Nysse>> nysset);
+
     int current_passengers(std::list <std::shared_ptr<CourseSide::Passenger>> passengers);
 
+    int bus_amount();
+
+    int pass_amount();
+
+    void add_pass(int amount);
+    void add_bus(int amount);
+
 private:
+    int passamount_;
+    int busamount_;
 
     int points_;
 
