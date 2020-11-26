@@ -1,9 +1,11 @@
-#include "../Window/dialog.hh"
+#include "dialog.hh"
 #include "ui_dialog.h"
 
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::Dialog)
+    ui(new Ui::Dialog),
+    start_time(new QTime()),
+    peliaika(0)
 {
     ui->setupUi(this);
     QGraphicsScene *scene_ = new QGraphicsScene(this);
@@ -12,9 +14,8 @@ Dialog::Dialog(QWidget *parent) :
 
 
     connect(ui->exit_button, SIGNAL(clicked()), SLOT(reject()));
-    connect(ui->start_button, SIGNAL(clicked()), SLOT(start_prog()));
+    //connect(ui->start_button, SIGNAL(clicked()), SLOT(start_program()));
     connect(ui->start_button, SIGNAL(clicked()), SLOT(accept()));
-    connect(ui->start_button, SIGNAL(clicked()), SLOT(send_game_time()));
 }
 
 Dialog::~Dialog()
@@ -22,9 +23,24 @@ Dialog::~Dialog()
     delete ui;
 }
 
-void Dialog::sending_game_time()
+
+void Dialog::on_peliaika_valueChanged(int arg1)
 {
-    int time = ui->peliaika->value();
-    emit game_time(time);
+    peliaika = arg1;
 }
 
+void Dialog::on_startingtime_userTimeChanged(const QTime &time)
+{
+    *start_time = time;
+}
+
+void Dialog::accept()
+{
+    emit game_length(peliaika, start_time);
+    QDialog::accept();
+}
+
+void Dialog::start_program()
+{
+    emit game_length(peliaika, start_time);
+}

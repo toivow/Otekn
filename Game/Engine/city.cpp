@@ -148,5 +148,10 @@ bool city::isGameOver() const
     return false;
 }
 
+void city::set_game_duration(int time)
+{
+    game_duration_ = time;
+}
+
 }
 

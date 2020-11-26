@@ -1,4 +1,4 @@
-#include "../Window/mainwindow.hh"
+#include "mainwindow.hh"
 #include "ui_mainwindow.h"
 #include <unordered_map>
 #include <iostream>
@@ -79,14 +79,12 @@ void MainWindow::move_objects(std::shared_ptr<Interface::IActor> actor)
         graphics_object = actors_[movepass];
     }
     if (graphics_object != nullptr) {
-        int tempX = actor->giveLocation().giveX() - 5;
-        int tempY = 500 - actor->giveLocation().giveY() - 5;
-
-        graphics_object->setPos(tempX, tempY);
-
-    } else if (graphics_object == nullptr) {
-        qDebug("Yritti siirtää nullptria");
     }
+    int tempX = actor->giveLocation().giveX() - 5;
+    int tempY = 500 - actor->giveLocation().giveY() - 5;
+    graphics_object->setPos(tempX, tempY);
+
+
 
 }
 

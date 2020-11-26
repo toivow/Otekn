@@ -45,12 +45,12 @@ HEADERS += \
     Engine/city.hh \
     Engine/creategame.hh \
     Engine/gameengine.hh \
-    Engine/statistics.h \
     Graphics/destroyer.hh \
     Graphics/rectactoritem.hh \
     Window/dialog.hh \
     Window/mainwindow.hh \
-    Actors/destroyer_logic.hh
+    Actors/destroyer_logic.hh \
+    Engine/statistics.hh
 
 
 FORMS += \

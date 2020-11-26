@@ -6,7 +6,7 @@
 #include "../CourseLib/graphics/simplemainwindow.hh"
 #include <QTime>
 #include <unordered_map>
-#include "statistics.h"
+#include "statistics.hh"
 
 namespace StudentSide
 {
@@ -19,6 +19,8 @@ public:
     city();
 
     ~city();
+
+    void set_game_duration(int time);
 
     void setBackground(QImage& basicbackground, QImage& bigbackground);
 
@@ -42,6 +44,7 @@ public:
 
     bool isGameOver() const;
 
+
 private:
 
     QImage background_;
@@ -59,6 +62,8 @@ private:
     QTime aika_;
 
     StudentSide::statistics stats_;
+
+    int game_duration_;
 
 
 };

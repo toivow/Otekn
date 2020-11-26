@@ -15,7 +15,7 @@ public:
     creategame();
     ~creategame();
 
-    std::shared_ptr<Interface::ICity> createGame();
+    std::shared_ptr<StudentSide::city> createGame();
 
 private:
     std::shared_ptr<StudentSide::city> city_;
