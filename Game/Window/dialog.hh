@@ -22,22 +22,30 @@ public:
 
 signals:
 
-    void game_time(int time);
+    void game_length(int time, QTime* start_time);
+
 
 private slots:
 
-    void sending_game_time();
+    void accept() override;
 
+    void start_program();
+
+    void on_peliaika_valueChanged(int arg1);
+
+    void on_startingtime_userTimeChanged(const QTime &time);
 
 private:
     Ui::Dialog *ui;
 
     QGraphicsView* view_;
 
+    QTime* start_time;
+
     QPushButton* start_button;
     QPushButton* exit_button;
 
-    QSpinBox* peliaika;
+    int peliaika;
 
 };
 

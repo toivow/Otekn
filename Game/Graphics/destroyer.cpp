@@ -1,4 +1,4 @@
-#include "../Graphics/destroyer.hh"
+#include "destroyer.hh"
 
 namespace StudentSide {
 

@@ -8,7 +8,7 @@
 #include "../Window/dialog.hh"
 #include "../CourseLib/graphics/simplemainwindow.hh"
 #include "../CourseLib/core/logic.hh"
-#include "../Engine/city.hh"
+#include "city.hh"
 #include "creategame.hh"
 
 
@@ -22,10 +22,10 @@ public:
 
     explicit gameengine(QObject* parent=nullptr);
     virtual ~gameengine();
-    void show_board();
 
 public slots:
 
+    void conf_logic(int gametime, QTime* clock);
 
 private:
 
@@ -36,13 +36,13 @@ private:
    QImage basicbackground_;
    QImage bigbackground_;
 
-   std::shared_ptr<Interface::ICity> city_;
+   std::shared_ptr<StudentSide::city> city_;
 
    QTimer *timer;
 
    StudentSide::creategame temp;
 
-   CourseSide::Logic l_;
+   CourseSide::Logic* l_;
 
 };
 

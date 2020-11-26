@@ -1,4 +1,4 @@
-#include "../Graphics/rectactoritem.hh"
+#include "rectactoritem.hh"
 
 namespace StudentSide {
 
