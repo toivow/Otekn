@@ -53,7 +53,7 @@ private:
 
    StudentSide::creategame temp;
 
-   CourseSide::Logic* l_;
+   CourseSide::Logic* game_logic_;
 
 };
 

@@ -25,6 +25,8 @@ QRectF RectActorItem::boundingRect() const
 
 void RectActorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    (void)option;
+    (void)widget;
     prepareGeometryChange();
     QRectF bounds = boundingRect();
 

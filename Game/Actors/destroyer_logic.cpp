@@ -21,6 +21,7 @@ void destroyer_logic::move(Interface::Location loc)
 {
     int X = loc.giveX();
     int Y = loc.giveY();
+    //If tree for the destroyer to move from one side to another
     if (X >= 502 )
     {
         location_.setXY(-2,Y);

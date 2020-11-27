@@ -25,11 +25,14 @@ QRectF destroyer::boundingRect() const
 
 void destroyer::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    (void)option;
+    (void)widget;
     QColor color(255, 69, 0);
-
 
     QPixmap map_ = QPixmap(":/kuvat/Kuvat/naama.png");
     QRectF bounds = boundingRect();
+    (void)bounds;
+    (void)color;
     QBrush brush(image_);
     //painter->setBrush(brush);
     painter->drawPixmap(QRect(-15 ,-15, 15, 15), map_);
