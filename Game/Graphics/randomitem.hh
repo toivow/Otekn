@@ -26,15 +26,9 @@ private:
     int y_;
     int x_;
     int random_point_reward_;
-    /**
-     * @brief Gives a random score reward between 0 and 30.
-     * @pre -
-     * @return random score reward.
-     * @post Exception guaranteee: Basic
-     */
-    int randomizeReward();
 
-    QImage image_;
+
+    QPixmap image_;
 };
 }
 

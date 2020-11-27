@@ -2,6 +2,7 @@
 
 namespace StudentSide {
 
+const int DESTROYER_DIAMETER = 28;
 
 destroyer::destroyer(int x, int y) :
     CourseSide::SimpleActorItem(x, y),
@@ -14,22 +15,23 @@ destroyer::destroyer(int x, int y) :
 
 destroyer::~destroyer()
 {
-
+    prepareGeometryChange();
 }
 
 QRectF destroyer::boundingRect() const
 {
-    return QRectF(0, 0, 30, 30);
+    return QRectF(0, 0, DESTROYER_DIAMETER, DESTROYER_DIAMETER);
 }
 
 
 void destroyer::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    int offset = 0 - DESTROYER_DIAMETER/4;
+
     (void)option;
     (void)widget;
     painter->setBackgroundMode(Qt::TransparentMode);
-    painter->drawPixmap(QRect(-7, -7, 28, 28), pixmap_);
-
+    painter->drawPixmap(QRect(offset, offset, DESTROYER_DIAMETER, DESTROYER_DIAMETER), pixmap_);
 }
 
 

@@ -7,7 +7,6 @@
 
 #include <QDebug>
 
-const int PADDING = 30;
 const int SIZE = 500;
 
 
@@ -67,9 +66,12 @@ void MainWindow::moveObjects(std::shared_ptr<Interface::IActor> actor)
     }
     else
     {
+
     int tempX = actor->giveLocation().giveX() - 5;
     int tempY = 500 - actor->giveLocation().giveY() - 5;
+
     graphics_object->setPos(tempX, tempY);
+    scene_->update();
     }
 
 
@@ -108,16 +110,19 @@ void MainWindow::addStop(int X, int Y, int type,
     scene_->addItem(nStop);
 }
 
+
 void MainWindow::updateBusAmount()
 {
     ui->busAmount->display(stats_->busAmount());
 }
+
 
 void MainWindow::updatePassAmount()
 {
     ui->passAmnt->display(stats_->passAmount());
 
 }
+
 
 void MainWindow::updatePoints()
 {
@@ -139,16 +144,18 @@ void MainWindow::spawnDestroyer(int X, int Y)
 void MainWindow::spawnBanana()
 {
     //Randomly generate x and y
-    srand(time(NULL));
-    std::random_device seeder;
-    std::mt19937 engine(seeder());
-    std::uniform_int_distribution<int> dist(0, 500);
-    int rand_X = dist(engine);
-    int rand_Y = dist(engine);
-    randomitem* randitm = new randomitem(rand_X,500-rand_Y);
-    scene_->addItem(randitm);
 
+    int rand_X = rand() % 400 + 100;
+    int rand_Y = rand() % 400 + 100;
+
+    randomitem* randitm_graf = new randomitem(rand_X, rand_Y);
+    randomitem_logic* randitm_log = new randomitem_logic(rand_X, rand_Y);
+
+    bananas_[randitm_log] = randitm_graf;
+    scene_->addItem(randitm_graf);
+    randitm_graf->setPos(rand_X, rand_Y);
 }
+
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
@@ -184,6 +191,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
 
 }
+
 
 void MainWindow::checkDeaths(Interface::Location player_loc_)
 {
@@ -229,19 +237,36 @@ void MainWindow::checkDeaths(Interface::Location player_loc_)
 
         stats_->updatePoints(killed_players);
 
-        updatePoints();
-
         updatePassAmount();
     }
+
+    for (auto banana : bananas_)
+    {
+
+        if (player_loc_.isClose(banana.first->giveLocation()))
+        {
+            int reward = banana.first->return_reward();
+            scene_->removeItem(banana.second);
+            delete banana.second;
+            banana.second = nullptr;
+
+            stats_->updatePoints(reward);
+
+        }
+    }
+    updatePoints();
+
     scene_->update();
 
 }
+
 
 void MainWindow::set_time(QTime clock)
 {
     time_->setHMS(clock.hour(), clock.minute(), clock.second());
     timer->start(tick_);
 }
+
 
 void MainWindow::show_end_time(QTime* end_time)
 {
@@ -253,6 +278,7 @@ void MainWindow::show_end_time(QTime* end_time)
     ui->endTimeLbl->setText(QString::fromStdString(timestr));
 }
 
+
 void MainWindow::show_time()
 {
     int minutes = time_->minute();
@@ -262,6 +288,7 @@ void MainWindow::show_time()
     ui->timeLbl->setText(QString::fromStdString(timestr));
 
 }
+
 
 }
 

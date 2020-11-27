@@ -15,6 +15,7 @@
 #include "../CourseLib/graphics/simpleactoritem.hh"
 #include "../CourseLib/actors/nysse.hh"
 #include "../CourseLib/core/logic.hh"
+#include "../Actors/randomitem_logic.hh"
 #include <memory>
 #include <unordered_map>
 #include <QKeyEvent>
@@ -139,7 +140,6 @@ private:
     bool startorexit_;
 
 
-
     std::unordered_map < std::shared_ptr<CourseSide::Passenger>
     , QGraphicsItem* > actors_;
 
@@ -148,8 +148,10 @@ private:
 
     std::unordered_map < std::shared_ptr<CourseSide::Nysse>, QGraphicsItem*> buses_;
 
+
+
     std::pair <destroyer_logic* ,destroyer*> player_;
-    std::pair <destroyer_logic* ,randomitem*> banana_;
+    std::unordered_map <randomitem_logic* ,randomitem*> bananas_;
 
     int tick_ = 10;
 

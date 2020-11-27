@@ -97,9 +97,9 @@ void city::removeActor(std::shared_ptr<IActor> actor)
     {
         passengers_.remove(removepass);
         stats_->addPass(-1);
+
         //Used to randomly spawn bananas on map on passenger removes.
-        srand(time(NULL));
-        int rand_numb = rand()%(2-1+1)+1;
+        int rand_numb = rand() % 50;
         if (rand_numb == 1)
         {
             window_->spawnBanana();
