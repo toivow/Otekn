@@ -38,7 +38,7 @@ public slots:
      */
     void confLogic(int gametime, QTime* clock);
 
-    bool execDialog();
+    void execDialog();
 
 private:
 

@@ -173,7 +173,7 @@ std::vector<std::shared_ptr<IActor> > city::getNearbyActors(Location loc) const
 
 bool city::isGameOver() const
 {
-    if (time_->operator>(*end_time_) && enable_end_time_)
+    if (time_->operator>=(*end_time_) && enable_end_time_)
     {
         qDebug("Peliaika loppuu");
 

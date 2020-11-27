@@ -28,7 +28,7 @@ void gameengine::confLogic(int gametime, QTime *clock)
 
 }
 
-bool gameengine::execDialog()
+void gameengine::execDialog()
 {
     StudentSide::creategame temp;
     city_ = temp.createGame();
@@ -40,10 +40,6 @@ bool gameengine::execDialog()
 
     connect(d, &Dialog::game_length, this, &gameengine::confLogic);
 
-    if(d->exec()){
-        return true;
-    }
-    else {
-        return false;
-    }
+    d->exec();
+
 }
