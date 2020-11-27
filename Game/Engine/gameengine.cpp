@@ -34,12 +34,17 @@ void gameengine::confLogic(int gametime, QTime *clock)
 
 
     l_->takeCity(city_);
+
     l_->setTime(hour, minute);
+
+
+
     l_->configChanged(*clock, false);
+
+    city_->set_game_duration(gametime, clock);
 
     l_->finalizeGameStart();
 
-    city_->set_game_duration(gametime, clock);
 
 
 

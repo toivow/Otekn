@@ -43,7 +43,7 @@ void city::addStop(std::shared_ptr<IStop> stop)
 void city::startGame()
 {
     qDebug("Aloitetaan peli");
-    time_->start();
+
     window_->spawnDestroyer(250, 250);
     window_->updateBusAmount();
     window_->updatePassAmount();
