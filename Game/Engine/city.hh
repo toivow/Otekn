@@ -79,6 +79,8 @@ private:
 
     int game_duration_;
 
+    bool enable_end_time_;
+
 
 };
 }

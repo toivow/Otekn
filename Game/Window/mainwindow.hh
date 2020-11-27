@@ -122,6 +122,8 @@ public:
 
     void show_end_time(QTime* end_time);
 
+    void disable_end_time();
+
 private slots:
 
     void show_time();

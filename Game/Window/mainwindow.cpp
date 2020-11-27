@@ -278,6 +278,11 @@ void MainWindow::show_end_time(QTime* end_time)
     ui->endTimeLbl->setText(QString::fromStdString(timestr));
 }
 
+void MainWindow::disable_end_time()
+{
+    ui->endTimeLbl->setText(QString("Time limit disabled"));
+}
+
 
 void MainWindow::show_time()
 {

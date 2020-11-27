@@ -9,13 +9,13 @@ city::city() :
     stats_(new statistics()),
     time_(new QTime()),
     end_time_(new QTime()),
-    window_(new MainWindow(stats_, time_))
+    window_(new MainWindow(stats_, time_)),
+    enable_end_time_(false)
 {
 }
 
 city::~city()
 {
-    delete window_;
     delete stats_;
 }
 
@@ -173,7 +173,7 @@ std::vector<std::shared_ptr<IActor> > city::getNearbyActors(Location loc) const
 
 bool city::isGameOver() const
 {
-    if (time_->operator>(*end_time_))
+    if (time_->operator>(*end_time_) && enable_end_time_)
     {
         qDebug("Peliaika loppuu");
 
@@ -190,10 +190,18 @@ void city::set_game_duration(int time, QTime* clock)
 {
     end_time_ = clock;
 
-    int addSecs = time*60;
+    if (time == 0) {
+        enable_end_time_ = false;
+        window_->disable_end_time();
+    }
+    else
+    {
+        int addSecs = time*60;
+        *end_time_ = end_time_->addSecs(addSecs);
+        window_->show_end_time(end_time_);
+        enable_end_time_ = true;
+    }
 
-    *end_time_ = end_time_->addSecs(addSecs);
-    window_->show_end_time(end_time_);
 }
 
 }

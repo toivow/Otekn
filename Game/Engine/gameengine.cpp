@@ -18,7 +18,6 @@ void gameengine::confLogic(int gametime, QTime *clock)
     int minute = clock->minute();
     int hour =  clock->hour();
 
-
     game_logic_->takeCity(city_);
 
     game_logic_->setTime(hour, minute);
@@ -39,8 +38,7 @@ bool gameengine::execDialog()
 
     Dialog* d = new Dialog();
 
-
-    connect(d, SIGNAL(game_length(int,QTime*)), this, SLOT(confLogic(int,QTime*)));
+    connect(d, &Dialog::game_length, this, &gameengine::confLogic);
 
     if(d->exec()){
         return true;
