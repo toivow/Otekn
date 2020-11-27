@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include <iostream>
 #include <string>
+#include <random>
 
 #include <QDebug>
 
@@ -18,11 +19,12 @@ MainWindow::MainWindow(statistics* stats, QTime* clock, QWidget *parent) :
     ui(new Ui::MainWindow),
     stats_(stats),
     time_(new QTime())
+
 {
     ui->setupUi(this);
-
+    //Used to silence warning on unused param
+    (void)clock;
     // We need a graphics scene in which to draw objects
-
 
     ui->gameView->setFixedSize(SIZE, SIZE);
 
@@ -136,13 +138,15 @@ void MainWindow::spawnDestroyer(int X, int Y)
 
 void MainWindow::spawnBanana()
 {
+    //Randomly generate x and y
     srand(time(NULL));
-    int rand_X = rand()%(500+1);
-    int rand_Y = rand()%(500+1);
-    randomitem* randitm = new randomitem(rand_X,rand_Y);
-    destroyer_logic* logiikka = new destroyer_logic(rand_X,rand_Y);
-    banana_ = std::make_pair(logiikka, randitm);
-    scene_->addItem(banana_.second);
+    std::random_device seeder;
+    std::mt19937 engine(seeder());
+    std::uniform_int_distribution<int> dist(0, 500);
+    int rand_X = dist(engine);
+    int rand_Y = dist(engine);
+    randomitem* randitm = new randomitem(rand_X,500-rand_Y);
+    scene_->addItem(randitm);
 
 }
 
@@ -150,7 +154,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     int tempY = player_.first->giveLocation().giveY();
     int tempX =  player_.first->giveLocation().giveX();
-    //
+    //Events that happen to destroyer on key presses
     if (event->key() == Qt::Key_A) {
         tempX += -10;
     }

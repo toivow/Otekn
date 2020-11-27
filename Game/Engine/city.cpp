@@ -22,10 +22,13 @@ city::~city()
 void city::setBackground(QImage &basicbackground, QImage &bigbackground)
 {
     window_->setPicture(basicbackground);
+    //used to silence warning about unused parameter
+    (void)bigbackground;
 }
 
 void city::setClock(QTime clock)
 {
+    //sets time for the game
     time_->setHMS(clock.hour(), clock.minute(), clock.second());
     window_->set_time(clock);
 }
@@ -55,10 +58,10 @@ void city::addActor(std::shared_ptr<IActor> newactor)
 {
     int Y = 500 - newactor->giveLocation().giveY()-5;
     int X = newactor->giveLocation().giveX()-5;
-
     std::shared_ptr<CourseSide::Nysse> newbus = std::dynamic_pointer_cast <CourseSide::Nysse>(newactor);
     std::shared_ptr<CourseSide::Passenger> newpass = std::dynamic_pointer_cast<CourseSide::Passenger> (newactor);
 
+    //If tree for checking whether pointer points to a bus or passenger
     if (newpass == nullptr)
     {
         window_->addBus(X, Y, newbus);
@@ -83,6 +86,7 @@ void city::removeActor(std::shared_ptr<IActor> actor)
     std::shared_ptr<CourseSide::Nysse> removebus = std::dynamic_pointer_cast <CourseSide::Nysse>(actor);
     std::shared_ptr<CourseSide::Passenger> removepass = std::dynamic_pointer_cast<CourseSide::Passenger> (actor);
 
+    //If tree for checking whether pointer points to a bus or passenger
     if (removepass == nullptr)
     {
         buses_.remove(removebus);
@@ -92,6 +96,14 @@ void city::removeActor(std::shared_ptr<IActor> actor)
     {
         passengers_.remove(removepass);
         stats_->addPass(-1);
+        //Used to randomly spawn bananas on map on passenger removes.
+        srand(time(NULL));
+        int rand_numb = rand()%(2-1+1)+1;
+        if (rand_numb == 1)
+        {
+            window_->spawnBanana();
+            qDebug("spawnattiin banaani");
+        }
     }
 
     actorRemoved(actor);
@@ -134,6 +146,7 @@ void city::actorMoved(std::shared_ptr<IActor> actor)
 
 std::vector<std::shared_ptr<IActor> > city::getNearbyActors(Location loc) const
 {
+    //Adds passenger to a vector if they are close to given location.
     std::vector<std::shared_ptr<IActor>> to_return;
     for (auto passenger: passengers_)
     {
@@ -143,6 +156,7 @@ std::vector<std::shared_ptr<IActor> > city::getNearbyActors(Location loc) const
         }
     }
 
+    //Adds busses to a vector if they are close to given location.
     for (auto bus : buses_)
     {
         if (bus->giveLocation().isClose(loc) == true)
