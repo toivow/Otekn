@@ -133,7 +133,10 @@ void MainWindow::spawnBanana()
     srand(time(NULL));
     int rand_X = rand()%(500+1);
     int rand_Y = rand()%(500+1);
-    randomitem* banaani = new randomitem(rand_X,rand_Y);
+    randomitem* randitm = new randomitem(rand_X,rand_Y);
+    destroyer_logic* logiikka = new destroyer_logic(rand_X,rand_Y);
+    banana_ = std::make_pair(logiikka, randitm);
+    scene_->addItem(banana_.second);
 
 }
 
