@@ -26,11 +26,13 @@ public:
 
     void move(Interface::Location loc);
 
-    bool isRemoved() const{}
+    bool isRemoved() const;
 
-    void remove(){}
+    void remove();
 
 private:
+
+    bool removed_;
 
     Interface::Location location_;
 

@@ -5,7 +5,8 @@ namespace StudentSide {
 RectActorItem::RectActorItem(int x, int y) :
     CourseSide::SimpleActorItem(x, y),
     x_(x),
-    y_(y)
+    y_(y),
+    nysse_(QImage(":/kuvat/Kuvat/nysse.png"))
 {
     setPos(mapToParent(x_, y_));
 }
@@ -27,7 +28,6 @@ void RectActorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *opt
     prepareGeometryChange();
     QRectF bounds = boundingRect();
 
-    nysse_.load(":/kuvat/Kuvat/Nysse_pixelart.png");
     QBrush brush(nysse_);
     painter->setBrush(brush);
     painter->drawRect(bounds);

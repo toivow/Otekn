@@ -13,10 +13,11 @@ const int SIZE = 500;
 namespace StudentSide {
 
 
-MainWindow::MainWindow(statistics* stats, QWidget *parent) :
+MainWindow::MainWindow(statistics* stats, QTime* clock, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    stats_(stats)
+    stats_(stats),
+    time_(new QTime())
 {
     ui->setupUi(this);
 
@@ -32,13 +33,15 @@ MainWindow::MainWindow(statistics* stats, QWidget *parent) :
 
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, scene_, &QGraphicsScene::advance);
-    timer->start(tick_);
+    connect(timer, &QTimer::timeout, this, &MainWindow::show_time);
 }
 
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete time_;
+    delete stats_;
 }
 
 void MainWindow::moveObjects(std::shared_ptr<Interface::IActor> actor)
@@ -56,9 +59,11 @@ void MainWindow::moveObjects(std::shared_ptr<Interface::IActor> actor)
     {
         graphics_object = actors_[movepass];
     }
-    if (graphics_object == nullptr) {
-        qDebug("Yritti liikuttaa nullptr");
-    } else
+    if (graphics_object == nullptr)
+    {
+        // qDebug("Yritti liikuttaa nullptr");
+    }
+    else
     {
     int tempX = actor->giveLocation().giveX() - 5;
     int tempY = 500 - actor->giveLocation().giveY() - 5;
@@ -126,6 +131,7 @@ void MainWindow::spawnDestroyer(int X, int Y)
     destroyer_logic* logiikka = new destroyer_logic(X, Y);
     player_ = std::make_pair(logiikka, grafiikka);
     scene_->addItem(player_.second);
+    player_.second->setPos(X, Y);
 }
 
 void MainWindow::spawnBanana()
@@ -224,6 +230,32 @@ void MainWindow::checkDeaths(Interface::Location player_loc_)
         updatePassAmount();
     }
     scene_->update();
+
+}
+
+void MainWindow::set_time(QTime clock)
+{
+    time_->setHMS(clock.hour(), clock.minute(), clock.second());
+    timer->start(tick_);
+}
+
+void MainWindow::show_end_time(QTime* end_time)
+{
+    int minutes = end_time->minute();
+    int hours = end_time->hour();
+
+    std::string timestr = std::to_string(hours) + ':' + std::to_string(minutes);
+
+    ui->endTimeLbl->setText(QString::fromStdString(timestr));
+}
+
+void MainWindow::show_time()
+{
+    int minutes = time_->minute();
+    int hours = time_->hour();
+    std::string timestr = std::to_string(hours) + ':' + std::to_string(minutes);
+
+    ui->timeLbl->setText(QString::fromStdString(timestr));
 
 }
 

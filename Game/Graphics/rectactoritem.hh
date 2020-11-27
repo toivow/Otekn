@@ -10,8 +10,8 @@
 
 namespace StudentSide {
 
-const int WIDTH = 35;
-const int HEIGHT = 15;
+const int WIDTH = 50;
+const int HEIGHT = 25;
 
 class RectActorItem : public CourseSide::SimpleActorItem
 {

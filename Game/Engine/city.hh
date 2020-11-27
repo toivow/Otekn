@@ -32,7 +32,7 @@ public:
      * @post game_duration_ set into wished value.
      * @exception Nothrow
      */
-    void set_game_duration(int time);
+    void set_game_duration(int time, QTime* clock);
 
     void setBackground(QImage& basicbackground, QImage& bigbackground);
 
@@ -61,7 +61,11 @@ private:
 
     statistics* stats_;
 
+    QTime* time_;
+    QTime* end_time_;
+
     MainWindow* window_;
+
 
     QImage background_;
 
@@ -72,10 +76,6 @@ private:
 
     bool debugstate_;
     bool gamestarted_;
-
-
-    QTime aika_;
-
 
     int game_duration_;
 

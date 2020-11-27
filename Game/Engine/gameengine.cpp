@@ -13,16 +13,14 @@ gameengine::gameengine(QObject* parent) :
 
     l_->fileConfig();
 
-    Dialog * d = new Dialog();
+    Dialog* d = new Dialog();
 
 
     connect(d, SIGNAL(game_length(int,QTime*)), this, SLOT(confLogic(int,QTime*)));
 
     d->exec();
 
-    l_->takeCity(city_);
-    l_->finalizeGameStart();
-
+    qDebug("This statement after d->exec()");
 }
 
 gameengine::~gameengine()
@@ -32,11 +30,17 @@ gameengine::~gameengine()
 void gameengine::confLogic(int gametime, QTime *clock)
 {
     int minute = clock->minute();
-    int hour = clock->hour();
-
-    city_->set_game_duration(gametime);
+    int hour =  clock->hour();
 
 
+    l_->takeCity(city_);
     l_->setTime(hour, minute);
+    l_->configChanged(*clock, false);
+
+    l_->finalizeGameStart();
+
+    city_->set_game_duration(gametime, clock);
+
+
 
 }

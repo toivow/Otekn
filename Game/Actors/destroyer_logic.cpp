@@ -43,4 +43,14 @@ void destroyer_logic::move(Interface::Location loc)
     location_ = loc;
     }
 }
+
+bool destroyer_logic::isRemoved() const
+{
+    return removed_;
+}
+
+void destroyer_logic::remove()
+{
+    removed_ = true;
+}
 }
