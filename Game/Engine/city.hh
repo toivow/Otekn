@@ -19,7 +19,7 @@ public:
 
     ~city();
 
-    void set_game_duration(int time);
+    void set_game_duration(int time, QTime* clock);
 
     void setBackground(QImage& basicbackground, QImage& bigbackground);
 
@@ -48,10 +48,11 @@ private:
 
     statistics* stats_;
 
-    MainWindow* window_;
-
     QTime* time_;
     QTime* end_time_;
+
+    MainWindow* window_;
+
 
     QImage background_;
 

@@ -19,6 +19,7 @@ gameengine::gameengine(QObject* parent) :
 
     d->exec();
 
+    qDebug("This statement after d->exec()");
 }
 
 gameengine::~gameengine()
@@ -28,8 +29,8 @@ gameengine::~gameengine()
 void gameengine::conf_logic(int gametime, QTime *clock)
 
 {
-    unsigned short minute = clock->minute();
-    unsigned short hour =  clock->hour();
+    int minute = clock->minute();
+    int hour =  clock->hour();
 
 
     l_->takeCity(city_);
@@ -38,6 +39,8 @@ void gameengine::conf_logic(int gametime, QTime *clock)
 
     l_->finalizeGameStart();
 
-    city_->set_game_duration(gametime);
+    city_->set_game_duration(gametime, clock);
+
+
 
 }

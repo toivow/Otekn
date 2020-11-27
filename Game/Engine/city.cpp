@@ -7,9 +7,9 @@ namespace StudentSide
 
 city::city() :
     stats_(new statistics()),
-    window_(new MainWindow(stats_, time_)),
     time_(new QTime()),
-    end_time_(new QTime())
+    end_time_(new QTime()),
+    window_(new MainWindow(stats_, time_))
 {
 }
 
@@ -27,7 +27,6 @@ void city::setBackground(QImage &basicbackground, QImage &bigbackground)
 void city::setClock(QTime clock)
 {
     time_->setHMS(clock.hour(), clock.minute(), clock.second());
-    end_time_->setHMS(clock.hour(), clock.minute(), clock.second());
     window_->set_time(clock);
 }
 
@@ -160,20 +159,27 @@ std::vector<std::shared_ptr<IActor> > city::getNearbyActors(Location loc) const
 
 bool city::isGameOver() const
 {
-    if (time_ >= end_time_)
+    if (time_->operator>(*end_time_))
     {
         qDebug("Peliaika loppuu");
+
+        // TODO: Toteuta  tähän ikkunan jäädyttäminen / pelin lopettaminen.
+
+        window_->setEnabled(false);
         return true;
     }
 
     return false;
 }
 
-void city::set_game_duration(int time)
+void city::set_game_duration(int time, QTime* clock)
 {
+    end_time_ = clock;
+
     int addSecs = time*60;
 
-    *end_time_ = time_->addSecs(addSecs);
+    *end_time_ = end_time_->addSecs(addSecs);
+    window_->show_end_time(end_time_);
 }
 
 }

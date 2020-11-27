@@ -131,6 +131,7 @@ void MainWindow::spawn_destroyer(int X, int Y)
     destroyer_logic* logiikka = new destroyer_logic(X, Y);
     player_ = std::make_pair(logiikka, grafiikka);
     scene_->addItem(player_.second);
+    player_.second->setPos(X, Y);
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
@@ -226,15 +227,24 @@ void MainWindow::set_time(QTime clock)
     timer->start(tick_);
 }
 
+void MainWindow::show_end_time(QTime* end_time)
+{
+    int minutes = end_time->minute();
+    int hours = end_time->hour();
+
+    std::string timestr = std::to_string(hours) + ':' + std::to_string(minutes);
+
+    ui->endTimeLbl->setText(QString::fromStdString(timestr));
+}
+
 void MainWindow::show_time()
 {
     int minutes = time_->minute();
     int hours = time_->hour();
-    int seconds = time_->second();
-    std::string timestr = std::to_string(hours) + ':' + std::to_string(minutes)
-            + ':' + std::to_string(seconds);
+    std::string timestr = std::to_string(hours) + ':' + std::to_string(minutes);
 
     ui->timeLbl->setText(QString::fromStdString(timestr));
+
 }
 
 }

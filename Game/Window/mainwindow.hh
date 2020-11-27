@@ -65,6 +65,8 @@ public:
 
     void set_time(QTime clock);
 
+    void show_end_time(QTime* end_time);
+
 private slots:
 
     void show_time();
