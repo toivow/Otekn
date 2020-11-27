@@ -38,6 +38,8 @@ public slots:
      */
     void confLogic(int gametime, QTime* clock);
 
+    bool execDialog();
+
 private:
 
    QImage map_name_;
