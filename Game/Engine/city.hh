@@ -7,6 +7,12 @@
 #include <unordered_map>
 #include "statistics.hh"
 
+/** @file
+ * @brief defines a class that handles the operations within the city.
+ * Uncommented functions defintions can be found in file ../CourseLib/interfaces/icity.hh
+ */
+
+
 namespace StudentSide
 {
 using namespace Interface;
@@ -19,7 +25,14 @@ public:
 
     ~city();
 
-    void set_game_duration(int time, QTime* clock);
+    /**
+     * @brief set_game_duration sets game_duration into given parameter.
+     * @param int time is wished game_duration in minutes.
+     * @pre City is in init state.
+     * @post game_duration_ set into wished value.
+     * @exception Nothrow
+     */
+    void set_game_duration(int time);
 
     void setBackground(QImage& basicbackground, QImage& bigbackground);
 

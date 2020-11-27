@@ -5,6 +5,13 @@
 #include "../CourseLib/core/location.hh"
 #include <QPointF>
 
+/** @file
+ * @brief defines a class that handles the operations on our destroyer actor.
+ * Functions' definitons can be found in file ../CourseLib/interfaces/iactor.hh.
+ */
+
+
+
 namespace StudentSide {
 
 

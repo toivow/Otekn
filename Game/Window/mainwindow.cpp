@@ -44,7 +44,7 @@ MainWindow::~MainWindow()
     delete stats_;
 }
 
-void MainWindow::move_objects(std::shared_ptr<Interface::IActor> actor)
+void MainWindow::moveObjects(std::shared_ptr<Interface::IActor> actor)
 {
     QGraphicsItem* graphics_object = nullptr;
     std::shared_ptr<CourseSide::Nysse> movebus = std::dynamic_pointer_cast <CourseSide::Nysse>(actor);
@@ -79,7 +79,7 @@ void MainWindow::setPicture(QImage background)
     scene_->setBackgroundBrush(background);
 }
 
-void MainWindow::addActor(int X, int Y, int type,
+void MainWindow::addPass(int X, int Y, int type,
                           std::shared_ptr<CourseSide::Passenger> passenger)
 {
     CourseSide::SimpleActorItem* nPass =
@@ -106,25 +106,25 @@ void MainWindow::addStop(int X, int Y, int type,
     scene_->addItem(nStop);
 }
 
-void MainWindow::update_bus_amount()
+void MainWindow::updateBusAmount()
 {
-    ui->busAmount->display(stats_->bus_amount());
+    ui->busAmount->display(stats_->busAmount());
 }
 
-void MainWindow::update_pass_amount()
+void MainWindow::updatePassAmount()
 {
-    ui->passAmnt->display(stats_->pass_amount());
+    ui->passAmnt->display(stats_->passAmount());
 
 }
 
-void MainWindow::update_points()
+void MainWindow::updatePoints()
 {
 
-    ui->pointsAmnt->display(stats_->return_points());
+    ui->pointsAmnt->display(stats_->returnPoints());
 }
 
 
-void MainWindow::spawn_destroyer(int X, int Y)
+void MainWindow::spawnDestroyer(int X, int Y)
 {
     qDebug("Spawned destroyer");
     destroyer* grafiikka = new destroyer(X, Y);
@@ -132,6 +132,15 @@ void MainWindow::spawn_destroyer(int X, int Y)
     player_ = std::make_pair(logiikka, grafiikka);
     scene_->addItem(player_.second);
     player_.second->setPos(X, Y);
+}
+
+void MainWindow::spawnBanana()
+{
+    srand(time(NULL));
+    int rand_X = rand()%(500+1);
+    int rand_Y = rand()%(500+1);
+    randomitem* banaani = new randomitem(rand_X,rand_Y);
+
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
@@ -162,14 +171,14 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
     player_.second->setPos(tempX, tempY);
 
-    check_deaths(*newloc);
+    checkDeaths(*newloc);
 
     delete newloc;
 
 
 }
 
-void MainWindow::check_deaths(Interface::Location player_loc_)
+void MainWindow::checkDeaths(Interface::Location player_loc_)
 {
 
     int killed_players = 0;
@@ -211,11 +220,11 @@ void MainWindow::check_deaths(Interface::Location player_loc_)
     {
         qDebug() << "Killed " << killed_players << " players!";
 
-        stats_->update_points(killed_players);
+        stats_->updatePoints(killed_players);
 
-        update_points();
+        updatePoints();
 
-        update_pass_amount();
+        updatePassAmount();
     }
     scene_->update();
 

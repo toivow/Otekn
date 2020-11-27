@@ -43,14 +43,11 @@ void city::addStop(std::shared_ptr<IStop> stop)
 void city::startGame()
 {
     qDebug("Aloitetaan peli");
-    time_->start();
-
-    window_->spawn_destroyer(250, 250);
-
-    window_->update_bus_amount();
-    window_->update_pass_amount();
-    window_->update_points();
-
+    aika_.start();
+    window_->spawnDestroyer(250, 250);
+    window_->updateBusAmount();
+    window_->updatePassAmount();
+    window_->updatePoints();
     window_->show();
 }
 
@@ -66,13 +63,13 @@ void city::addActor(std::shared_ptr<IActor> newactor)
     {
         window_->addBus(X, Y, newbus);
         buses_.push_back(newbus);
-        stats_->add_bus(1);
+        stats_->addBus(1);
     }
     else if (newbus == nullptr)
     {
-        window_->addActor(X, Y, 255, newpass);
+        window_->addPass(X, Y, 255, newpass);
         passengers_.push_back(newpass);
-        stats_->add_pass(1);
+        stats_->addPass(1);
     }
     else
     {
@@ -132,7 +129,7 @@ bool city::findActor(std::shared_ptr<IActor> actor) const
 
 void city::actorMoved(std::shared_ptr<IActor> actor)
 {
-    window_->move_objects(actor);
+    window_->moveObjects(actor);
 }
 
 std::vector<std::shared_ptr<IActor> > city::getNearbyActors(Location loc) const

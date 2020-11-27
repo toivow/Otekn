@@ -13,12 +13,12 @@ public:
     ~statisticstest();
 
 private slots:
-    void update_points();
-    void return_points();
-    void bus_amount();
-    void pass_amount();
-    void add_pass();
-    void add_bus();
+    void updatePoints();
+    void returnPoints();
+    void busAmount();
+    void passAmount();
+    void addPass();
+    void addBus();
 
 };
 
@@ -31,46 +31,46 @@ statisticstest::~statisticstest()
 {
 
 }
-void statisticstest::return_points()
+void statisticstest::returnPoints()
 {
     statistics stats;
-    QVERIFY2(stats.return_points() == 0,"Returned wrong points value");
+    QVERIFY2(stats.returnPoints() == 0,"Returned wrong points value");
 
 }
 
-void statisticstest::bus_amount()
+void statisticstest::busAmount()
 {
     statistics stats;
-    QVERIFY2(stats.bus_amount() == 0,"Returned wrong bus value");
+    QVERIFY2(stats.busAmount() == 0,"Returned wrong bus value");
 
 }
 
-void statisticstest::pass_amount()
+void statisticstest::passAmount()
 {
     statistics stats;
-    QVERIFY2(stats.pass_amount() == 0,"Returned wrong passenger value");
+    QVERIFY2(stats.passAmount() == 0,"Returned wrong passenger value");
 
 }
 
-void statisticstest::update_points()
+void statisticstest::updatePoints()
 {
     statistics stats;
-    stats.update_points(1);
-    QVERIFY2(stats.return_points() == 1, "Miscalculated points");
+    stats.updatePoints(1);
+    QVERIFY2(stats.returnPoints() == 1, "Miscalculated points");
 }
 
-void statisticstest::add_pass()
+void statisticstest::addPass()
 {
     statistics stats;
-    stats.add_pass(1);
-    QVERIFY2(stats.pass_amount() == 1, "Miscalculated passengers");
+    stats.addPass(1);
+    QVERIFY2(stats.passAmount() == 1, "Miscalculated passengers");
 }
 
-void statisticstest::add_bus()
+void statisticstest::addBus()
 {
     statistics stats;
-    stats.add_bus(1);
-    QVERIFY2(stats.bus_amount() == 1, "Miscalculated busses");
+    stats.addBus(1);
+    QVERIFY2(stats.busAmount() == 1, "Miscalculated busses");
 }
 
 

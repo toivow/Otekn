@@ -6,6 +6,11 @@
 #include <iostream>
 #include <memory>
 
+/**
+  * @file
+  * @brief Class used for storing and updating different statistics happening in city.
+  */
+
 namespace StudentSide {
 
 class statistics
@@ -14,17 +19,54 @@ class statistics
 public:
     statistics();
    ~statistics();
+    /**
+     * @brief updatePoints updates users scored points.
+     * @pre -
+     * @param amount is the amount user has scored to be added to the previous score.
+     * @return -
+     * @post Exception guaranteee: Nothrow
+     */
+    void updatePoints(int amount);
 
-    void update_points(int amount);
+    /**
+     * @brief returnPoints returns users score.
+     * @pre -
+     * @return user's score.
+     * @post Exception guaranteee: Nothrow
+     */
+    int returnPoints();
 
-    int return_points();
+    /**
+     * @brief busAmount returns amount of busses in traffic.
+     * @pre -
+     * @return Amount of busses in traffic.
+     * @post Exception guaranteee: Nothrow
+     */
+    int busAmount();
 
-    int bus_amount();
+    /**
+     * @brief passAmount returns amount of passengers in traffic.
+     * @pre -
+     * @return Amount of passengers in traffic.
+     * @post Exception guaranteee: Nothrow
+     */
+    int passAmount();
 
-    int pass_amount();
+    /**
+     * @brief addPass adds new passengers to the total amount.
+     * @param amount is the amount of passengers added.
+     * @return -
+     * @post Exception guaranteee: Nothrow
+     */
+    void addPass(int amount);
 
-    void add_pass(int amount);
-    void add_bus(int amount);
+    /**
+     * @brief addBus adds new busses to the total amount.
+     * @param amount is the amount of busses added.
+     * @return -
+     * @post Exception guaranteee: Nothrow
+     */
+    void addBus(int amount);
 
 private:
     int passamount_;

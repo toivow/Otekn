@@ -39,7 +39,7 @@
     <string>Start</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="peliaika">
+  <widget class="QSpinBox" name="gameduration">
    <property name="geometry">
     <rect>
      <x>30</x>

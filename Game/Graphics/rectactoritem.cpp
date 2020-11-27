@@ -27,7 +27,6 @@ void RectActorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *opt
 {
     prepareGeometryChange();
     QRectF bounds = boundingRect();
-    QColor color(0, 0, 0);
 
     QBrush brush(nysse_);
     painter->setBrush(brush);

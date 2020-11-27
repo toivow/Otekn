@@ -14,33 +14,33 @@ statistics::statistics() :
 
 statistics::~statistics(){}
 
-void statistics::update_points(int amount)
+void statistics::updatePoints(int amount)
 {
     points_ = amount + points_;
 }
 
-int statistics::return_points()
+int statistics::returnPoints()
 {
     return points_;
 }
 
 
-int statistics::bus_amount()
+int statistics::busAmount()
 {
     return busamount_;
 }
 
-int statistics::pass_amount()
+int statistics::passAmount()
 {
     return passamount_;
 }
 
-void statistics::add_pass(int amount)
+void statistics::addPass(int amount)
 {
     passamount_ += amount;
 }
 
-void statistics::add_bus(int amount)
+void statistics::addBus(int amount)
 {
    busamount_ += amount;
 }

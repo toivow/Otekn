@@ -15,7 +15,8 @@ gameengine::gameengine(QObject* parent) :
 
     Dialog* d = new Dialog();
 
-    connect(d, &Dialog::game_length, this, &gameengine::conf_logic);
+
+    connect(d, SIGNAL(game_length(int,QTime*)), this, SLOT(confLogic(int,QTime*)));
 
     d->exec();
 
@@ -26,8 +27,7 @@ gameengine::~gameengine()
 {
 }
 
-void gameengine::conf_logic(int gametime, QTime *clock)
-
+void gameengine::confLogic(int gametime, QTime *clock)
 {
     int minute = clock->minute();
     int hour =  clock->hour();
