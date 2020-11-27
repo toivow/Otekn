@@ -149,6 +149,7 @@ private:
     std::unordered_map < std::shared_ptr<CourseSide::Nysse>, QGraphicsItem*> buses_;
 
     std::pair <destroyer_logic* ,destroyer*> player_;
+    std::pair <destroyer_logic* ,randomitem*> banana_;
 
     int tick_ = 10;
 
