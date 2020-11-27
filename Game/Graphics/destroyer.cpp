@@ -6,7 +6,8 @@ namespace StudentSide {
 destroyer::destroyer(int x, int y) :
     CourseSide::SimpleActorItem(x, y),
     y_(y),
-    x_(x)
+    x_(x),
+    image_(QImage(":/kuvat/Kuvat/naama.png"))
 {
     setPos(mapToParent(x_, y_));
 }
@@ -26,11 +27,12 @@ void destroyer::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 {
     QColor color(255, 69, 0);
 
-    image_.load(":/kuvat/Kuvat/naama.png");
+
+    QPixmap map_ = QPixmap(":/kuvat/Kuvat/naama.png");
     QRectF bounds = boundingRect();
     QBrush brush(image_);
-    painter->setBrush(brush);
-    painter->drawEllipse(bounds);
+    //painter->setBrush(brush);
+    painter->drawPixmap(QRect(-15 ,-15, 15, 15), map_);
 
 }
 
