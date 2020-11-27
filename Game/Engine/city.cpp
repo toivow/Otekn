@@ -43,7 +43,7 @@ void city::addStop(std::shared_ptr<IStop> stop)
 void city::startGame()
 {
     qDebug("Aloitetaan peli");
-    aika_.start();
+    time_->start();
     window_->spawnDestroyer(250, 250);
     window_->updateBusAmount();
     window_->updatePassAmount();
@@ -86,12 +86,12 @@ void city::removeActor(std::shared_ptr<IActor> actor)
     if (removepass == nullptr)
     {
         buses_.remove(removebus);
-        stats_->add_bus(-1);
+        stats_->addBus(-1);
     }
     else if (removebus == nullptr)
     {
         passengers_.remove(removepass);
-        stats_->add_pass(-1);
+        stats_->addPass(-1);
     }
 
     actorRemoved(actor);

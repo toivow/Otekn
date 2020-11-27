@@ -32,7 +32,7 @@ public:
      * @post game_duration_ set into wished value.
      * @exception Nothrow
      */
-    void set_game_duration(int time);
+    void set_game_duration(int time, QTime* clock);
 
     void setBackground(QImage& basicbackground, QImage& bigbackground);
 
