@@ -14,6 +14,8 @@ Dialog::Dialog(QWidget *parent) :
     view_ = new QGraphicsView(this);
     view_->setScene(scene_);
 
+    ui->start_button->setDefault(true);
+
     connect(ui->exit_button, &QPushButton::clicked, this, &Dialog::reject);
     connect(ui->start_button, &QPushButton::clicked, this, &Dialog::accept);
 }
