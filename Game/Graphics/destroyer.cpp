@@ -26,7 +26,7 @@ void destroyer::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 {
     QColor color(255, 69, 0);
 
-    image_.load(":/kuvat/Kuvat/228-2286520_emoji-pixel-art-png-download-minecraft-circle-transparent.png");
+    image_.load(":/kuvat/Kuvat/naama.png");
     QRectF bounds = boundingRect();
     QBrush brush(image_);
     painter->setBrush(brush);

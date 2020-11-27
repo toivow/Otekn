@@ -2,5 +2,6 @@
     <qresource prefix="/kuvat">
         <file>Kuvat/Nysse_pixelart.png</file>
         <file>Kuvat/228-2286520_emoji-pixel-art-png-download-minecraft-circle-transparent.png</file>
+        <file>Kuvat/naama.png</file>
     </qresource>
 </RCC>
