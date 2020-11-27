@@ -51,8 +51,6 @@ private:
 
    std::shared_ptr<StudentSide::city> city_;
 
-   QTimer *timer;
-
    StudentSide::creategame temp;
 
    CourseSide::Logic* game_logic_;

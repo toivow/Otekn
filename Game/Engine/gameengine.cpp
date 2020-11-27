@@ -10,6 +10,7 @@ gameengine::gameengine(QObject* parent) :
 
 gameengine::~gameengine()
 {
+    delete game_logic_;
 }
 
 void gameengine::confLogic(int gametime, QTime *clock)
@@ -28,9 +29,6 @@ void gameengine::confLogic(int gametime, QTime *clock)
     city_->set_game_duration(gametime, clock);
 
     game_logic_->finalizeGameStart();
-
-
-
 
 }
 

@@ -92,7 +92,7 @@ void city::removeActor(std::shared_ptr<IActor> actor)
         buses_.remove(removebus);
         stats_->addBus(-1);
     }
-    /*
+
     else if (removebus == nullptr)
     {
         passengers_.remove(removepass);
@@ -107,7 +107,7 @@ void city::removeActor(std::shared_ptr<IActor> actor)
         }
 
     }
-    */
+
 
     actorRemoved(actor);
 }

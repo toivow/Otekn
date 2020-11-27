@@ -7,7 +7,7 @@ destroyer::destroyer(int x, int y) :
     CourseSide::SimpleActorItem(x, y),
     y_(y),
     x_(x),
-    image_(QImage(":/kuvat/Kuvat/naama.png"))
+    pixmap_(QPixmap(":/kuvat/Kuvat/naama.png"))
 {
     setPos(mapToParent(x_, y_));
 }
@@ -27,15 +27,8 @@ void destroyer::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 {
     (void)option;
     (void)widget;
-    QColor color(255, 69, 0);
-
-    QPixmap map_ = QPixmap(":/kuvat/Kuvat/naama.png");
-    QRectF bounds = boundingRect();
-    (void)bounds;
-    (void)color;
-    QBrush brush(image_);
-    //painter->setBrush(brush);
-    painter->drawPixmap(QRect(-15 ,-15, 15, 15), map_);
+    painter->setBackgroundMode(Qt::TransparentMode);
+    painter->drawPixmap(QRect(-7, -7, 28, 28), pixmap_);
 
 }
 
