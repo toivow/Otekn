@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.13.2, 2020-11-26T15:13:30. -->
+<!-- Written by QtCreator 4.13.2, 2020-11-27T11:48:44. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -65,13 +65,13 @@
     <value type="bool" key="AutoTest.Framework.QtTest">true</value>
    </valuemap>
    <valuemap type="QVariantMap" key="AutoTest.CheckStates">
-    <value type="Qt::CheckState" key="C:/ohj3projekti/harri-ja-toivo/UnitTests/Statistics_test/tst_statisticstest.cpp:add_bus">Checked</value>
-    <value type="Qt::CheckState" key="C:/ohj3projekti/harri-ja-toivo/UnitTests/Statistics_test/tst_statisticstest.cpp:add_pass">Checked</value>
-    <value type="Qt::CheckState" key="C:/ohj3projekti/harri-ja-toivo/UnitTests/Statistics_test/tst_statisticstest.cpp:bus_amount">Checked</value>
-    <value type="Qt::CheckState" key="C:/ohj3projekti/harri-ja-toivo/UnitTests/Statistics_test/tst_statisticstest.cpp:pass_amount">Checked</value>
-    <value type="Qt::CheckState" key="C:/ohj3projekti/harri-ja-toivo/UnitTests/Statistics_test/tst_statisticstest.cpp:return_points">Checked</value>
+    <value type="Qt::CheckState" key="C:/ohj3projekti/harri-ja-toivo/UnitTests/Statistics_test/tst_statisticstest.cpp:addBus">Checked</value>
+    <value type="Qt::CheckState" key="C:/ohj3projekti/harri-ja-toivo/UnitTests/Statistics_test/tst_statisticstest.cpp:addPass">Checked</value>
+    <value type="Qt::CheckState" key="C:/ohj3projekti/harri-ja-toivo/UnitTests/Statistics_test/tst_statisticstest.cpp:busAmount">Checked</value>
+    <value type="Qt::CheckState" key="C:/ohj3projekti/harri-ja-toivo/UnitTests/Statistics_test/tst_statisticstest.cpp:passAmount">Checked</value>
+    <value type="Qt::CheckState" key="C:/ohj3projekti/harri-ja-toivo/UnitTests/Statistics_test/tst_statisticstest.cpp:returnPoints">Checked</value>
     <value type="Qt::CheckState" key="C:/ohj3projekti/harri-ja-toivo/UnitTests/Statistics_test/tst_statisticstest.cpp:statisticstest">Checked</value>
-    <value type="Qt::CheckState" key="C:/ohj3projekti/harri-ja-toivo/UnitTests/Statistics_test/tst_statisticstest.cpp:update_points">Checked</value>
+    <value type="Qt::CheckState" key="C:/ohj3projekti/harri-ja-toivo/UnitTests/Statistics_test/tst_statisticstest.cpp:updatePoints">Checked</value>
    </valuemap>
    <value type="int" key="AutoTest.RunAfterBuild">0</value>
    <value type="bool" key="AutoTest.UseGlobal">true</value>

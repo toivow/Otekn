@@ -26,7 +26,6 @@ void RectActorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *opt
 {
     prepareGeometryChange();
     QRectF bounds = boundingRect();
-    QColor color(0, 0, 0);
 
     nysse_.load(":/kuvat/Kuvat/Nysse_pixelart.png");
     QBrush brush(nysse_);

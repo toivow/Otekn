@@ -11,6 +11,7 @@ SOURCES += \
     Engine/gameengine.cpp \
     Engine/statistics.cpp \
     Graphics/destroyer.cpp \
+    Graphics/randomitem.cpp \
     Graphics/rectactoritem.cpp \
     Window/dialog.cpp \
     Window/mainwindow.cpp \
@@ -46,6 +47,7 @@ HEADERS += \
     Engine/creategame.hh \
     Engine/gameengine.hh \
     Graphics/destroyer.hh \
+    Graphics/randomitem.hh \
     Graphics/rectactoritem.hh \
     Window/dialog.hh \
     Window/mainwindow.hh \
@@ -58,6 +60,7 @@ FORMS += \
     mainwindow.ui
 
 DISTFILES += \
+    Kuvat/30x30banana.png \
     Kuvat/Nysse_pixelart.png
 
 RESOURCES += \

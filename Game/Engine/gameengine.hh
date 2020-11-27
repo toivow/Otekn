@@ -11,6 +11,10 @@
 #include "city.hh"
 #include "creategame.hh"
 
+/**
+  * @file
+  * @brief Defines a class that handles running the whole game.
+  */
 
 class gameengine;
 
@@ -24,8 +28,15 @@ public:
     virtual ~gameengine();
 
 public slots:
-
-    void conf_logic(int gametime, QTime* clock);
+    /**
+     * @brief confLogic used to configure wished starting time and game duration.
+     * @param gametime is the game duration given in dialog.
+     * @param clock is a pointer to the wished game starting time from dialog.
+     * @pre logic object l_ in init state after calling fileconfig method.
+     * @return -
+     * @post Exception guaranteee: basic.
+     */
+    void confLogic(int gametime, QTime* clock);
 
 private:
 
