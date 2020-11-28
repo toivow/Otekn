@@ -12,5 +12,6 @@ int main(int argc, char *argv[])
 
     gameengine p;
     p.execDialog();
+
     return a.exec();
 }

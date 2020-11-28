@@ -13,7 +13,7 @@ const int SIZE = 500;
 namespace StudentSide {
 
 
-MainWindow::MainWindow(statistics* stats, QTime* clock, QWidget *parent) :
+MainWindow::MainWindow(statistics* stats, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     stats_(stats),
@@ -21,8 +21,7 @@ MainWindow::MainWindow(statistics* stats, QTime* clock, QWidget *parent) :
 
 {
     ui->setupUi(this);
-    //Used to silence warning on unused param
-    (void)clock;
+
     // We need a graphics scene in which to draw objects
 
     ui->gameView->setFixedSize(SIZE, SIZE);
@@ -249,6 +248,7 @@ void MainWindow::checkDeaths(Interface::Location player_loc_)
             scene_->removeItem(banana.second);
             delete banana.second;
             banana.second = nullptr;
+            bananas_.erase(banana.first);
 
             stats_->updatePoints(reward);
 
@@ -298,3 +298,8 @@ void MainWindow::show_time()
 }
 
 
+
+void StudentSide::MainWindow::on_exitButton_clicked()
+{
+    this->close();
+}

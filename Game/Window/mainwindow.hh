@@ -40,7 +40,7 @@ class MainWindow : public QMainWindow
 
 public:
 
-    MainWindow(statistics* stats_, QTime* clock ,QWidget *parent = nullptr);
+    MainWindow(statistics* stats_, QWidget *parent = nullptr);
     ~MainWindow();
     /**
      * @brief moveObjects is used to change objects coordinates individually
@@ -128,6 +128,8 @@ private slots:
 
     void show_time();
 
+
+    void on_exitButton_clicked();
 
 private:
 

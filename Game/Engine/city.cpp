@@ -9,7 +9,7 @@ city::city() :
     stats_(new statistics()),
     time_(new QTime()),
     end_time_(new QTime()),
-    window_(new MainWindow(stats_, time_)),
+    window_(new MainWindow(stats_)),
     enable_end_time_(false)
 {
 }
@@ -103,7 +103,7 @@ void city::removeActor(std::shared_ptr<IActor> actor)
         if (rand_numb == 1)
         {
             window_->spawnBanana();
-            qDebug("spawnattiin banaani");
+            qDebug("Spawnattiin banaani!");
         }
 
     }

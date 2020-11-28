@@ -49,12 +49,12 @@
       <height>291</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
+    <layout class="QVBoxLayout" name="StatsLayout">
      <property name="sizeConstraint">
       <enum>QLayout::SetDefaultConstraint</enum>
      </property>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <layout class="QHBoxLayout" name="TimeLeftLayout">
        <property name="spacing">
         <number>50</number>
        </property>
@@ -71,7 +71,7 @@
       </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <layout class="QHBoxLayout" name="PoinstAmntLayout">
        <property name="spacing">
         <number>50</number>
        </property>
@@ -88,7 +88,7 @@
       </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <layout class="QHBoxLayout" name="BusAmountLayout">
        <property name="spacing">
         <number>50</number>
        </property>
@@ -105,7 +105,7 @@
       </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
+      <layout class="QHBoxLayout" name="PassengerLayout">
        <property name="spacing">
         <number>50</number>
        </property>
@@ -136,7 +136,7 @@
       <height>41</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_6">
+    <layout class="QHBoxLayout" name="endTimeLayout">
      <item>
       <widget class="QLabel" name="endTimeTxt">
        <property name="text">
@@ -162,7 +162,7 @@
       <height>41</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_5">
+    <layout class="QHBoxLayout" name="TimeLayout">
      <item>
       <widget class="QLabel" name="timeTxt">
        <property name="text">
@@ -193,22 +193,5 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>exitButton</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>745</x>
-     <y>198</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>399</x>
-     <y>324</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
