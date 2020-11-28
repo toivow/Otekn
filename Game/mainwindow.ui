@@ -95,7 +95,7 @@
        <item>
         <widget class="QLabel" name="busAmountLbl">
          <property name="text">
-          <string>Bus amount</string>
+          <string>Buses in traffic</string>
          </property>
         </widget>
        </item>
@@ -112,7 +112,7 @@
        <item>
         <widget class="QLabel" name="passAmntLbl">
          <property name="text">
-          <string>Passengers</string>
+          <string>Passengers on screen</string>
          </property>
         </widget>
        </item>

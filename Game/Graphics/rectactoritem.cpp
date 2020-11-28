@@ -40,4 +40,5 @@ void RectActorItem::setCoord(int x, int y)
     setY( y );
 }
 
+
 }

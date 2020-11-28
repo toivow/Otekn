@@ -6,7 +6,7 @@
 #include <random>
 
 #include <QDebug>
-
+#include <QPointF>
 const int SIZE = 500;
 
 
@@ -50,7 +50,15 @@ void MainWindow::moveObjects(std::shared_ptr<Interface::IActor> actor)
     std::shared_ptr<CourseSide::Nysse> movebus = std::dynamic_pointer_cast <CourseSide::Nysse>(actor);
     std::shared_ptr<CourseSide::Passenger> movepass= std::dynamic_pointer_cast<CourseSide::Passenger> (actor);
 
-    if (movepass == nullptr)
+    int tempX = actor->giveLocation().giveX() - 5;
+    int tempY = 500 - actor->giveLocation().giveY() - 5;
+
+    if (movepass == nullptr && movebus == nullptr){
+        qDebug("Kyseinen objekti pitäisi olla poistettu");
+        return;
+    }
+
+    else if (movepass == nullptr)
     {
         graphics_object = buses_[movebus];
 
@@ -58,23 +66,12 @@ void MainWindow::moveObjects(std::shared_ptr<Interface::IActor> actor)
     else if (movebus == nullptr)
     {
         graphics_object = actors_[movepass];
+        calculate_passengers(graphics_object, tempX, tempY);
     }
-    if (graphics_object == nullptr)
-    {
-        // qDebug("Yritti liikuttaa nullptr");
-    }
-    else
-    {
-
-    int tempX = actor->giveLocation().giveX() - 5;
-    int tempY = 500 - actor->giveLocation().giveY() - 5;
 
     graphics_object->setPos(tempX, tempY);
+    updatePassAmount();
     scene_->update();
-    }
-
-
-
 }
 
 void MainWindow::setPicture(QImage background)
@@ -90,6 +87,7 @@ void MainWindow::addPass(int X, int Y, int type,
 
     actors_[passenger] = nPass;
     scene_->addItem(nPass);
+    updatePassAmount();
 }
 
 void MainWindow::addBus(int X, int Y, std::shared_ptr<CourseSide::Nysse> bus)
@@ -97,6 +95,8 @@ void MainWindow::addBus(int X, int Y, std::shared_ptr<CourseSide::Nysse> bus)
     RectActorItem* nBus = new RectActorItem(X, Y);
     buses_[bus] = nBus;
     scene_->addItem(nBus);
+    updateBusAmount();
+
 }
 
 void MainWindow::addStop(int X, int Y, int type,
@@ -209,7 +209,7 @@ void MainWindow::checkDeaths(Interface::Location player_loc_)
         // Checks whether the passenger is close to our player, if the passenger
         // is active (so a killed actor that hasn't yet been removed) and if
         // the actor is in a bus, when they can't be killed.
-        if (player_loc_.isClose( passloc) && (! ((*(*it).first).isRemoved()))
+        if (player_loc_.isClose(passloc, 15) && (! ((*(*it).first).isRemoved()))
                 && (!(*(*it).first).isInVehicle()))
         {
 
@@ -242,7 +242,7 @@ void MainWindow::checkDeaths(Interface::Location player_loc_)
     for (auto banana : bananas_)
     {
 
-        if (player_loc_.isClose(banana.first->giveLocation()))
+        if (player_loc_.isClose(banana.first->giveLocation(), 15))
         {
             int reward = banana.first->return_reward();
             scene_->removeItem(banana.second);
@@ -295,11 +295,39 @@ void MainWindow::show_time()
 }
 
 
-}
-
-
-
-void StudentSide::MainWindow::on_exitButton_clicked()
+void MainWindow::on_exitButton_clicked()
 {
     this->close();
 }
+
+void MainWindow::calculate_passengers(QGraphicsItem* passenger, int newX,
+                                      int newY)
+{
+    double oldX = passenger->x();
+    double oldY = passenger->y();
+
+    // If the old coordinates are inside the small map
+    if (oldX < 495 && oldY < 495 && oldX > 5 && oldY > 5)
+    {
+        // If new coordinates are outside of the small map view
+        if (newX > 495 || newX < 5 || newY > 495 || newY < 5)
+        {
+            stats_->addPass(-1);
+        }
+    }
+    // If the old coordinates are outside of the map
+    else if (oldX > 495 || oldX < 5 || oldY > 495 || oldY < 5)
+    {
+        // If the new coordinates are inside the map
+        if (newX < 495 && newY < 495 && newX > 5 && newY > 5)
+        {
+            stats_->addPass(1);
+        }
+
+    }
+
+}
+
+}
+
+

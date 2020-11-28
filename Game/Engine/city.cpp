@@ -72,7 +72,8 @@ void city::addActor(std::shared_ptr<IActor> newactor)
     {
         window_->addPass(X, Y, 255, newpass);
         passengers_.push_back(newpass);
-        stats_->addPass(1);
+        if ( (5 < Y && Y < 495) &&  (5 < X && X < 495))
+            stats_->addPass(1);
     }
     else
     {

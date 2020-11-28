@@ -128,10 +128,11 @@ private slots:
 
     void show_time();
 
-
     void on_exitButton_clicked();
 
 private:
+
+    void calculate_passengers(QGraphicsItem* passenger, int newX, int newY);
 
     Ui::MainWindow *ui;
     statistics* stats_;
