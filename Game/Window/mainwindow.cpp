@@ -188,7 +188,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
     delete newloc;
 
-
+    scene_->update();
 }
 
 
@@ -233,6 +233,9 @@ void MainWindow::checkDeaths(Interface::Location player_loc_)
                 it++;
             }
        }
+        else {
+            it++;
+        }
 
     }
 
@@ -261,9 +264,6 @@ void MainWindow::checkDeaths(Interface::Location player_loc_)
         }
     }
     updatePoints();
-
-    scene_->update();
-
 }
 
 
