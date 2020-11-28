@@ -195,49 +195,52 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 void MainWindow::checkDeaths(Interface::Location player_loc_)
 {
 
-    int killed_players = 0;
+    int killed_passengers = 0;
 
     for (auto it = actors_.begin(); it != actors_.end(); )
     {
-        // The first pointer is the first object of our map, where the .first
-        // gives the logic -object of the actor, and the pointer gives these
-        // values.
-        auto passloc = (*(*it).first).giveLocation();
-
-        int passX = passloc.giveX() - 5;
-        int passY = 500 - passloc.giveY() - 5;
-
-        passloc.setXY(passX, passY);
-
-        // Checks whether the passenger is close to our player, if the passenger
-        // is active (so a killed actor that hasn't yet been removed) and if
-        // the actor is in a bus, when they can't be killed.
-        if (player_loc_.isClose(passloc, 15) && (! ((*(*it).first).isRemoved()))
-                && (!(*(*it).first).isInVehicle()))
+        if ( (!((*(*it).first).isRemoved())) && (!(*(*it).first).isInVehicle()) )
         {
+            // The first pointer is the first object of our map, where the .first
+            // gives the logic -object of the actor, and the pointer gives these
+            // values.
+            auto passloc = (*(*it).first).giveLocation();
 
-            (*(*it).first).remove();
+            int passX = passloc.giveX() - 5;
+            int passY = 500 - passloc.giveY() - 5;
 
-            scene_->removeItem((*it).second);
-            delete (*it).second;
-            (*it).second = nullptr;
+            passloc.setXY(passX, passY);
 
-            it = actors_.erase(it);
+            // Checks whether the passenger is close to our player, if the passenger
+            // is active (so a killed actor that hasn't yet been removed) and if
+            // the actor is in a bus, when they can't be killed.
+            if (player_loc_.isClose(passloc, 15))
+            {
 
-            killed_players++;
+                (*(*it).first).remove();
 
-        } else
-        {
-            it++;
-        }
+                scene_->removeItem((*it).second);
+                delete (*it).second;
+                (*it).second = nullptr;
+
+                it = actors_.erase(it);
+
+                killed_passengers++;
+            }
+
+             else
+            {
+                it++;
+            }
+       }
 
     }
 
-    if (killed_players > 0)
+    if (killed_passengers > 0)
     {
-        qDebug() << "Killed " << killed_players << " players!";
+        qDebug() << "Killed " << killed_passengers << " passengers!";
 
-        stats_->updatePoints(killed_players);
+        stats_->updatePoints(killed_passengers);
 
         updatePassAmount();
     }
