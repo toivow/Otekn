@@ -32,12 +32,18 @@ public slots:
      * @brief confLogic used to configure wished starting time and game duration.
      * @param gametime is the game duration given in dialog.
      * @param clock is a pointer to the wished game starting time from dialog.
-     * @pre logic object l_ in init state after calling fileconfig method.
+     * @pre logic object game_logic_ in init state after calling fileconfig method.
      * @return -
      * @post Exception guaranteee: basic.
      */
     void confLogic(int gametime, QTime* clock);
 
+    /**
+     * @brief execDialog is used to call the dialog for a new gameengine object.
+     * @pre A new gameengine object is created.
+     * @return -
+     * @post city_ is configured and game_logic_ parameters are set
+     */
     void execDialog();
 
 private:

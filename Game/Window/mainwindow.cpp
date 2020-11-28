@@ -199,6 +199,9 @@ void MainWindow::checkDeaths(Interface::Location player_loc_)
 
     for (auto it = actors_.begin(); it != actors_.end(); )
     {
+        // The first pointer is the first object of our map, where the .first
+        // gives the logic -object of the actor, and the pointer gives these
+        // values.
         auto passloc = (*(*it).first).giveLocation();
 
         int passX = passloc.giveX() - 5;
