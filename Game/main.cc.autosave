@@ -11,9 +11,9 @@ int main(int argc, char *argv[])
     Q_INIT_RESOURCE(offlinedata);
 
     gameengine p;
-    if (p.execDialog() ){
-
-    return a.exec();
+    if (p.execDialog() )
+    {
+        return a.exec();
     }
     return 0;
 }
