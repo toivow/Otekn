@@ -206,7 +206,9 @@ void MainWindow::checkDeaths(Interface::Location player_loc_)
         passloc.setXY( actor_.first->giveLocation().giveX() - 4,
                        500-actor_.first->giveLocation().giveY() - 4);
 
-            if ((player_loc_.isClose(passloc, 15)) && (!actor_.first->isRemoved()) && (!actor_.first->isInVehicle()))
+            if ((player_loc_.isClose(passloc, 15)) &&
+                    (!actor_.first->isRemoved()) &&
+                    (!actor_.first->isInVehicle()))
             {
                 actor_.first->remove();
                 scene_->removeItem(actor_.second);
