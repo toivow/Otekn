@@ -17,7 +17,8 @@ MainWindow::MainWindow(statistics* stats, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     stats_(stats),
-    time_(new QTime())
+    time_(new QTime()),
+    end_dialog_(new EndDialog)
 
 {
     ui->setupUi(this);
@@ -266,6 +267,12 @@ void MainWindow::disable_end_time()
     ui->endTimeLbl->setText(QString("Time limit disabled"));
 }
 
+void MainWindow::show_end_dialog()
+{
+    end_dialog_->set_points(stats_->returnPoints());
+    end_dialog_->exec();
+}
+
 
 void MainWindow::show_time()
 {
@@ -280,6 +287,7 @@ void MainWindow::show_time()
 
 void MainWindow::on_exitButton_clicked()
 {
+    show_end_dialog();
     this->close();
 }
 

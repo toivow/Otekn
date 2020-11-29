@@ -10,8 +10,7 @@ city::city() :
     time_(new QTime()),
     end_time_(new QTime()),
     window_(new MainWindow(stats_)),
-    enable_end_time_(false),
-    end_dialog_(new EndDialog)
+    enable_end_time_(false)
 {
 }
 
@@ -180,8 +179,7 @@ bool city::isGameOver() const
         qDebug("Game ends");
 
         window_->setEnabled(false);
-        end_dialog_->set_points(stats_->returnPoints());
-        end_dialog_->exec();
+        window_->show_end_dialog();
 
         window_->close();
 

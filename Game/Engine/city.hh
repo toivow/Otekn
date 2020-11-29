@@ -82,8 +82,6 @@ private:
 
     bool enable_end_time_;
 
-    EndDialog* end_dialog_;
-
 
 };
 }
