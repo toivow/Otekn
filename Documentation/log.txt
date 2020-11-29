@@ -1,0 +1,745 @@
+commit 4b2079e5f436bc8740e31165d780c5c5f387f9c1
+Author: lehtoneh <harri.p.lehtonen@tuni.fi>
+Date:   Sun Nov 29 18:17:17 2020 +0200
+
+    Muutoksia dokumentaatioon
+
+commit 0f13857ddef3f7767ad44f0cc5f3752ffd72d45d
+Author: lehtoneh <harri.p.lehtonen@tuni.fi>
+Date:   Sun Nov 29 17:20:53 2020 +0200
+
+    Dokumentaatio kansio ja dokumentaatio lisätty
+
+commit 2b44c36f7d718909b6b8bb1738196fa6ba2cee71
+Merge: 28b272b 896e0af
+Author: Harri Lehtonen <harri.p.lehtonen@tuni.fi>
+Date:   Sun Nov 29 17:02:11 2020 +0200
+
+    Merge branch 'toivo_haara' into 'harri_haara'
+    
+    Toivo haara
+    
+    See merge request tie-0240x-ohjelmointi-3-programming-3-2020-2021/harri-ja-toivo!22
+
+commit 896e0af944af1f08fb88f6ccbe59780c8534de6f
+Author: Toivo Wuoti <toivo.wuot@tuni.fi>
+Date:   Sun Nov 29 14:47:56 2020 +0200
+
+    Lisätty doxygen enddialogiin
+
+commit edf3108d7edcded0f3b19a80d2a829ca63eeec43
+Author: Toivo Wuoti <toivo.wuot@tuni.fi>
+Date:   Sun Nov 29 14:47:04 2020 +0200
+
+    vaihdettu dialogi tulemaan myös pelin exit-nappulasta
+
+commit a07d2e79c7c0fc6fa85514b3d9646377bd8ed9e2
+Author: Toivo Wuoti <toivo.wuot@tuni.fi>
+Date:   Sun Nov 29 14:39:49 2020 +0200
+
+    Korjattu pelin loppumisen ajan asettaminen ja lisätty loppudialogi
+
+commit b1a2e2ee0535b9a4b724b51e8c2df4237e23f8e5
+Author: Toivo Wuoti <toivo.wuot@tuni.fi>
+Date:   Sun Nov 29 13:55:17 2020 +0200
+
+    Korjattu pelin pysyminen päällä jos dialogi exitataa
+
+commit aff7974669d994bcd4f1def91bc46fb5ec23c50f
+Author: Toivo Wuoti <toivo.wuot@tuni.fi>
+Date:   Sun Nov 29 13:53:06 2020 +0200
+
+    Muutettu ikkunoiden kokoa ja skaalausta
+
+commit f1dde80d17853effe6b4ec324bde851eb2fefdd1
+Author: Toivo Wuoti <toivo.wuot@tuni.fi>
+Date:   Sun Nov 29 13:04:59 2020 +0200
+
+    Poistettu actorien poisto unordered mapista, joka korjasi kaatumisen, äskenen committi ei ollukkaa tallennettu :D
+
+commit 13abb46c2807cfa14047b62e1e8834069faa6eb9
+Author: Toivo Wuoti <toivo.wuot@tuni.fi>
+Date:   Sun Nov 29 13:04:37 2020 +0200
+
+    Poistettu actorien poisto unordered mapista, joka korjasi kaatumisen
+
+commit 28b272b2dadd946dfeea77b989be39e6ada61cf1
+Merge: 5595d7c daebb9f
+Author: Harri Lehtonen <harri.p.lehtonen@tuni.fi>
+Date:   Sun Nov 29 12:59:48 2020 +0200
+
+    Merge branch 'toivo_haara' into 'harri_haara'
+    
+    Toivo haara
+    
+    See merge request tie-0240x-ohjelmointi-3-programming-3-2020-2021/harri-ja-toivo!20
+
+commit daebb9f28189518bf7f558f48b3b234a160e0ddd
+Author: Toivo Wuoti <toivo.wuot@tuni.fi>
+Date:   Sat Nov 28 19:32:49 2020 +0200
+
+    Korjattu kaatuminen bussien nousun läheisyydessä
+
+commit 171a7e88a2b45d8f3bbd6c6d0bcdcff4fa8f1fb7
+Author: Toivo Wuoti <toivo.wuot@tuni.fi>
+Date:   Sat Nov 28 19:08:40 2020 +0200
+
+    uusimmat muutokset läppärille
+
+commit dbb4375eb06e76a8612f66092c13d0b5e6bcbb54
+Author: Toivo Wuoti <toivo.wuot@tuni.fi>
+Date:   Sat Nov 28 18:40:49 2020 +0200
+
+    Lisäilty doxygen-kommentteja
+
+commit cae7c89f8a35ee2243c1678420edfaa0b1d9ff64
+Author: Toivo Wuoti <toivo.wuot@tuni.fi>
+Date:   Sat Nov 28 18:19:12 2020 +0200
+
+    Korjattu bussien määrän laskenta, näyttää nyt vain kartalla olevat passengerit.
+
+commit 6001991c45c85a1bc3c2a4a65cc671f3a54cd1e2
+Author: Toivo Wuoti <toivo.wuot@tuni.fi>
+Date:   Sat Nov 28 12:36:37 2020 +0200
+
+    Lisätty banaanien poisto mapista, ei enää kaadu niiden syömiseen
+
+commit 7509b0ba0581568ecd92151f1a7fa8ce49819d51
+Author: Toivo Wuoti <toivo.wuot@tuni.fi>
+Date:   Fri Nov 27 20:20:28 2020 +0200
+
+    Hiottu dialogia, ei vielä pysty aloittamaan peliä alusta loputtua
+
+commit 9413de332a0006e11c102ace8ff20e30680be9ff
+Author: Toivo Wuoti <toivo.wuot@tuni.fi>
+Date:   Fri Nov 27 20:05:18 2020 +0200
+
+    Dialogissa enter jatkaa peliin, eikä kaada enää
+
+commit d4efb6b5283c788a924a7ea5b7d4d9044b891943
+Author: Toivo Wuoti <toivo.wuot@tuni.fi>
+Date:   Fri Nov 27 20:02:39 2020 +0200
+
+    Lisätty kellonajan tarkistus dialogiin ja mahdollisuus pelata loputtomiin
+
+commit d2f8a3e0c1ebcb865757085b67d41232979f94cd
+Author: Toivo Wuoti <toivo.wuot@tuni.fi>
+Date:   Fri Nov 27 19:29:06 2020 +0200
+
+    Vaihdettu rakenteita ja toteutettu bonusbanaanien spawnaus ja psiteidenlaskenta
+
+commit aa9557cc233011c151341349b6ea570147435a39
+Author: Toivo Wuoti <toivo.wuot@tuni.fi>
+Date:   Fri Nov 27 17:52:10 2020 +0200
+
+    Vaihdettu huutis pixmapiksi ja fixattu sen piirtyminen
+
+commit c82313e117b60694ba711025375fcef3c0c327eb
+Author: Toivo Wuoti <toivo.wuot@tuni.fi>
+Date:   Fri Nov 27 17:30:22 2020 +0200
+
+    Toteutettu dialogista poistuminen
+
+commit 315535bfbb05b4fd05a8b5066dfda1365faf34aa
+Merge: 5116007 5595d7c
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Fri Nov 27 17:09:28 2020 +0200
+
+    Merge branch 'harri_haara' into 'toivo_haara'
+    
+    Harri haara
+    
+    See merge request tie-0240x-ohjelmointi-3-programming-3-2020-2021/harri-ja-toivo!19
+
+commit 5595d7cd92cf4040bede0a35717ef0d83b1e101a
+Author: lehtoneh <harri.p.lehtonen@tuni.fi>
+Date:   Fri Nov 27 15:06:21 2020 +0200
+
+    Kommentteja lisätty source fileihin ja warningeja korjailtu
+
+commit b1a8984974c1b081e1feeb765d2993ad5769a1b6
+Merge: f844d01 5116007
+Author: Harri Lehtonen <harri.p.lehtonen@tuni.fi>
+Date:   Fri Nov 27 14:08:42 2020 +0200
+
+    Merge branch 'toivo_haara' into 'harri_haara'
+    
+    Toivo haara
+    
+    See merge request tie-0240x-ohjelmointi-3-programming-3-2020-2021/harri-ja-toivo!18
+
+commit 5116007da1dbb96b6885e5bc92a2e45c3bfe411a
+Merge: f615bf4 0b18526
+Author: Toivo Wuoti <toivo.wuot@tuni.fi>
+Date:   Fri Nov 27 14:05:34 2020 +0200
+
+    Merge branch 'toivo_haara' of course-gitlab.tuni.fi:tie-0240x-ohjelmointi-3-programming-3-2020-2021/harri-ja-toivo into toivo_haara
+
+commit f615bf49b2bb02259ea84f14dd02155c3db6d1c4
+Author: Toivo Wuoti <toivo.wuot@tuni.fi>
+Date:   Fri Nov 27 14:05:09 2020 +0200
+
+    Korjattu pelin lahoaminen jos peliaika pienempi kuin nykyinen aika
+
+commit f844d01ad1b6a5e02dcb4f55be8469a87d6fe3dd
+Merge: bcd8866 0b18526
+Author: Harri Lehtonen <harri.p.lehtonen@tuni.fi>
+Date:   Fri Nov 27 13:22:46 2020 +0200
+
+    Merge branch 'toivo_haara' into 'harri_haara'
+    
+    Toivo haara
+    
+    See merge request tie-0240x-ohjelmointi-3-programming-3-2020-2021/harri-ja-toivo!17
+
+commit 0b18526389981a6c29a68b2544ee7f8085312f2c
+Merge: 9557a51 bcd8866
+Author: Harri Lehtonen <harri.p.lehtonen@tuni.fi>
+Date:   Fri Nov 27 13:22:16 2020 +0200
+
+    Merge branch 'harri_haara' into 'toivo_haara'
+    
+    # Conflicts:
+    #   Nysse.pro.user
+
+commit bcd8866688a5f79bac0c43453f989cce4334bbdf
+Author: lehtoneh <harri.p.lehtonen@tuni.fi>
+Date:   Fri Nov 27 13:19:05 2020 +0200
+
+    Banaanin spawnaus funktiota muokattu
+
+commit 9557a514a50e0773e88a3514c7126dc5b7e9f69f
+Author: Toivo Wuoti <toivo.wuot@tuni.fi>
+Date:   Fri Nov 27 12:08:56 2020 +0200
+
+    Korjattu funktiokutsuja ja muuttujien nimiä
+
+commit 35bc636617e7f7db97712f664fa26ba314fdd097
+Merge: 81d904d 1add75b
+Author: Toivo Wuoti <toivo.wuot@tuni.fi>
+Date:   Fri Nov 27 12:06:05 2020 +0200
+
+    Mergetty harrin haara toivohaaraan
+
+commit 81d904d5690ba172959480dd5b968e0dab293ffb
+Author: Toivo Wuoti <toivo.wuot@tuni.fi>
+Date:   Fri Nov 27 12:01:00 2020 +0200
+
+    Muutettu kuvia
+
+commit 1add75b35fc276001b83311cbcd22edc9ae0a64e
+Author: lehtoneh <harri.p.lehtonen@tuni.fi>
+Date:   Fri Nov 27 11:50:01 2020 +0200
+
+    Header filet kommentoitu ja funktionimet yhtenäistetty
+
+commit 47344fde806d30c9cc344fb21a223db4adc83877
+Author: Toivo Wuoti <toivo.wuot@tuni.fi>
+Date:   Fri Nov 27 11:12:28 2020 +0200
+
+    Parannettu huutiksen tulostusta
+
+commit e23ed0b8f0e66e223e170601c63e78ea5d207dda
+Author: Toivo Wuoti <toivo.wuot@tuni.fi>
+Date:   Fri Nov 27 11:00:53 2020 +0200
+
+    Paranneltu graafista käyttöliittymää ja luotu pelin loppuminen ajan loppuessa
+
+commit 8e60b42ac27955f2c4e11fba24a75a56c8c5f886
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Thu Nov 26 22:40:54 2020 +0200
+
+    Poistettu vielä .pro.user
+
+commit aeba18979114a875f8264b022d5801c063db6c16
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Thu Nov 26 22:40:21 2020 +0200
+
+    Siivottu turhia filuja pois
+
+commit be9c3235d3f9eaa001bc30a3727afb53070bb1d8
+Merge: b6960b5 44e052f
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Thu Nov 26 22:39:09 2020 +0200
+
+    Merge branch 'harri_haara' into 'toivo_haara'
+    
+    Harri haara
+    
+    See merge request tie-0240x-ohjelmointi-3-programming-3-2020-2021/harri-ja-toivo!15
+
+commit b6960b511d963c9419165784be59ffdb3978795f
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Thu Nov 26 22:38:03 2020 +0200
+
+    Poistettu build -kansio
+
+commit c033ca87af9d99aa3e4c2b3f62299e4aa56c2923
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Thu Nov 26 16:18:49 2020 +0200
+
+    Edistetty kellolaskentaa
+
+commit 44e052f1173b552ab8acea362bd7cddaff2f3f43
+Author: lehtoneh <harri.p.lehtonen@tuni.fi>
+Date:   Thu Nov 26 15:14:20 2020 +0200
+
+     Huutis liikkuu snaken tapasesti ja yksikkötestit kirjoitettu
+
+commit 1c91fa1ed53b4069ec370cc59958fbf14805cb38
+Merge: cae1108 288e185
+Author: Harri Lehtonen <harri.p.lehtonen@tuni.fi>
+Date:   Thu Nov 26 14:00:13 2020 +0200
+
+    Merge branch 'toivo_haara' into 'harri_haara'
+    
+    Vaihdettu toiminnalisuutta cityyn, sekö parannettu stabiiliutta alustamalla...
+    
+    See merge request tie-0240x-ohjelmointi-3-programming-3-2020-2021/harri-ja-toivo!14
+
+commit 288e185ba74aa6451e4974a410756ad85a36ae6f
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Thu Nov 26 13:59:10 2020 +0200
+
+    Vaihdettu toiminnalisuutta cityyn, sekö parannettu stabiiliutta alustamalla mainwindow, lisätty graafisia elementtejä (passmöärä ja busmäärä)
+
+commit cae11085ca085de7de18641ab113a0ed6de8aafe
+Merge: 7c1794d e64b949
+Author: Harri Lehtonen <harri.p.lehtonen@tuni.fi>
+Date:   Thu Nov 26 12:56:40 2020 +0200
+
+    Merge branch 'toivo_haara' into 'harri_haara'
+    
+    Unittestit eivät enää vittuile ja dialogi pelittää
+    
+    See merge request tie-0240x-ohjelmointi-3-programming-3-2020-2021/harri-ja-toivo!13
+
+commit e64b9492da8e03a9132a4cfa85df5de05bc5512a
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Thu Nov 26 11:50:05 2020 +0200
+
+    Unittestit eivät enää vittuile ja dialogi pelittää
+
+commit 7c1794d5a812b5a712cefb04e59d66936df27073
+Merge: 61de642 db67342
+Author: Harri Lehtonen <harri.p.lehtonen@tuni.fi>
+Date:   Thu Nov 26 09:08:11 2020 +0200
+
+    Merge branch 'toivo_haara' into 'harri_haara'
+    
+    Vaihdettu passengerit kuolemattomiksi bussissa
+    
+    See merge request tie-0240x-ohjelmointi-3-programming-3-2020-2021/harri-ja-toivo!12
+
+commit db673421764409d62a957a7d1705923f0c43543a
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Wed Nov 25 22:10:36 2020 +0200
+
+    Vaihdettu passengerit kuolemattomiksi bussissa
+
+commit 61de64258c8cb492ab18eed3e2cf97f3e93d22f4
+Merge: 8827589 730baaf
+Author: Harri Lehtonen <harri.p.lehtonen@tuni.fi>
+Date:   Wed Nov 25 16:24:28 2020 +0200
+
+    Merge branch 'toivo_haara' into 'harri_haara'
+    
+    Toivo haara
+    
+    See merge request tie-0240x-ohjelmointi-3-programming-3-2020-2021/harri-ja-toivo!11
+
+commit 730baaf352b7288597000a3a5d0bf65019893e77
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Wed Nov 25 16:22:47 2020 +0200
+
+    Korjattu piirron heitto
+
+commit e9aa5c837fee3d2851e8af45050f623858715e4c
+Merge: 1eb8e28 8827589
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Wed Nov 25 15:49:55 2020 +0200
+
+    Merge branch 'harri_haara' into 'toivo_haara'
+    
+    Harri haara
+    
+    See merge request tie-0240x-ohjelmointi-3-programming-3-2020-2021/harri-ja-toivo!9
+
+commit 882758989c33795a318975924476c4ffbd47f536
+Merge: 6f9facf 1eb8e28
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Wed Nov 25 15:49:23 2020 +0200
+
+    Merge branch 'toivo_haara' into 'harri_haara'
+    
+    Toivo haara
+    
+    See merge request tie-0240x-ohjelmointi-3-programming-3-2020-2021/harri-ja-toivo!8
+
+commit 6f9facfa79f3f9cf54e92adf8a36e28223ce3710
+Author: lehtoneh <harri.p.lehtonen@tuni.fi>
+Date:   Wed Nov 25 15:48:44 2020 +0200
+
+    Unittestit lisätty
+
+commit 1eb8e2810810c2dadf68763d48a61bd48a43ab6c
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Wed Nov 25 15:47:27 2020 +0200
+
+    Tappaa matkustajat ja toimii
+
+commit c132717c436983520b0b84f938a0802c1ee4c630
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Wed Nov 25 11:39:34 2020 +0200
+
+    Vaihdettu destroyer palloksi ja lisätty siihen naama
+
+commit 4e1f9f83963c207ce35288966a7089ef12a02f12
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Wed Nov 25 10:25:15 2020 +0200
+
+    Bussit liikkuvat teillä oikein, eivätkä vedä rallia pitkin tampereen ilmatilaa
+
+commit 0a53c9464bcbacb749b8e180117c63676a7e2618
+Author: lehtoneh <harri.p.lehtonen@tuni.fi>
+Date:   Wed Nov 25 10:13:32 2020 +0200
+
+    Yhdistetään taas
+
+commit 490ea003a41c0eb931544891fe1d6d456c624846
+Merge: 2529e8a 0622146
+Author: lehtoneh <harri.p.lehtonen@tuni.fi>
+Date:   Wed Nov 25 09:59:44 2020 +0200
+
+    Merge branch 'toivo_haara' into harri_haara
+
+commit 2529e8a6d1a0363165ae8e1d3bb26415ac38ce58
+Author: lehtoneh <harri.p.lehtonen@tuni.fi>
+Date:   Wed Nov 25 09:42:51 2020 +0200
+
+    Muutoksia cityyn ja engineen
+
+commit 06221468503968f3d1cdc7a02d01927fa9413adb
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Wed Nov 25 09:31:30 2020 +0200
+
+    Vaihdettu tiedostoja kansioihin ja lisätty unittests
+
+commit 24976acf5acf7809e9b5de5d8453acbaa19face3
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Tue Nov 24 15:59:19 2020 +0200
+
+    Kehitelty destroyerin liikuttamista
+
+commit 931838107aab22282cc491c511136516fb6dfb41
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Tue Nov 24 15:49:25 2020 +0200
+
+    Piirtää tuhoajan ja bussit yms
+
+commit cb7c8dff291bc96de8b88dd4bbcba1b1efc76c35
+Author: lehtoneh <harri.p.lehtonen@tuni.fi>
+Date:   Tue Nov 24 15:34:45 2020 +0200
+
+    Lisätty pussien ja matkustajien määrien laskemiset sekä näytöt peli-ikkunaan.
+
+commit 64bf8e2523fc7fd56a1f7d19670e727f2227233f
+Author: lehtoneh <harri.p.lehtonen@tuni.fi>
+Date:   Tue Nov 24 15:32:09 2020 +0200
+
+    Lisätty pussien ja matkustajien määrien laskemiset sekä näytöt.
+
+commit a091628c913d28197211920c3d8c57796887af6d
+Merge: 03794e9 e868b87
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Tue Nov 24 14:45:18 2020 +0200
+
+    Merge branch 'toivo_haara' of course-gitlab.tuni.fi:tie-0240x-ohjelmointi-3-programming-3-2020-2021/harri-ja-toivo into toivo_haara
+
+commit 03794e96c51452274b39050034581c4db796e383
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Tue Nov 24 14:44:21 2020 +0200
+
+    Revert "Revert "Päivitetty submodulet ja oma koodi vastaamaan niitä""
+    
+    This reverts commit d3840e9665c4e7b7ac1cfc7654388f42c03f57f6.
+
+commit d3840e9665c4e7b7ac1cfc7654388f42c03f57f6
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Tue Nov 24 14:43:56 2020 +0200
+
+    Revert "Päivitetty submodulet ja oma koodi vastaamaan niitä"
+    
+    This reverts commit ed2a3afbcc1071ae3aec3dd9c8e2b19b9df69872.
+
+commit e868b87f1dc48923c63c19942172740487e13a13
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Tue Nov 24 14:13:37 2020 +0200
+
+    Lisätty nysseihin kuvat
+
+commit f19cbc37490f120577b7abd9d4c788e8abbfe0bf
+Merge: 98741a0 3a20c0e
+Author: lehtoneh <harri.p.lehtonen@tuni.fi>
+Date:   Tue Nov 24 13:21:49 2020 +0200
+
+    Merge branch 'harri_haara' of course-gitlab.tuni.fi:tie-0240x-ohjelmointi-3-programming-3-2020-2021/harri-ja-toivo into harri_haara
+
+commit 3a20c0e62873e1b842e294965746552ed401ddd6
+Merge: 6f0ef97 ed2a3af
+Author: Harri Lehtonen <harri.p.lehtonen@tuni.fi>
+Date:   Tue Nov 24 13:20:05 2020 +0200
+
+    Merge branch 'toivo_haara' into 'harri_haara'
+    
+    korjaillaan
+    
+    See merge request tie-0240x-ohjelmointi-3-programming-3-2020-2021/harri-ja-toivo!5
+
+commit ed2a3afbcc1071ae3aec3dd9c8e2b19b9df69872
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Tue Nov 24 13:17:16 2020 +0200
+
+    Päivitetty submodulet ja oma koodi vastaamaan niitä
+
+commit 98741a068b7c630e159cc2cc6a1e961c51d46650
+Merge: a11dd5b 6f0ef97
+Author: lehtoneh <harri.p.lehtonen@tuni.fi>
+Date:   Tue Nov 24 12:59:53 2020 +0200
+
+    Merge branch 'harri_haara' of course-gitlab.tuni.fi:tie-0240x-ohjelmointi-3-programming-3-2020-2021/harri-ja-toivo into harri_haara
+
+commit 29861aa6d7391dad9e8a11d43fb56a0cbf5680c2
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Tue Nov 24 12:37:57 2020 +0200
+
+    Korjattu passengerien ja bussien erotus dynamic_castilla
+
+commit 6f0ef97b1e3a574a90a4dc378bb7b7a44e1b2e2c
+Merge: 35d28bf a15c259
+Author: Harri Lehtonen <harri.p.lehtonen@tuni.fi>
+Date:   Tue Nov 24 11:14:51 2020 +0200
+
+    Merge branch 'toivo_haara' into 'harri_haara'
+    
+    Yhdistys
+    
+    See merge request tie-0240x-ohjelmointi-3-programming-3-2020-2021/harri-ja-toivo!4
+
+commit a15c2593b4bbc5fa4390a51187ee9618c187c507
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Tue Nov 24 11:08:14 2020 +0200
+
+    Bussit liikkuu ja piirtyy
+
+commit 6d630a588e26136824b85c0771056a6b77c61099
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Mon Nov 23 15:42:09 2020 +0200
+
+    Vaihdettu uusiin muuttujanimiin
+
+commit 51c357ca7644cb5375d443e83ac6fa4e312e72d1
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Mon Nov 23 15:37:10 2020 +0200
+
+    Korjattu paskaa kurssikoodia, bussit, passengerit ja pysäkit piirtyy
+
+commit 43802dd9bba2fa7f805d958c539597529e0c008f
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Mon Nov 23 13:40:22 2020 +0200
+
+    Piirtää mustia palloja, eli busseja
+
+commit c8e014198cc550a15b35baaa7aac72f1b6983cb4
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Mon Nov 23 13:07:31 2020 +0200
+
+    Piirtää kuvan, lisätty cityyn metodeja
+
+commit 35d28bf6f59a26d8dd23e212173106f92d244489
+Merge: 17abba4 b200c29
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Mon Nov 23 10:59:15 2020 +0200
+
+    Merge branch 'toivo_haara' into 'harri_haara'
+    
+    Toivo haara
+    
+    See merge request tie-0240x-ohjelmointi-3-programming-3-2020-2021/harri-ja-toivo!3
+
+commit b200c29522e3f28be4d2c1f9929e91a5c423e070
+Merge: 0ebe481 df3ff43
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Mon Nov 23 10:57:22 2020 +0200
+
+    Merge branch 'toivo_haara' of course-gitlab.tuni.fi:tie-0240x-ohjelmointi-3-programming-3-2020-2021/harri-ja-toivo into toivo_haara
+
+commit 0ebe481c0a77f8faa02fed29af18b13d4106fe9d
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Mon Nov 23 10:56:44 2020 +0200
+
+    creategame.hh lisätty
+
+commit 17abba4df3784c054ee27a8349cb8aa74070d05d
+Merge: b3c6e4b df3ff43
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Mon Nov 23 10:52:31 2020 +0200
+
+    Merge branch 'toivo_haara' into 'harri_haara'
+    
+    Toivo haara
+    
+    See merge request tie-0240x-ohjelmointi-3-programming-3-2020-2021/harri-ja-toivo!2
+
+commit df3ff43deca126a732ebf34498ce5a694f16ba45
+Merge: 8686509 b3c6e4b
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Mon Nov 23 10:52:27 2020 +0200
+
+    Merge branch 'harri_haara' into 'toivo_haara'
+    
+    # Conflicts:
+    #   Game/city.cpp
+    #   Game/city.hh
+    #   Game/creategame.cpp
+    #   Game/gameengine.cpp
+    #   Game/gameengine.hh
+
+commit a11dd5b34076b7ea2aef5b552992397b0f4975ca
+Merge: 3bf6288 8686509
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Mon Nov 23 10:48:53 2020 +0200
+
+    Merge branch 'toivo_haara' into 'master'
+    
+    Toivo haara
+    
+    See merge request tie-0240x-ohjelmointi-3-programming-3-2020-2021/harri-ja-toivo!1
+
+commit 86865097e49a776e8d9a9defa687a4b40ab5f6ad
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Mon Nov 23 10:46:05 2020 +0200
+
+    Testataa
+
+commit e66d1e77a283e56dfa9f011219f5429a1f3d6b7c
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Mon Nov 23 10:28:28 2020 +0200
+
+    Toimii
+
+commit b3c6e4be90a6f34cab8297a20fdd55a5417ea8ea
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Mon Nov 23 10:26:00 2020 +0200
+
+    Compilee tällä hetkellä
+
+commit a67cb7dc54dfd460e740f532569f5032985a4d00
+Author: Harri Lehtonen <harri.p.lehtonen@tuni.fi>
+Date:   Fri Nov 20 16:54:10 2020 +0200
+
+    Gameengine muokattu ja funktiot lisätty city.ccp
+
+commit d75b86b3db6dfde70dae9ba0dfb4003e66202901
+Merge: a84f8e3 85e2774
+Author: Harri Lehtonen <harri.p.lehtonen@tuni.fi>
+Date:   Thu Nov 19 11:19:33 2020 +0200
+
+    Yhdistetään
+
+commit 85e2774063d0bea82ebb9426644bdde715f11809
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Mon Nov 16 15:14:35 2020 +0200
+
+    En edes tiiä enää
+
+commit 3bf628894d2dc8d323ab855414c59d5e3cfe2217
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Mon Nov 16 10:41:01 2020 +0200
+
+    Puuttui nysse.pro
+
+commit 3e813372709250aed3e70c8a7db08b9295f0120f
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Mon Nov 16 10:39:31 2020 +0200
+
+    Lisätty nappuloita
+
+commit 1e5ef99bd568a5770e9b0f9cd1baede31206c613
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Mon Nov 16 10:17:33 2020 +0200
+
+    Rakentaa ikkunan dialogin pohjalta
+
+commit a84f8e3baf3f59bdfce5b0a1dc26a3c4fd7e5171
+Merge: 1eda1b3 3be85da
+Author: Harri Lehtonen <harri.p.lehtonen@tuni.fi>
+Date:   Thu Nov 12 10:52:48 2020 +0200
+
+    Yhdistetty haarat
+
+commit 3be85dab21a562700c049231927e0bd3f583e6f6
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Tue Nov 10 20:03:28 2020 +0200
+
+    Vaihdettu piirtäminen omaan kurssin simplewindowista periytettyyn mainwindowiin.
+
+commit 6c8da4fb7c54eb398414b4a702b34c6ba124435d
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Thu Nov 5 11:19:01 2020 +0200
+
+    Poistettu mainista return a.exec(), jotta suoritus loppuu dialogin exitin jälkeen.
+
+commit 785c767804a7cf0bef5e4fb99ba1880f2e17b79e
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Thu Nov 5 11:17:04 2020 +0200
+
+    Lisätty dialogi kartan valitsemiseen
+
+commit 6f143f873137bd9fbf3158039a992416df04849d
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Tue Nov 3 12:30:50 2020 +0200
+
+    Vaihdettu kuvan luominen mainista creategameen
+
+commit ad9bd7c494fe7874543370ad55ed6150b654c3c0
+Author: Toivo Wuoti <toivo.wuoti@tuni.fi>
+Date:   Sun Nov 1 18:15:43 2020 +0200
+
+    Piirtää kuvan
+
+commit 524920548bb5353e135d595d0c542a1595ed9e4c
+Author: Minna Färm <minna.farm@tut.fi>
+Date:   Thu Oct 29 13:10:34 2020 +0200
+
+    Course updated to prevent cloning errors
+
+commit 1eda1b3f7b6f06a80cb62d5794c1edcd45b2d37d
+Author: Harri Lehtonen <harri.p.lehtonen@tuni.fi>
+Date:   Thu Oct 29 12:03:57 2020 +0200
+
+    testi poistettu
+
+commit 09e7028c5effba30a2dffc71b0d45d8626ddcde5
+Author: Harri Lehtonen <harri.p.lehtonen@tuni.fi>
+Date:   Thu Oct 29 11:44:43 2020 +0200
+
+    testi
+
+commit 6fe41ce15e8d97c857646b421047b70a934da34d
+Author: Minna Färm <minna.farm@tut.fi>
+Date:   Mon Sep 28 15:48:47 2020 +0300
+
+    Readme added.
+
+commit fb6959f1a13abe791053a7afaf4aab0dbf92975b
+Author: Minna Färm <minna.farm@tut.fi>
+Date:   Mon Sep 28 15:32:27 2020 +0300
+
+    .gitmodules file somehow wasn't generated previously. Course url now listed properly.
+
+commit 5a49d75bbf2fb5d0aced950cb908b3251bcfca11
+Author: Minna Färm <minna.farm@tut.fi>
+Date:   Fri Sep 25 14:24:55 2020 +0300
+
+    Template
