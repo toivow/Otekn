@@ -180,7 +180,6 @@ bool city::isGameOver() const
 
         window_->setEnabled(false);
         window_->show_end_dialog();
-
         window_->close();
 
         return true;

@@ -288,6 +288,7 @@ void MainWindow::show_time()
 void MainWindow::on_exitButton_clicked()
 {
     show_end_dialog();
+    this->setEnabled(false);
     this->close();
 }
 
