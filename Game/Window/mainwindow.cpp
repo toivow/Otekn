@@ -218,7 +218,7 @@ void MainWindow::checkDeaths(Interface::Location player_loc_)
 
     if (killed_passengers > 0)
     {
-        qDebug() << "Killed " << killed_passengers << " passengers!";
+        //qDebug() << "Killed " << killed_passengers << " passengers!";
 
         stats_->updatePoints(killed_passengers);
 

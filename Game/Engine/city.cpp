@@ -104,7 +104,7 @@ void city::removeActor(std::shared_ptr<IActor> actor)
         if (rand_numb == 1)
         {
             window_->spawnBanana();
-            qDebug("Spawnattiin banaani!");
+            qDebug("Spawned a banana!");
         }
 
     }
@@ -176,7 +176,7 @@ bool city::isGameOver() const
 {
     if (time_->operator>=(*end_time_) && enable_end_time_)
     {
-        qDebug("Peliaika loppuu");
+        qDebug("Game ends");
 
         // TODO: Toteuta  tähän ikkunan jäädyttäminen / pelin lopettaminen.
 
