@@ -17,6 +17,9 @@ namespace Ui {
 class Dialog;
 }
 
+namespace StudentSide {
+
+
 class Dialog : public QDialog
 {
     Q_OBJECT
@@ -73,5 +76,6 @@ private:
     int gamedur_;
 
 };
+}
 
 #endif // DIALOG_HH

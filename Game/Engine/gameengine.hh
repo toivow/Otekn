@@ -15,8 +15,7 @@
   * @file
   * @brief Defines a class that handles running the whole game.
   */
-
-class gameengine;
+namespace StudentSide {
 
 class gameengine : public QObject
 {
@@ -62,5 +61,6 @@ private:
    CourseSide::Logic* game_logic_;
 
 };
+}
 
 #endif // GAMEENGINE_HH

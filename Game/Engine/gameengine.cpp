@@ -1,5 +1,7 @@
 #include "gameengine.hh"
 
+namespace StudentSide {
+
 gameengine::gameengine(QObject* parent) :
     QObject(parent),
     game_logic_(new CourseSide::Logic())
@@ -45,4 +47,5 @@ bool gameengine::execDialog()
     }
     return false;
 
+}
 }
