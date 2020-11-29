@@ -6,31 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>236</width>
-    <height>131</height>
+    <width>311</width>
+    <height>225</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QCheckBox" name="small_map">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>60</y>
-     <width>101</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Small map</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="exit_button">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>90</y>
+     <x>190</x>
+     <y>170</y>
      <width>80</width>
      <height>26</height>
     </rect>
@@ -42,8 +29,8 @@
   <widget class="QPushButton" name="start_button">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>20</y>
+     <x>190</x>
+     <y>50</y>
      <width>80</width>
      <height>26</height>
     </rect>
@@ -52,12 +39,12 @@
     <string>Start</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="peliaika">
+  <widget class="QSpinBox" name="gameduration">
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>90</y>
-     <width>81</width>
+     <y>170</y>
+     <width>71</width>
      <height>31</height>
     </rect>
    </property>
@@ -65,11 +52,37 @@
   <widget class="QTimeEdit" name="startingtime">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>118</width>
+     <x>30</x>
+     <y>50</y>
+     <width>71</width>
      <height>30</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>10</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Kello</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>120</y>
+     <width>161</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Peliaika (minuuteissa)</string>
    </property>
   </widget>
  </widget>

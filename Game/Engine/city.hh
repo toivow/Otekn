@@ -3,10 +3,16 @@
 
 #include "../CourseLib/interfaces/icity.hh"
 #include "../Window/mainwindow.hh"
-#include "../CourseLib/graphics/simplemainwindow.hh"
 #include <QTime>
 #include <unordered_map>
-#include "statistics.h"
+#include "statistics.hh"
+#include "../Window/enddialog.hh"
+
+/** @file
+ * @brief defines a class that handles the operations within the city.
+ * Uncommented functions defintions can be found in file ../CourseLib/interfaces/icity.hh
+ */
+
 
 namespace StudentSide
 {
@@ -19,6 +25,15 @@ public:
     city();
 
     ~city();
+
+    /**
+     * @brief set_game_duration sets game_duration into given parameter.
+     * @param int time is wished game_duration in minutes.
+     * @pre City is in init state.
+     * @post game_duration_ set into wished value.
+     * @exception Nothrow
+     */
+    void set_game_duration(int time, QTime* clock);
 
     void setBackground(QImage& basicbackground, QImage& bigbackground);
 
@@ -42,7 +57,16 @@ public:
 
     bool isGameOver() const;
 
+
 private:
+
+    statistics* stats_;
+
+    QTime* time_;
+    QTime* end_time_;
+
+    MainWindow* window_;
+
 
     QImage background_;
 
@@ -54,11 +78,9 @@ private:
     bool debugstate_;
     bool gamestarted_;
 
-    StudentSide::MainWindow window_;
+    int game_duration_;
 
-    QTime aika_;
-
-    StudentSide::statistics stats_;
+    bool enable_end_time_;
 
 
 };

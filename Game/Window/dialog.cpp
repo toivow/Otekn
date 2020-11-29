@@ -1,20 +1,27 @@
-#include "../Window/dialog.hh"
+#include "dialog.hh"
 #include "ui_dialog.h"
+
+namespace StudentSide {
+
+
 
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::Dialog)
+    ui(new Ui::Dialog),
+    start_time_(new QTime(QTime::currentTime().hour(),
+                          QTime::currentTime().minute(),
+                          QTime::currentTime().second())),
+    gamedur_(0)
 {
     ui->setupUi(this);
     QGraphicsScene *scene_ = new QGraphicsScene(this);
     view_ = new QGraphicsView(this);
     view_->setScene(scene_);
 
+    ui->start_button->setDefault(true);
 
-    connect(ui->exit_button, SIGNAL(clicked()), SLOT(reject()));
-    connect(ui->start_button, SIGNAL(clicked()), SLOT(start_prog()));
-    connect(ui->start_button, SIGNAL(clicked()), SLOT(accept()));
-    connect(ui->start_button, SIGNAL(clicked()), SLOT(send_game_time()));
+    connect(ui->exit_button, &QPushButton::clicked, this, &Dialog::reject);
+    connect(ui->start_button, &QPushButton::clicked, this, &Dialog::accept);
 }
 
 Dialog::~Dialog()
@@ -22,9 +29,21 @@ Dialog::~Dialog()
     delete ui;
 }
 
-void Dialog::sending_game_time()
+
+void Dialog::on_gameduration_valueChanged(int value)
 {
-    int time = ui->peliaika->value();
-    emit game_time(time);
+    gamedur_ = value;
+}
+
+void Dialog::on_startingtime_userTimeChanged(const QTime &time)
+{
+    *start_time_ = time;
+}
+
+void Dialog::accept()
+{
+    emit game_length(gamedur_, start_time_);
+    QDialog::accept();
+}
 }
 

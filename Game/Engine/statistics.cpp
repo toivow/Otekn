@@ -1,30 +1,48 @@
-#include "../Engine/statistics.h"
+#include "statistics.hh"
 #include <iostream>
 #include <list>
 
 namespace StudentSide {
 
 
-statistics::statistics(){}
+statistics::statistics() :
+    passamount_(0),
+    busamount_(0),
+    points_(0)
+{
+}
 
 statistics::~statistics(){}
 
-int statistics::update_points(int amount)
+void statistics::updatePoints(int amount)
 {
-    points_ = points_ + amount;
+    points_ = amount + points_;
+}
+
+int statistics::returnPoints()
+{
     return points_;
 }
 
-int statistics::current_busses(std::list<std::shared_ptr<CourseSide::Nysse>> nysset)
+
+int statistics::busAmount()
 {
-    int list_lenght = nysset.size();
-    return list_lenght;
+    return busamount_;
 }
 
-int statistics::current_passengers(std::list<std::shared_ptr<CourseSide::Passenger>> passengers)
+int statistics::passAmount()
 {
-    int list_lenght = passengers.size();
-    return list_lenght;
+    return passamount_;
+}
+
+void statistics::addPass(int amount)
+{
+    passamount_ += amount;
+}
+
+void statistics::addBus(int amount)
+{
+   busamount_ += amount;
 }
 
 }

@@ -1,18 +1,19 @@
-#include "../Graphics/rectactoritem.hh"
+#include "rectactoritem.hh"
 
 namespace StudentSide {
 
 RectActorItem::RectActorItem(int x, int y) :
     CourseSide::SimpleActorItem(x, y),
     x_(x),
-    y_(y)
+    y_(y),
+    nysse_(QPixmap(":/kuvat/Kuvat/nysse.png"))
 {
     setPos(mapToParent(x_, y_));
 }
 
 RectActorItem::~RectActorItem()
 {
-
+    prepareGeometryChange();
 }
 
 
@@ -24,14 +25,13 @@ QRectF RectActorItem::boundingRect() const
 
 void RectActorItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    prepareGeometryChange();
-    QRectF bounds = boundingRect();
-    QColor color(0, 0, 0);
+    (void)option;
+    (void)widget;
 
-    nysse_.load(":/kuvat/Kuvat/Nysse_pixelart.png");
-    QBrush brush(nysse_);
-    painter->setBrush(brush);
-    painter->drawRect(bounds);
+    QRect bounds = QRect(-18, -5, WIDTH, HEIGHT);
+
+    painter->setBackgroundMode(Qt::TransparentMode);
+    painter->drawPixmap(bounds, nysse_);
 }
 
 void RectActorItem::setCoord(int x, int y)
@@ -39,5 +39,6 @@ void RectActorItem::setCoord(int x, int y)
     setX( x );
     setY( y );
 }
+
 
 }

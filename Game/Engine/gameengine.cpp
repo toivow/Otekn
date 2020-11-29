@@ -1,28 +1,51 @@
-#include "../Engine/gameengine.hh"
-#include "../CourseLib/graphics/simplemainwindow.hh"
+#include "gameengine.hh"
+
+namespace StudentSide {
 
 gameengine::gameengine(QObject* parent) :
-    QObject(parent)
+    QObject(parent),
+    game_logic_(new CourseSide::Logic())
 {
     basicbackground_.load(":/offlinedata/offlinedata/kartta_pieni_500x500.png");
     bigbackground_.load(":/offlinedata/offlinedata/kartta_iso_1095x592.png");
-
-    StudentSide::creategame temp;
-    city_ = temp.createGame();
-    city_->setBackground(basicbackground_, bigbackground_);
-
-
-    l_.fileConfig();
-    l_.setTime(20, 00);
-    l_.takeCity(city_);
-    l_.finalizeGameStart();
-
 }
 
 gameengine::~gameengine()
 {
+    delete game_logic_;
 }
 
-void gameengine::show_board()
+void gameengine::confLogic(int gametime, QTime *clock)
+{    
+    int minute = clock->minute();
+    int hour =  clock->hour();
+
+    game_logic_->takeCity(city_);
+
+    game_logic_->setTime(hour, minute);
+
+    city_->set_game_duration(gametime, clock);
+
+    game_logic_->finalizeGameStart();
+
+}
+
+bool gameengine::execDialog()
 {
+    StudentSide::creategame temp;
+    city_ = temp.createGame();
+    city_->setBackground(basicbackground_, bigbackground_);
+
+    game_logic_->fileConfig();
+
+    Dialog* d = new Dialog();
+
+    connect(d, &Dialog::game_length, this, &gameengine::confLogic);
+
+    if( d->exec()) {
+        return true;
+    }
+    return false;
+
+}
 }

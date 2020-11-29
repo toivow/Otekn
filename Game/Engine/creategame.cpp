@@ -1,5 +1,5 @@
-#include "../Engine/creategame.hh"
-#include "../Engine/city.hh"
+#include "creategame.hh"
+#include "city.hh"
 
 #include <memory>
 
@@ -14,7 +14,7 @@ creategame::~creategame()
 }
 
 
-std::shared_ptr<Interface::ICity> creategame::createGame()
+std::shared_ptr<StudentSide::city> creategame::createGame()
 {
     return std::make_shared<StudentSide::city>();
 }

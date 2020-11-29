@@ -6,13 +6,16 @@ QT += core gui widgets network multimedia
 CONFIG += c++14
 
 SOURCES += \
+    Actors/randomitem_logic.cpp \
     Engine/city.cpp \
     Engine/creategame.cpp \
     Engine/gameengine.cpp \
     Engine/statistics.cpp \
     Graphics/destroyer.cpp \
+    Graphics/randomitem.cpp \
     Graphics/rectactoritem.cpp \
     Window/dialog.cpp \
+    Window/enddialog.cpp \
     Window/mainwindow.cpp \
     main.cc \
     Actors/destroyer_logic.cpp
@@ -42,18 +45,22 @@ else:unix: PRE_TARGETDEPS += \
     $$OUT_PWD/../Course/CourseLib/libCourseLib.a
 
 HEADERS += \
+    Actors/randomitem_logic.hh \
     Engine/city.hh \
     Engine/creategame.hh \
     Engine/gameengine.hh \
-    Engine/statistics.h \
     Graphics/destroyer.hh \
+    Graphics/randomitem.hh \
     Graphics/rectactoritem.hh \
     Window/dialog.hh \
+    Window/enddialog.hh \
     Window/mainwindow.hh \
-    Actors/destroyer_logic.hh
+    Actors/destroyer_logic.hh \
+    Engine/statistics.hh
 
 
 FORMS += \
+    Window/enddialog.ui \
     dialog.ui \
     mainwindow.ui
 

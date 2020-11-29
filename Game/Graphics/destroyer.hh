@@ -4,6 +4,12 @@
 #include "../CourseLib/graphics/simpleactoritem.hh"
 
 
+
+/** @file
+ * @brief A class used to create our own actor, the movable detroyer, function comments can be found in
+ * "../CourseLib/graphics/simpleactoritem.hh"
+ */
+
 const int WIDTH = 30;
 const int HEIGHT = 30;
 
@@ -25,7 +31,7 @@ private:
     int y_;
     int x_;
 
-    QImage image_;
+    QPixmap pixmap_;
 };
 }
 #endif // DESTROYER_HH
