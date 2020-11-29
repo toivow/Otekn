@@ -174,11 +174,6 @@ private:
      */
     void calculatePassengers(QGraphicsItem* passenger, int newX, int newY);
 
-
-
-    void calculateBusPassengers(std::shared_ptr<CourseSide::Nysse> bus,
-                                  int newX, int newY,  QGraphicsItem* graphics_object);
-
     Ui::MainWindow *ui;
     statistics* stats_;
     QTime* time_;

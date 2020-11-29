@@ -62,7 +62,6 @@ void MainWindow::moveObjects(std::shared_ptr<Interface::IActor> actor)
     else if (movepass == nullptr)
     {
         graphics_object = buses_[movebus];
-        calculateBusPassengers(movebus, tempX, tempY, graphics_object);
 
     }
     else if (movebus == nullptr)
@@ -72,6 +71,7 @@ void MainWindow::moveObjects(std::shared_ptr<Interface::IActor> actor)
     }
 
     graphics_object->setPos(tempX, tempY);
+
     updateBusAmount();
     updatePassAmount();
     scene_->update();
@@ -206,8 +206,8 @@ void MainWindow::checkDeaths(Interface::Location player_loc_)
     for (auto actor_ : actors_) {
 
         auto passloc = Interface::Location();
-        passloc.setXY( actor_.first->giveLocation().giveX() - 4,
-                       500-actor_.first->giveLocation().giveY() - 4);
+        passloc.setXY( actor_.first->giveLocation().giveX() - 5,
+                       500-actor_.first->giveLocation().giveY() - 5);
 
             if ((player_loc_.isClose(passloc, 15)) &&
                     (!actor_.first->isRemoved()) &&
@@ -306,19 +306,19 @@ void MainWindow::calculatePassengers(QGraphicsItem* passenger, int newX,
     double oldY = passenger->y();
 
     // If the old coordinates are inside the small map
-    if (oldX < 495 && oldY < 495 && oldX > 5 && oldY > 5)
+    if ( (oldX < 496) && (oldY < 496) && (oldX > 0) && (oldY > 0) )
     {
         // If new coordinates are outside of the small map view
-        if (newX > 495 || newX < 5 || newY > 495 || newY < 5)
+        if (newX > 496 || newX < 0 || newY > 496 || newY < 0)
         {
             stats_->addPass(-1);
         }
     }
     // If the old coordinates are outside of the map
-    else if (oldX > 495 || oldX < 5 || oldY > 495 || oldY < 5)
+    else if ( (oldX > 496) || (oldX < 0) || (oldY > 496) || (oldY < 0) )
     {
         // If the new coordinates are inside the map
-        if (newX < 495 && newY < 495 && newX > 5 && newY > 5)
+        if ( (newX < 496) && (newY < 496) && (newX > 0) && (newY > 0))
         {
             stats_->addPass(1);
         }
@@ -327,36 +327,6 @@ void MainWindow::calculatePassengers(QGraphicsItem* passenger, int newX,
 
 }
 
-void MainWindow::calculateBusPassengers(std::shared_ptr<CourseSide::Nysse> bus, int newX, int newY, QGraphicsItem* graphics_object)
-{
-
-    std::vector<std::shared_ptr<Interface::IPassenger>> passengers = bus->getPassengers();
-
-    int amount = passengers.size();
-    double oldY = graphics_object->y();
-    double oldX = graphics_object->x();
-
-    // If the old coordinates are inside the small map
-    if (oldX < 495 && oldY < 495 && oldX > 5 && oldY > 5)
-    {
-        // If new coordinates are outside of the small map view
-        if (newX > 495 || newX < 5 || newY > 495 || newY < 5)
-        {
-            stats_->addPass(-amount);
-        }
-    }
-    // If the old coordinates are outside of the map
-    else if (oldX > 495 || oldX < 5 || oldY > 495 || oldY < 5)
-    {
-        // If the new coordinates are inside the map
-        if (newX < 495 && newY < 495 && newX > 5 && newY > 5)
-        {
-            stats_->addPass(amount);
-        }
-
-    }
-
-}
 
 }
 
