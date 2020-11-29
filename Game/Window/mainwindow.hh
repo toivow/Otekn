@@ -172,7 +172,12 @@ private:
      * @param newX the location the passenger is moving to in the x-axis
      * @param newY the location the passenger is moving to in the y-axis
      */
-    void calculate_passengers(QGraphicsItem* passenger, int newX, int newY);
+    void calculatePassengers(QGraphicsItem* passenger, int newX, int newY);
+
+
+
+    void calculateBusPassengers(std::shared_ptr<CourseSide::Nysse> bus,
+                                  int newX, int newY,  QGraphicsItem* graphics_object);
 
     Ui::MainWindow *ui;
     statistics* stats_;

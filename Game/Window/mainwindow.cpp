@@ -62,15 +62,17 @@ void MainWindow::moveObjects(std::shared_ptr<Interface::IActor> actor)
     else if (movepass == nullptr)
     {
         graphics_object = buses_[movebus];
+        calculateBusPassengers(movebus, tempX, tempY, graphics_object);
 
     }
     else if (movebus == nullptr)
     {
         graphics_object = actors_[movepass];
-        calculate_passengers(graphics_object, tempX, tempY);
+        calculatePassengers(graphics_object, tempX, tempY);
     }
 
     graphics_object->setPos(tempX, tempY);
+    updateBusAmount();
     updatePassAmount();
     scene_->update();
 }
@@ -289,13 +291,15 @@ void MainWindow::on_exitButton_clicked()
 {
     ui->gameView->setUpdatesEnabled(false);
     this->setDisabled(true);
+    ui->passAmnt->setEnabled(false);
+    ui->busAmount->setEnabled(false);
 
     show_end_dialog();
 
     this->close();
 }
 
-void MainWindow::calculate_passengers(QGraphicsItem* passenger, int newX,
+void MainWindow::calculatePassengers(QGraphicsItem* passenger, int newX,
                                       int newY)
 {
     double oldX = passenger->x();
@@ -317,6 +321,37 @@ void MainWindow::calculate_passengers(QGraphicsItem* passenger, int newX,
         if (newX < 495 && newY < 495 && newX > 5 && newY > 5)
         {
             stats_->addPass(1);
+        }
+
+    }
+
+}
+
+void MainWindow::calculateBusPassengers(std::shared_ptr<CourseSide::Nysse> bus, int newX, int newY, QGraphicsItem* graphics_object)
+{
+
+    std::vector<std::shared_ptr<Interface::IPassenger>> passengers = bus->getPassengers();
+
+    int amount = passengers.size();
+    double oldY = graphics_object->y();
+    double oldX = graphics_object->x();
+
+    // If the old coordinates are inside the small map
+    if (oldX < 495 && oldY < 495 && oldX > 5 && oldY > 5)
+    {
+        // If new coordinates are outside of the small map view
+        if (newX > 495 || newX < 5 || newY > 495 || newY < 5)
+        {
+            stats_->addPass(-amount);
+        }
+    }
+    // If the old coordinates are outside of the map
+    else if (oldX > 495 || oldX < 5 || oldY > 495 || oldY < 5)
+    {
+        // If the new coordinates are inside the map
+        if (newX < 495 && newY < 495 && newX > 5 && newY > 5)
+        {
+            stats_->addPass(amount);
         }
 
     }
