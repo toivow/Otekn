@@ -6,6 +6,7 @@ QT += core gui widgets network multimedia
 CONFIG += c++14
 
 SOURCES += \
+    Actors/randomitem_logic.cpp \
     Engine/city.cpp \
     Engine/creategame.cpp \
     Engine/gameengine.cpp \
@@ -43,6 +44,7 @@ else:unix: PRE_TARGETDEPS += \
     $$OUT_PWD/../Course/CourseLib/libCourseLib.a
 
 HEADERS += \
+    Actors/randomitem_logic.hh \
     Engine/city.hh \
     Engine/creategame.hh \
     Engine/gameengine.hh \
@@ -60,7 +62,6 @@ FORMS += \
     mainwindow.ui
 
 DISTFILES += \
-    Kuvat/30x30banana.png \
     Kuvat/Nysse_pixelart.png
 
 RESOURCES += \

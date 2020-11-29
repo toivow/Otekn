@@ -6,7 +6,7 @@
 #include <QPushButton>
 #include <QMainWindow>
 #include <QSpinBox>
-
+#include <QKeyEvent>
 
 /** @file
  * @brief A dialog class used for the starting dialog when starting the game.

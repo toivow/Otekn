@@ -9,13 +9,13 @@ city::city() :
     stats_(new statistics()),
     time_(new QTime()),
     end_time_(new QTime()),
-    window_(new MainWindow(stats_, time_))
+    window_(new MainWindow(stats_)),
+    enable_end_time_(false)
 {
 }
 
 city::~city()
 {
-    delete window_;
     delete stats_;
 }
 
@@ -72,7 +72,8 @@ void city::addActor(std::shared_ptr<IActor> newactor)
     {
         window_->addPass(X, Y, 255, newpass);
         passengers_.push_back(newpass);
-        stats_->addPass(1);
+        if ( (5 < Y && Y < 495) &&  (5 < X && X < 495))
+            stats_->addPass(1);
     }
     else
     {
@@ -92,19 +93,22 @@ void city::removeActor(std::shared_ptr<IActor> actor)
         buses_.remove(removebus);
         stats_->addBus(-1);
     }
+
     else if (removebus == nullptr)
     {
         passengers_.remove(removepass);
         stats_->addPass(-1);
+
         //Used to randomly spawn bananas on map on passenger removes.
-        srand(time(NULL));
-        int rand_numb = rand()%(2-1+1)+1;
+        int rand_numb = rand() % 50;
         if (rand_numb == 1)
         {
             window_->spawnBanana();
-            qDebug("spawnattiin banaani");
+            qDebug("Spawnattiin banaani!");
         }
+
     }
+
 
     actorRemoved(actor);
 }
@@ -170,7 +174,7 @@ std::vector<std::shared_ptr<IActor> > city::getNearbyActors(Location loc) const
 
 bool city::isGameOver() const
 {
-    if (time_->operator>(*end_time_))
+    if (time_->operator>=(*end_time_) && enable_end_time_)
     {
         qDebug("Peliaika loppuu");
 
@@ -187,10 +191,18 @@ void city::set_game_duration(int time, QTime* clock)
 {
     end_time_ = clock;
 
-    int addSecs = time*60;
+    if (time == 0) {
+        enable_end_time_ = false;
+        window_->disable_end_time();
+    }
+    else
+    {
+        int addSecs = time*60;
+        *end_time_ = end_time_->addSecs(addSecs);
+        window_->show_end_time(end_time_);
+        enable_end_time_ = true;
+    }
 
-    *end_time_ = end_time_->addSecs(addSecs);
-    window_->show_end_time(end_time_);
 }
 
 }

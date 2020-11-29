@@ -24,27 +24,17 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="startButton">
+   <widget class="QPushButton" name="exitButton">
     <property name="geometry">
      <rect>
       <x>560</x>
       <y>30</y>
-      <width>91</width>
-      <height>31</height>
+      <width>221</width>
+      <height>61</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Start</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="exitButton">
-    <property name="geometry">
-     <rect>
-      <x>690</x>
-      <y>30</y>
-      <width>91</width>
-      <height>31</height>
-     </rect>
+    <property name="styleSheet">
+     <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <property name="text">
      <string>Exit</string>
@@ -59,12 +49,12 @@
       <height>291</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
+    <layout class="QVBoxLayout" name="StatsLayout">
      <property name="sizeConstraint">
       <enum>QLayout::SetDefaultConstraint</enum>
      </property>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <layout class="QHBoxLayout" name="TimeLeftLayout">
        <property name="spacing">
         <number>50</number>
        </property>
@@ -81,7 +71,7 @@
       </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <layout class="QHBoxLayout" name="PoinstAmntLayout">
        <property name="spacing">
         <number>50</number>
        </property>
@@ -98,14 +88,14 @@
       </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <layout class="QHBoxLayout" name="BusAmountLayout">
        <property name="spacing">
         <number>50</number>
        </property>
        <item>
         <widget class="QLabel" name="busAmountLbl">
          <property name="text">
-          <string>Bus amount</string>
+          <string>Buses in traffic</string>
          </property>
         </widget>
        </item>
@@ -115,14 +105,14 @@
       </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
+      <layout class="QHBoxLayout" name="PassengerLayout">
        <property name="spacing">
         <number>50</number>
        </property>
        <item>
         <widget class="QLabel" name="passAmntLbl">
          <property name="text">
-          <string>Passengers</string>
+          <string>Passengers on screen</string>
          </property>
         </widget>
        </item>
@@ -142,15 +132,15 @@
      <rect>
       <x>550</x>
       <y>470</y>
-      <width>131</width>
+      <width>231</width>
       <height>41</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_6">
+    <layout class="QHBoxLayout" name="endTimeLayout">
      <item>
       <widget class="QLabel" name="endTimeTxt">
        <property name="text">
-        <string>Game ends at</string>
+        <string>Game ends at:</string>
        </property>
       </widget>
      </item>
@@ -163,16 +153,16 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>550</x>
       <y>420</y>
-      <width>131</width>
+      <width>231</width>
       <height>41</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_5">
+    <layout class="QHBoxLayout" name="TimeLayout">
      <item>
       <widget class="QLabel" name="timeTxt">
        <property name="text">
@@ -203,22 +193,5 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>exitButton</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>745</x>
-     <y>198</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>399</x>
-     <y>324</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

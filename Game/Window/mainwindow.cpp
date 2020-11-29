@@ -6,15 +6,14 @@
 #include <random>
 
 #include <QDebug>
-
-const int PADDING = 30;
+#include <QPointF>
 const int SIZE = 500;
 
 
 namespace StudentSide {
 
 
-MainWindow::MainWindow(statistics* stats, QTime* clock, QWidget *parent) :
+MainWindow::MainWindow(statistics* stats, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     stats_(stats),
@@ -22,8 +21,7 @@ MainWindow::MainWindow(statistics* stats, QTime* clock, QWidget *parent) :
 
 {
     ui->setupUi(this);
-    //Used to silence warning on unused param
-    (void)clock;
+
     // We need a graphics scene in which to draw objects
 
     ui->gameView->setFixedSize(SIZE, SIZE);
@@ -52,7 +50,15 @@ void MainWindow::moveObjects(std::shared_ptr<Interface::IActor> actor)
     std::shared_ptr<CourseSide::Nysse> movebus = std::dynamic_pointer_cast <CourseSide::Nysse>(actor);
     std::shared_ptr<CourseSide::Passenger> movepass= std::dynamic_pointer_cast<CourseSide::Passenger> (actor);
 
-    if (movepass == nullptr)
+    int tempX = actor->giveLocation().giveX() - 5;
+    int tempY = 500 - actor->giveLocation().giveY() - 5;
+
+    if (movepass == nullptr && movebus == nullptr){
+        qDebug("Kyseinen objekti pitäisi olla poistettu");
+        return;
+    }
+
+    else if (movepass == nullptr)
     {
         graphics_object = buses_[movebus];
 
@@ -60,20 +66,12 @@ void MainWindow::moveObjects(std::shared_ptr<Interface::IActor> actor)
     else if (movebus == nullptr)
     {
         graphics_object = actors_[movepass];
+        calculate_passengers(graphics_object, tempX, tempY);
     }
-    if (graphics_object == nullptr)
-    {
-        // qDebug("Yritti liikuttaa nullptr");
-    }
-    else
-    {
-    int tempX = actor->giveLocation().giveX() - 5;
-    int tempY = 500 - actor->giveLocation().giveY() - 5;
+
     graphics_object->setPos(tempX, tempY);
-    }
-
-
-
+    updatePassAmount();
+    scene_->update();
 }
 
 void MainWindow::setPicture(QImage background)
@@ -89,6 +87,7 @@ void MainWindow::addPass(int X, int Y, int type,
 
     actors_[passenger] = nPass;
     scene_->addItem(nPass);
+    updatePassAmount();
 }
 
 void MainWindow::addBus(int X, int Y, std::shared_ptr<CourseSide::Nysse> bus)
@@ -96,6 +95,8 @@ void MainWindow::addBus(int X, int Y, std::shared_ptr<CourseSide::Nysse> bus)
     RectActorItem* nBus = new RectActorItem(X, Y);
     buses_[bus] = nBus;
     scene_->addItem(nBus);
+    updateBusAmount();
+
 }
 
 void MainWindow::addStop(int X, int Y, int type,
@@ -108,16 +109,19 @@ void MainWindow::addStop(int X, int Y, int type,
     scene_->addItem(nStop);
 }
 
+
 void MainWindow::updateBusAmount()
 {
     ui->busAmount->display(stats_->busAmount());
 }
+
 
 void MainWindow::updatePassAmount()
 {
     ui->passAmnt->display(stats_->passAmount());
 
 }
+
 
 void MainWindow::updatePoints()
 {
@@ -139,16 +143,18 @@ void MainWindow::spawnDestroyer(int X, int Y)
 void MainWindow::spawnBanana()
 {
     //Randomly generate x and y
-    srand(time(NULL));
-    std::random_device seeder;
-    std::mt19937 engine(seeder());
-    std::uniform_int_distribution<int> dist(0, 500);
-    int rand_X = dist(engine);
-    int rand_Y = dist(engine);
-    randomitem* randitm = new randomitem(rand_X,500-rand_Y);
-    scene_->addItem(randitm);
 
+    int rand_X = rand() % 400 + 100;
+    int rand_Y = rand() % 400 + 100;
+
+    randomitem* randitm_graf = new randomitem(rand_X, rand_Y);
+    randomitem_logic* randitm_log = new randomitem_logic(rand_X, rand_Y);
+
+    bananas_[randitm_log] = randitm_graf;
+    scene_->addItem(randitm_graf);
+    randitm_graf->setPos(rand_X, rand_Y);
 }
+
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
@@ -182,66 +188,91 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
     delete newloc;
 
-
+    scene_->update();
 }
+
 
 void MainWindow::checkDeaths(Interface::Location player_loc_)
 {
 
-    int killed_players = 0;
+    int killed_passengers = 0;
 
     for (auto it = actors_.begin(); it != actors_.end(); )
     {
-        auto passloc = (*(*it).first).giveLocation();
-
-        int passX = passloc.giveX() - 5;
-        int passY = 500 - passloc.giveY() - 5;
-
-        passloc.setXY(passX, passY);
-
-        // Checks whether the passenger is close to our player, if the passenger
-        // is active (so a killed actor that hasn't yet been removed) and if
-        // the actor is in a bus, when they can't be killed.
-        if (player_loc_.isClose( passloc) && (! ((*(*it).first).isRemoved()))
-                && (!(*(*it).first).isInVehicle()))
+        if ( (!((*(*it).first).isRemoved())) && (!(*(*it).first).isInVehicle()) )
         {
+            // The first pointer is the first object of our map, where the .first
+            // gives the logic -object of the actor, and the pointer gives these
+            // values.
+            auto passloc = (*(*it).first).giveLocation();
 
-            (*(*it).first).remove();
+            int passX = passloc.giveX() - 5;
+            int passY = 500 - passloc.giveY() - 5;
 
-            scene_->removeItem((*it).second);
-            delete (*it).second;
-            (*it).second = nullptr;
+            passloc.setXY(passX, passY);
 
-            it = actors_.erase(it);
+            // Checks whether the passenger is close to our player, if the passenger
+            // is active (so a killed actor that hasn't yet been removed) and if
+            // the actor is in a bus, when they can't be killed.
+            if (player_loc_.isClose(passloc, 15))
+            {
 
-            killed_players++;
+                (*(*it).first).remove();
 
-        } else
-        {
+                scene_->removeItem((*it).second);
+                delete (*it).second;
+                (*it).second = nullptr;
+
+                it = actors_.erase(it);
+
+                killed_passengers++;
+            }
+
+             else
+            {
+                it++;
+            }
+       }
+        else {
             it++;
         }
 
     }
 
-    if (killed_players > 0)
+    if (killed_passengers > 0)
     {
-        qDebug() << "Killed " << killed_players << " players!";
+        qDebug() << "Killed " << killed_passengers << " passengers!";
 
-        stats_->updatePoints(killed_players);
-
-        updatePoints();
+        stats_->updatePoints(killed_passengers);
 
         updatePassAmount();
     }
-    scene_->update();
 
+    for (auto banana : bananas_)
+    {
+
+        if (player_loc_.isClose(banana.first->giveLocation(), 15))
+        {
+            int reward = banana.first->return_reward();
+            scene_->removeItem(banana.second);
+            delete banana.second;
+            banana.second = nullptr;
+            bananas_.erase(banana.first);
+
+            stats_->updatePoints(reward);
+
+        }
+    }
+    updatePoints();
 }
+
 
 void MainWindow::set_time(QTime clock)
 {
     time_->setHMS(clock.hour(), clock.minute(), clock.second());
     timer->start(tick_);
 }
+
 
 void MainWindow::show_end_time(QTime* end_time)
 {
@@ -253,6 +284,12 @@ void MainWindow::show_end_time(QTime* end_time)
     ui->endTimeLbl->setText(QString::fromStdString(timestr));
 }
 
+void MainWindow::disable_end_time()
+{
+    ui->endTimeLbl->setText(QString("Time limit disabled"));
+}
+
+
 void MainWindow::show_time()
 {
     int minutes = time_->minute();
@@ -260,6 +297,40 @@ void MainWindow::show_time()
     std::string timestr = std::to_string(hours) + ':' + std::to_string(minutes);
 
     ui->timeLbl->setText(QString::fromStdString(timestr));
+
+}
+
+
+void MainWindow::on_exitButton_clicked()
+{
+    this->close();
+}
+
+void MainWindow::calculate_passengers(QGraphicsItem* passenger, int newX,
+                                      int newY)
+{
+    double oldX = passenger->x();
+    double oldY = passenger->y();
+
+    // If the old coordinates are inside the small map
+    if (oldX < 495 && oldY < 495 && oldX > 5 && oldY > 5)
+    {
+        // If new coordinates are outside of the small map view
+        if (newX > 495 || newX < 5 || newY > 495 || newY < 5)
+        {
+            stats_->addPass(-1);
+        }
+    }
+    // If the old coordinates are outside of the map
+    else if (oldX > 495 || oldX < 5 || oldY > 495 || oldY < 5)
+    {
+        // If the new coordinates are inside the map
+        if (newX < 495 && newY < 495 && newX > 5 && newY > 5)
+        {
+            stats_->addPass(1);
+        }
+
+    }
 
 }
 

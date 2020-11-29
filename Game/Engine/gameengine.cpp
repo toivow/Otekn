@@ -6,7 +6,30 @@ gameengine::gameengine(QObject* parent) :
 {
     basicbackground_.load(":/offlinedata/offlinedata/kartta_pieni_500x500.png");
     bigbackground_.load(":/offlinedata/offlinedata/kartta_iso_1095x592.png");
+}
 
+gameengine::~gameengine()
+{
+    delete game_logic_;
+}
+
+void gameengine::confLogic(int gametime, QTime *clock)
+{    
+    int minute = clock->minute();
+    int hour =  clock->hour();
+
+    game_logic_->takeCity(city_);
+
+    game_logic_->setTime(hour, minute);
+
+    city_->set_game_duration(gametime, clock);
+
+    game_logic_->finalizeGameStart();
+
+}
+
+void gameengine::execDialog()
+{
     StudentSide::creategame temp;
     city_ = temp.createGame();
     city_->setBackground(basicbackground_, bigbackground_);
@@ -15,37 +38,8 @@ gameengine::gameengine(QObject* parent) :
 
     Dialog* d = new Dialog();
 
-
-    connect(d, SIGNAL(game_length(int,QTime*)), this, SLOT(confLogic(int,QTime*)));
+    connect(d, &Dialog::game_length, this, &gameengine::confLogic);
 
     d->exec();
-
-    qDebug("This statement after d->exec()");
-}
-
-gameengine::~gameengine()
-{
-}
-
-void gameengine::confLogic(int gametime, QTime *clock)
-{
-    int minute = clock->minute();
-    int hour =  clock->hour();
-
-
-    game_logic_->takeCity(city_);
-
-    game_logic_->setTime(hour, minute);
-
-
-
-    game_logic_->configChanged(*clock, false);
-
-    city_->set_game_duration(gametime, clock);
-
-    game_logic_->finalizeGameStart();
-
-
-
 
 }

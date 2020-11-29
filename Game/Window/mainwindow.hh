@@ -15,6 +15,7 @@
 #include "../CourseLib/graphics/simpleactoritem.hh"
 #include "../CourseLib/actors/nysse.hh"
 #include "../CourseLib/core/logic.hh"
+#include "../Actors/randomitem_logic.hh"
 #include <memory>
 #include <unordered_map>
 #include <QKeyEvent>
@@ -39,8 +40,8 @@ class MainWindow : public QMainWindow
 
 public:
 
-    MainWindow(statistics* stats_, QTime* clock ,QWidget *parent = nullptr);
-    ~MainWindow();
+    MainWindow(statistics* stats_, QWidget *parent = nullptr);
+    ~MainWindow() override;
     /**
      * @brief moveObjects is used to change objects coordinates individually
      * @param actor is a shared pointer to the actor which coords we wish to change
@@ -117,16 +118,51 @@ public:
      */
     void checkDeaths(Interface::Location player_loc_);
 
+    /**
+     * @brief set_time sets the private parameter time_ to the time specified
+     * in clock and starts the timer
+     * @param clock is the time when the game is played
+     * @post time_ is set and timer is started
+     */
     void set_time(QTime clock);
 
+    /**
+     * @brief show_end_time creates a qstring from the qtime values, and sets
+     * this as the value of the time label.
+     * @param end_time is the time when the game is supposed to end (from city)
+     * @post The value of end_time is displayed on endTimeLbl
+     */
     void show_end_time(QTime* end_time);
+
+    /**
+     * @brief disable_end_time is called when the user doesn't specify a game
+     * duration, hence overwriting the endTimeLbl
+     * @param -
+     * @post endTimeLbl reads "Time limit is disabled"
+     */
+    void disable_end_time();
 
 private slots:
 
+    /**
+     * @brief show_time creates a qstring from the qtime values, and sets this
+     * as the value of the time label.
+     */
     void show_time();
 
+    void on_exitButton_clicked();
 
 private:
+
+    /**
+     * @brief calculate_passengers is called when a passenger is moved. This
+     * function calculates if the passenger is moving in/out of the scene
+     * and adds/removes passengers from city_ accordingly.
+     * @param passenger the passenger being moved
+     * @param newX the location the passenger is moving to in the x-axis
+     * @param newY the location the passenger is moving to in the y-axis
+     */
+    void calculate_passengers(QGraphicsItem* passenger, int newX, int newY);
 
     Ui::MainWindow *ui;
     statistics* stats_;
@@ -139,7 +175,6 @@ private:
     bool startorexit_;
 
 
-
     std::unordered_map < std::shared_ptr<CourseSide::Passenger>
     , QGraphicsItem* > actors_;
 
@@ -148,8 +183,10 @@ private:
 
     std::unordered_map < std::shared_ptr<CourseSide::Nysse>, QGraphicsItem*> buses_;
 
+
+
     std::pair <destroyer_logic* ,destroyer*> player_;
-    std::pair <destroyer_logic* ,randomitem*> banana_;
+    std::unordered_map <randomitem_logic* ,randomitem*> bananas_;
 
     int tick_ = 10;
 

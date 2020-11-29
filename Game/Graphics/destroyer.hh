@@ -31,7 +31,7 @@ private:
     int y_;
     int x_;
 
-    QImage image_;
+    QPixmap pixmap_;
 };
 }
 #endif // DESTROYER_HH

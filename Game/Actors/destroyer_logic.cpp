@@ -3,7 +3,8 @@
 namespace StudentSide
 {
 
-destroyer_logic::destroyer_logic(int x, int y)
+destroyer_logic::destroyer_logic(int x, int y) :
+    removed_(false)
 {
     location_.setXY(x, y);
 }

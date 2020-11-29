@@ -7,8 +7,7 @@ randomitem::randomitem(int x, int y) :
     CourseSide::SimpleActorItem(x, y),
     y_(y),
     x_(x),
-    random_point_reward_(randomizeReward()),
-    image_(QImage(":/kuvat/Kuvat/30x30banana.png"))
+    image_(QPixmap(":/kuvat/Kuvat/banana.png"))
 
 {
     setPos(mapToParent(x_, y_));
@@ -16,7 +15,7 @@ randomitem::randomitem(int x, int y) :
 
 randomitem::~randomitem()
 {
-
+    prepareGeometryChange();
 }
 
 QRectF randomitem::boundingRect() const
@@ -29,19 +28,12 @@ void randomitem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
 {
     (void)option;
     (void)widget;
-    prepareGeometryChange();
-    QRectF bounds = boundingRect();
-    QBrush brush(image_);
-    painter->setBrush(brush);
-    painter->drawRect(bounds);
+
+    QRect bounds = QRect(-7, -7, 28, 28);
+
+    painter->setBackgroundMode(Qt::TransparentMode);
+    painter->drawPixmap(bounds, image_);
 
 }
 
-int randomitem::randomizeReward()
-{
-    //seed used for random reward
-    srand(time(NULL));
-    int reward = rand()%(30-10+1)+10;
-    return reward;
-}
 }

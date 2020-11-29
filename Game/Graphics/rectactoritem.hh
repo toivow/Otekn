@@ -29,7 +29,7 @@ private:
 
     int x_;
     int y_;
-    QImage nysse_;
+    QPixmap nysse_;
 
 };
 }
