@@ -10,8 +10,10 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     Q_INIT_RESOURCE(offlinedata);
 
-    gameengine p;
-    p.execDialog();
-
-    return a.exec();
+    StudentSide::gameengine p;
+    if (p.execDialog() )
+    {
+        return a.exec();
+    }
+    return 0;
 }

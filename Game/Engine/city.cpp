@@ -104,7 +104,7 @@ void city::removeActor(std::shared_ptr<IActor> actor)
         if (rand_numb == 1)
         {
             window_->spawnBanana();
-            qDebug("Spawnattiin banaani!");
+            qDebug("Spawned a banana!");
         }
 
     }
@@ -174,13 +174,15 @@ std::vector<std::shared_ptr<IActor> > city::getNearbyActors(Location loc) const
 
 bool city::isGameOver() const
 {
-    if (time_->operator>=(*end_time_) && enable_end_time_)
+    if ( !( time_->operator<(*end_time_)) && enable_end_time_)
     {
-        qDebug("Peliaika loppuu");
-
-        // TODO: Toteuta  tähän ikkunan jäädyttäminen / pelin lopettaminen.
+        qDebug("Game ends");
 
         window_->setEnabled(false);
+        window_->show_end_dialog();
+
+        window_->close();
+
         return true;
     }
 
@@ -189,7 +191,8 @@ bool city::isGameOver() const
 
 void city::set_game_duration(int time, QTime* clock)
 {
-    end_time_ = clock;
+    int min = clock->minute();
+    int hr = clock->hour();
 
     if (time == 0) {
         enable_end_time_ = false;
@@ -198,6 +201,7 @@ void city::set_game_duration(int time, QTime* clock)
     else
     {
         int addSecs = time*60;
+        end_time_->setHMS(hr, min, 0);
         *end_time_ = end_time_->addSecs(addSecs);
         window_->show_end_time(end_time_);
         enable_end_time_ = true;

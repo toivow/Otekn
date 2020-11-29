@@ -1,6 +1,10 @@
 #include "dialog.hh"
 #include "ui_dialog.h"
 
+namespace StudentSide {
+
+
+
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog),
@@ -41,5 +45,5 @@ void Dialog::accept()
     emit game_length(gamedur_, start_time_);
     QDialog::accept();
 }
-
+}
 

@@ -15,6 +15,7 @@ SOURCES += \
     Graphics/randomitem.cpp \
     Graphics/rectactoritem.cpp \
     Window/dialog.cpp \
+    Window/enddialog.cpp \
     Window/mainwindow.cpp \
     main.cc \
     Actors/destroyer_logic.cpp
@@ -52,12 +53,14 @@ HEADERS += \
     Graphics/randomitem.hh \
     Graphics/rectactoritem.hh \
     Window/dialog.hh \
+    Window/enddialog.hh \
     Window/mainwindow.hh \
     Actors/destroyer_logic.hh \
     Engine/statistics.hh
 
 
 FORMS += \
+    Window/enddialog.ui \
     dialog.ui \
     mainwindow.ui
 

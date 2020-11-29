@@ -16,6 +16,7 @@
 #include "../CourseLib/actors/nysse.hh"
 #include "../CourseLib/core/logic.hh"
 #include "../Actors/randomitem_logic.hh"
+#include "enddialog.hh"
 #include <memory>
 #include <unordered_map>
 #include <QKeyEvent>
@@ -142,6 +143,15 @@ public:
      */
     void disable_end_time();
 
+
+    /**
+     * @brief show_end_dialog shows the poinst in a dialog at the end of the
+     * game
+     * @param -
+     * @post waits for user to press ok, then quits the game
+     */
+    void show_end_dialog();
+
 private slots:
 
     /**
@@ -191,6 +201,8 @@ private:
     int tick_ = 10;
 
     QGraphicsScene *scene_;
+
+    EndDialog* end_dialog_;
 
 };
 }

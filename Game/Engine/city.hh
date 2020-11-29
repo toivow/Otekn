@@ -6,6 +6,7 @@
 #include <QTime>
 #include <unordered_map>
 #include "statistics.hh"
+#include "../Window/enddialog.hh"
 
 /** @file
  * @brief defines a class that handles the operations within the city.

@@ -15,8 +15,7 @@
   * @file
   * @brief Defines a class that handles running the whole game.
   */
-
-class gameengine;
+namespace StudentSide {
 
 class gameengine : public QObject
 {
@@ -41,10 +40,10 @@ public slots:
     /**
      * @brief execDialog is used to call the dialog for a new gameengine object.
      * @pre A new gameengine object is created.
-     * @return -
+     * @return true if dialog accepted, false if not
      * @post city_ is configured and game_logic_ parameters are set
      */
-    void execDialog();
+    bool execDialog();
 
 private:
 
@@ -62,5 +61,6 @@ private:
    CourseSide::Logic* game_logic_;
 
 };
+}
 
 #endif // GAMEENGINE_HH

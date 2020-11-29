@@ -17,7 +17,8 @@ MainWindow::MainWindow(statistics* stats, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     stats_(stats),
-    time_(new QTime())
+    time_(new QTime()),
+    end_dialog_(new EndDialog)
 
 {
     ui->setupUi(this);
@@ -197,51 +198,28 @@ void MainWindow::checkDeaths(Interface::Location player_loc_)
 
     int killed_passengers = 0;
 
-    for (auto it = actors_.begin(); it != actors_.end(); )
-    {
-        if ( (!((*(*it).first).isRemoved())) && (!(*(*it).first).isInVehicle()) )
-        {
-            // The first pointer is the first object of our map, where the .first
-            // gives the logic -object of the actor, and the pointer gives these
-            // values.
-            auto passloc = (*(*it).first).giveLocation();
+    // Loops through all actors and checks if they're clsoe, not in a bus, and
+    // not removed. If so, sets these passengers to removed, and removes them
+    // from the scene.
+    for (auto actor_ : actors_) {
 
-            int passX = passloc.giveX() - 5;
-            int passY = 500 - passloc.giveY() - 5;
+        auto passloc = Interface::Location();
+        passloc.setXY( actor_.first->giveLocation().giveX() - 4,
+                       500-actor_.first->giveLocation().giveY() - 4);
 
-            passloc.setXY(passX, passY);
-
-            // Checks whether the passenger is close to our player, if the passenger
-            // is active (so a killed actor that hasn't yet been removed) and if
-            // the actor is in a bus, when they can't be killed.
-            if (player_loc_.isClose(passloc, 15))
+            if ((player_loc_.isClose(passloc, 15)) &&
+                    (!actor_.first->isRemoved()) &&
+                    (!actor_.first->isInVehicle()))
             {
-
-                (*(*it).first).remove();
-
-                scene_->removeItem((*it).second);
-                delete (*it).second;
-                (*it).second = nullptr;
-
-                it = actors_.erase(it);
-
+                actor_.first->remove();
+                scene_->removeItem(actor_.second);
                 killed_passengers++;
             }
-
-             else
-            {
-                it++;
-            }
-       }
-        else {
-            it++;
-        }
-
     }
 
     if (killed_passengers > 0)
     {
-        qDebug() << "Killed " << killed_passengers << " passengers!";
+        //qDebug() << "Killed " << killed_passengers << " passengers!";
 
         stats_->updatePoints(killed_passengers);
 
@@ -289,6 +267,12 @@ void MainWindow::disable_end_time()
     ui->endTimeLbl->setText(QString("Time limit disabled"));
 }
 
+void MainWindow::show_end_dialog()
+{
+    end_dialog_->set_points(stats_->returnPoints());
+    end_dialog_->exec();
+}
+
 
 void MainWindow::show_time()
 {
@@ -303,6 +287,7 @@ void MainWindow::show_time()
 
 void MainWindow::on_exitButton_clicked()
 {
+    show_end_dialog();
     this->close();
 }
 
