@@ -3,6 +3,12 @@
 
 #include <QDialog>
 
+
+/** @file
+ * @brief A dialog class used for ending the game and displaying points to the
+ * user.
+ */
+
 namespace Ui {
 class EndDialog;
 }
