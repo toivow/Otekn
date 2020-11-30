@@ -35,8 +35,8 @@ void city::setClock(QTime clock)
 
 void city::addStop(std::shared_ptr<IStop> stop)
 {
-    int X = stop->getLocation().giveX() - 5;
-    int Y = 500 - stop->getLocation().giveY() - 5;
+    int X = stop->getLocation().giveX();
+    int Y = 500 - stop->getLocation().giveY();
 
     window_->addStop(X, Y, 122, stop);
     stops_.push_back(stop);
@@ -45,7 +45,7 @@ void city::addStop(std::shared_ptr<IStop> stop)
 
 void city::startGame()
 {
-    qDebug("Aloitetaan peli");
+    qDebug("Starting the game");
 
     window_->spawnDestroyer(250, 250);
     window_->updateBusAmount();
@@ -56,10 +56,13 @@ void city::startGame()
 
 void city::addActor(std::shared_ptr<IActor> newactor)
 {
-    int Y = 500 - newactor->giveLocation().giveY()-5;
-    int X = newactor->giveLocation().giveX()-5;
-    std::shared_ptr<CourseSide::Nysse> newbus = std::dynamic_pointer_cast <CourseSide::Nysse>(newactor);
-    std::shared_ptr<CourseSide::Passenger> newpass = std::dynamic_pointer_cast<CourseSide::Passenger> (newactor);
+    int Y = 500 - newactor->giveLocation().giveY();
+    int X = newactor->giveLocation().giveX();
+    std::shared_ptr<CourseSide::Nysse> newbus =
+            std::dynamic_pointer_cast <CourseSide::Nysse>(newactor);
+
+    std::shared_ptr<CourseSide::Passenger> newpass =
+            std::dynamic_pointer_cast<CourseSide::Passenger> (newactor);
 
     //If tree for checking whether pointer points to a bus or passenger
     if (newpass == nullptr)
@@ -72,7 +75,7 @@ void city::addActor(std::shared_ptr<IActor> newactor)
     {
         window_->addPass(X, Y, 255, newpass);
         passengers_.push_back(newpass);
-        if ( (5 < Y && Y < 495) &&  (5 < X && X < 495))
+        if ( (0 < Y && Y < 496) &&  (0 < X && X < 496))
             stats_->addPass(1);
     }
     else
@@ -83,21 +86,28 @@ void city::addActor(std::shared_ptr<IActor> newactor)
 
 void city::removeActor(std::shared_ptr<IActor> actor)
 {
+    int Y = 500 - actor->giveLocation().giveY();
+    int X = actor->giveLocation().giveX();
 
-    std::shared_ptr<CourseSide::Nysse> removebus = std::dynamic_pointer_cast <CourseSide::Nysse>(actor);
-    std::shared_ptr<CourseSide::Passenger> removepass = std::dynamic_pointer_cast<CourseSide::Passenger> (actor);
+    std::shared_ptr<CourseSide::Nysse> removebus =
+            std::dynamic_pointer_cast <CourseSide::Nysse>(actor);
+
+    std::shared_ptr<CourseSide::Passenger> removepass =
+            std::dynamic_pointer_cast<CourseSide::Passenger> (actor);
 
     //If tree for checking whether pointer points to a bus or passenger
     if (removepass == nullptr)
     {
         buses_.remove(removebus);
-        stats_->addBus(-1);
     }
 
     else if (removebus == nullptr)
     {
         passengers_.remove(removepass);
-        stats_->addPass(-1);
+
+        if ( (0 < Y && Y < 496) &&  (0 < X && X < 496)) {
+            stats_->addPass(-1);
+        }
 
         //Used to randomly spawn bananas on map on passenger removes.
         int rand_numb = rand() % 50;
@@ -180,7 +190,6 @@ bool city::isGameOver() const
 
         window_->setEnabled(false);
         window_->show_end_dialog();
-
         window_->close();
 
         return true;

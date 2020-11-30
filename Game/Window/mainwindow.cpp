@@ -25,12 +25,12 @@ MainWindow::MainWindow(statistics* stats, QWidget *parent) :
 
     // We need a graphics scene in which to draw objects
 
-    ui->gameView->setFixedSize(SIZE, SIZE);
+    ui->gameView->setFixedSize(SIZE+4, SIZE+4);
 
 
     scene_ = new QGraphicsScene(this);
     ui->gameView->setScene(scene_);
-    scene_->setSceneRect(0, 0, SIZE-4, SIZE-4);
+    scene_->setSceneRect(0, 0, SIZE, SIZE);
 
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, scene_, &QGraphicsScene::advance);
@@ -67,10 +67,12 @@ void MainWindow::moveObjects(std::shared_ptr<Interface::IActor> actor)
     else if (movebus == nullptr)
     {
         graphics_object = actors_[movepass];
-        calculate_passengers(graphics_object, tempX, tempY);
+        calculatePassengers(graphics_object, tempX, tempY);
     }
 
     graphics_object->setPos(tempX, tempY);
+
+    updateBusAmount();
     updatePassAmount();
     scene_->update();
 }
@@ -120,7 +122,6 @@ void MainWindow::updateBusAmount()
 void MainWindow::updatePassAmount()
 {
     ui->passAmnt->display(stats_->passAmount());
-
 }
 
 
@@ -139,6 +140,7 @@ void MainWindow::spawnDestroyer(int X, int Y)
     player_ = std::make_pair(logiikka, grafiikka);
     scene_->addItem(player_.second);
     player_.second->setPos(X, Y);
+
 }
 
 void MainWindow::spawnBanana()
@@ -204,8 +206,8 @@ void MainWindow::checkDeaths(Interface::Location player_loc_)
     for (auto actor_ : actors_) {
 
         auto passloc = Interface::Location();
-        passloc.setXY( actor_.first->giveLocation().giveX() - 4,
-                       500-actor_.first->giveLocation().giveY() - 4);
+        passloc.setXY( actor_.first->giveLocation().giveX() - 5,
+                       500-actor_.first->giveLocation().giveY() - 5);
 
             if ((player_loc_.isClose(passloc, 15)) &&
                     (!actor_.first->isRemoved()) &&
@@ -287,30 +289,36 @@ void MainWindow::show_time()
 
 void MainWindow::on_exitButton_clicked()
 {
+    ui->gameView->setUpdatesEnabled(false);
+    this->setDisabled(true);
+    ui->passAmnt->setEnabled(false);
+    ui->busAmount->setEnabled(false);
+
     show_end_dialog();
+
     this->close();
 }
 
-void MainWindow::calculate_passengers(QGraphicsItem* passenger, int newX,
+void MainWindow::calculatePassengers(QGraphicsItem* passenger, int newX,
                                       int newY)
 {
     double oldX = passenger->x();
     double oldY = passenger->y();
 
     // If the old coordinates are inside the small map
-    if (oldX < 495 && oldY < 495 && oldX > 5 && oldY > 5)
+    if ( (oldX < 496) && (oldY < 496) && (oldX > 0) && (oldY > 0) )
     {
         // If new coordinates are outside of the small map view
-        if (newX > 495 || newX < 5 || newY > 495 || newY < 5)
+        if (newX > 496 || newX < 0 || newY > 496 || newY < 0)
         {
             stats_->addPass(-1);
         }
     }
     // If the old coordinates are outside of the map
-    else if (oldX > 495 || oldX < 5 || oldY > 495 || oldY < 5)
+    else if ( (oldX > 496) || (oldX < 0) || (oldY > 496) || (oldY < 0) )
     {
         // If the new coordinates are inside the map
-        if (newX < 495 && newY < 495 && newX > 5 && newY > 5)
+        if ( (newX < 496) && (newY < 496) && (newX > 0) && (newY > 0))
         {
             stats_->addPass(1);
         }
@@ -318,6 +326,7 @@ void MainWindow::calculate_passengers(QGraphicsItem* passenger, int newX,
     }
 
 }
+
 
 }
 
