@@ -25,12 +25,12 @@ MainWindow::MainWindow(statistics* stats, QWidget *parent) :
 
     // We need a graphics scene in which to draw objects
 
-    ui->gameView->setFixedSize(SIZE, SIZE);
+    ui->gameView->setFixedSize(SIZE+4, SIZE+4);
 
 
     scene_ = new QGraphicsScene(this);
     ui->gameView->setScene(scene_);
-    scene_->setSceneRect(0, 0, SIZE-4, SIZE-4);
+    scene_->setSceneRect(0, 0, SIZE, SIZE);
 
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, scene_, &QGraphicsScene::advance);
@@ -122,7 +122,6 @@ void MainWindow::updateBusAmount()
 void MainWindow::updatePassAmount()
 {
     ui->passAmnt->display(stats_->passAmount());
-
 }
 
 
@@ -141,6 +140,7 @@ void MainWindow::spawnDestroyer(int X, int Y)
     player_ = std::make_pair(logiikka, grafiikka);
     scene_->addItem(player_.second);
     player_.second->setPos(X, Y);
+
 }
 
 void MainWindow::spawnBanana()
