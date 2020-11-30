@@ -35,8 +35,8 @@ void city::setClock(QTime clock)
 
 void city::addStop(std::shared_ptr<IStop> stop)
 {
-    int X = stop->getLocation().giveX() - 5;
-    int Y = 500 - stop->getLocation().giveY() - 5;
+    int X = stop->getLocation().giveX();
+    int Y = 500 - stop->getLocation().giveY();
 
     window_->addStop(X, Y, 122, stop);
     stops_.push_back(stop);
