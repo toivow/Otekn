@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Programming 3 Exercise project template
 
 1. Make sure you have setup ssh-key for your GitLab account. https://course-gitlab.tuni.fi/profile/keys
